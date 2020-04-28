@@ -20,7 +20,6 @@ public class MovementScript : MonoBehaviour
     float horizonTrans;
     float vertiTrans;
 
-    public UIScript uiScript;
     AudioSource audioData;
     public AudioClip goalSound;
     public AudioClip doorSound;
@@ -29,6 +28,7 @@ public class MovementScript : MonoBehaviour
     public GoalScript goalScript;
     bool isInAction;
     Dictionary<string, int> goalToID = new Dictionary<string, int>();
+    public GameObject[] actionMiniGames;
 
     // Start is called before the first frame update
     void Start()
@@ -183,8 +183,10 @@ public class MovementScript : MonoBehaviour
             audioData.clip = goalSound;
             audioData.Play();
 
+            actionMiniGames[goalToID[collision.gameObject.name]].SetActive(true);
+            isPaused = true;
+
             animator.SetInteger("Action", goalToID[collision.gameObject.name]);
-            Debug.Log(goalToID[collision.gameObject.name]);
             StartCoroutine(StopActionAnim());
 
         } else if (collision.gameObject.tag == "Door")
@@ -200,7 +202,6 @@ public class MovementScript : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         animator.SetInteger("Action", -1);
-        Debug.Log("abis");
         isInAction = false;
     }
 
@@ -216,6 +217,11 @@ public class MovementScript : MonoBehaviour
     public void TriggerDead()
     {
         animator.SetTrigger("dead");
+    }
+
+    public void Unpause()
+    {
+        isPaused = false;
     }
 
 
