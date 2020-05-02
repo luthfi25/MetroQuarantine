@@ -37,6 +37,7 @@ public class GestureDetectorScript : MonoBehaviour
 	
 	//for Book
 	public String mode;
+	public MiniGameController miniGameControllerInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -155,6 +156,7 @@ public class GestureDetectorScript : MonoBehaviour
 					if(requiredClasses.Count == 0) {
 						this.gameObject.SetActive(false);
 						movementScriptInstance.Unpause();
+						miniGameControllerInstance.CloseMiniGame();
 					}
 				}
         	}
@@ -162,6 +164,7 @@ public class GestureDetectorScript : MonoBehaviour
 			if(requiredClasses.Count == 0) {
 				this.gameObject.SetActive(false);
 				movementScriptInstance.Unpause();
+				miniGameControllerInstance.CloseMiniGame();
 			}
 
 			drawTest(testSet[0]);
@@ -201,6 +204,7 @@ public class GestureDetectorScript : MonoBehaviour
 					if(requiredClasses.Count == 0) {
 						this.gameObject.SetActive(false);
 						movementScriptInstance.Unpause();
+						miniGameControllerInstance.CloseMiniGame();
 					}
 
 					testDrawn = false;
@@ -225,7 +229,7 @@ public class GestureDetectorScript : MonoBehaviour
 				points.Add(new Point(p.X, p.Y, strokeId));
 
 				currentGestureLineRenderer.SetVertexCount(++vertexCount);
-				currentGestureLineRenderer.SetPosition(vertexCount - 1, Camera.main.ScreenToWorldPoint(new Vector3((2 * Screen.width / 5) + p.X, -p.Y, 1000)));
+				currentGestureLineRenderer.SetPosition(vertexCount - 1, miniGameControllerInstance.CameraMiniGame.GetComponent<Camera>().ScreenToWorldPoint(new Vector3((2 * Screen.width / 5)+p.X, -p.Y, 1000)));
 			}
 		}
 	}

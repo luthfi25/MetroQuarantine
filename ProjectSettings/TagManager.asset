@@ -13,6 +13,8 @@ TagManager:
   - Furniture
   - Door
   - MG-Sabun
+  - Corona
+  - Corona-Border
   layers:
   - Default
   - TransparentFX

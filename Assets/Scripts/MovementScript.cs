@@ -29,6 +29,8 @@ public class MovementScript : MonoBehaviour
     bool isInAction;
     Dictionary<string, int> goalToID = new Dictionary<string, int>();
     public GameObject[] actionMiniGames;
+    public GameObject CameraMiniGame;
+    public GameObject CameraMain;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,9 @@ public class MovementScript : MonoBehaviour
         goalToID.Add("Makan", 2);
         goalToID.Add("Sapu", 3);
         goalToID.Add("Semprot", 4);
+
+        CameraMiniGame.SetActive(false);
+        CameraMain.SetActive(true);
     }
 
     // Update is called once per frame
@@ -183,6 +188,8 @@ public class MovementScript : MonoBehaviour
             audioData.clip = goalSound;
             audioData.Play();
 
+            CameraMiniGame.SetActive(true);
+            CameraMain.SetActive(false);
             actionMiniGames[goalToID[collision.gameObject.name]].SetActive(true);
             isPaused = true;
 
