@@ -34,6 +34,10 @@ public class GestureDetectorScript : MonoBehaviour
 
     public MovementScript movementScriptInstance;
     public List<String> requiredClasses = new List<String>();
+	private String[] originRequiredClasses;
+
+	public GameObject GestureAnimation;
+	public List<AnimationClip> GestureAnimationClip;
 	
 	//for Book
 	public String mode;
@@ -43,7 +47,7 @@ public class GestureDetectorScript : MonoBehaviour
     void Start()
     {
         platform = Application.platform;
-		drawArea = new Rect(0, 0, (2 * Screen.width) / 5, Screen.height);
+		drawArea = new Rect(15 + Screen.width / 3, Screen.height / 4, Screen.width / 3, Screen.height / 2);
 
 		if(mode == "Book"){
 			referenceArea = new Rect((Screen.width / 2) + 10, 0, (Screen.width / 2)-10, Screen.height);
@@ -70,7 +74,19 @@ public class GestureDetectorScript : MonoBehaviour
 			}
 			index++;
 		}
+
+		originRequiredClasses = new String[6];
+		requiredClasses.CopyTo(originRequiredClasses);
+		GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
     }
+
+	void OnEnable(){
+		GestureAnimation.SetActive(true);
+	}
+
+	void OnDisable(){
+		GestureAnimation.SetActive(false);
+	}
 
     // Update is called once per frame
     [Obsolete]
@@ -158,6 +174,9 @@ public class GestureDetectorScript : MonoBehaviour
 						movementScriptInstance.Unpause();
 						miniGameControllerInstance.CloseMiniGame();
 					}
+
+					GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
+					miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 7);
 				}
         	}
 		} else if(mode == "Book"){
@@ -172,11 +191,12 @@ public class GestureDetectorScript : MonoBehaviour
     }
 
     void OnGUI() {
-		GUI.Label(new Rect(10, Screen.height - 40, 100, 50), message);
+		GUI.color = new Color(1,1,1,0.25f); // half transparent 
+		GUI.Box(drawArea, "");
 
-		if(mode == "Soap") {
-			message = requiredClasses[0];
-		} else if(mode == "Book") {
+		if(mode == "Book") {
+			GUI.Label(new Rect(10, Screen.height - 40, 100, 50), message);
+
 			if (GUI.Button(new Rect(Screen.width - 100, 10, 100, 30), "Recognize")) {
 				recognized = true;
 
@@ -209,6 +229,8 @@ public class GestureDetectorScript : MonoBehaviour
 
 					testDrawn = false;
 					drawTest(testSet[0]);
+					GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
+					miniGameControllerInstance.AddProgressTrack(5 - requiredClasses.Count, 7);
 				}
 			}
 		}
@@ -232,5 +254,19 @@ public class GestureDetectorScript : MonoBehaviour
 				currentGestureLineRenderer.SetPosition(vertexCount - 1, miniGameControllerInstance.CameraMiniGame.GetComponent<Camera>().ScreenToWorldPoint(new Vector3((2 * Screen.width / 5)+p.X, -p.Y, 1000)));
 			}
 		}
+	}
+
+	public void RestartGesture(){
+		requiredClasses = new List<string>(originRequiredClasses);
+		points.Clear();
+
+		foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
+
+			lineRenderer.SetVertexCount(0);
+			Destroy(lineRenderer.gameObject);
+		}
+
+		gestureLinesRenderer.Clear();
+		GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
 	}
 }

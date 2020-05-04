@@ -1,0 +1,320 @@
+fileFormatVersion: 2
+guid: d3a685a4106a3134e9dec0c838feeeef
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6568801524289582411
+    second: Sabun-10_0
+  - first:
+      213: -9040837282665946569
+    second: Sabun-10_1
+  - first:
+      213: 2355478891745043526
+    second: Sabun-10_2
+  - first:
+      213: -9075221074892049940
+    second: Sabun-10_3
+  - first:
+      213: 3323128586609251295
+    second: Sabun-10_4
+  - first:
+      213: 4245636891428448088
+    second: Sabun-10_5
+  - first:
+      213: 5806947929885368689
+    second: Sabun-10_6
+  - first:
+      213: -2989807216161685739
+    second: Sabun-10_7
+  - first:
+      213: 6284240514672584725
+    second: Sabun-10_8
+  - first:
+      213: 7702039551068808314
+    second: Sabun-10_9
+  - first:
+      213: -4486558634516526567
+    second: Sabun-10_10
+  - first:
+      213: -5132593144819627298
+    second: Sabun-10_11
+  - first:
+      213: -4751053782181496015
+    second: Sabun-10_12
+  - first:
+      213: -7247498415523504502
+    second: Sabun-10_13
+  - first:
+      213: 5796188539007416392
+    second: Sabun-10_14
+  - first:
+      213: 8382858870083775774
+    second: Sabun-10_15
+  - first:
+      213: -7688183699440231367
+    second: Sabun-10_16
+  - first:
+      213: 6371463217800473582
+    second: Sabun-10_17
+  - first:
+      213: -6551503794034561651
+    second: Sabun-10_18
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sabun-10_7
+      rect:
+        serializedVersion: 2
+        x: 11258
+        y: 273
+        width: 1067
+        height: 628
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f78c57d221286d0800000000000000
+      internalID: -2989807216161685739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-10_8
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 273
+        width: 1067
+        height: 628
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5186d28e37b163750800000000000000
+      internalID: 6284240514672584725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-10_9
+      rect:
+        serializedVersion: 2
+        x: 2412
+        y: 273
+        width: 1067
+        height: 628
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a74277f1a2423ea60800000000000000
+      internalID: 7702039551068808314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-10_11
+      rect:
+        serializedVersion: 2
+        x: 4182
+        y: 273
+        width: 1067
+        height: 628
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edacb6a7abd55c8b0800000000000000
+      internalID: -5132593144819627298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-10_12
+      rect:
+        serializedVersion: 2
+        x: 5958
+        y: 273
+        width: 1067
+        height: 628
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13bbb4cd1cdd01eb0800000000000000
+      internalID: -4751053782181496015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-10_14
+      rect:
+        serializedVersion: 2
+        x: 7718
+        y: 273
+        width: 1067
+        height: 628
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8483ab644c2307050800000000000000
+      internalID: 5796188539007416392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-10_16
+      rect:
+        serializedVersion: 2
+        x: 9492
+        y: 273
+        width: 1067
+        height: 628
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93c9aeab8a51e4590800000000000000
+      internalID: -7688183699440231367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0e420e52c3702a74a9b9607f7daa6c42
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

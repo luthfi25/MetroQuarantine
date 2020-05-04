@@ -15,6 +15,7 @@ public class StopWatchScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetFloat("Stopwatch", 0.0f);
         alert.SetActive(false);
     }
 
@@ -62,8 +63,14 @@ public class StopWatchScript : MonoBehaviour
         alertText = alert.GetComponent<Text>();
         alertText.text = "+" + time + "s!";
         alert.SetActive(true);
+        StartCoroutine(disableAlert());
 
         timePause = MovementScript.isPaused;
+    }
+
+    IEnumerator disableAlert(){
+        yield return new WaitForSeconds(2.0f);
+        alert.SetActive(false);
     }
 
     public void DestroyTime()

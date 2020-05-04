@@ -14,6 +14,12 @@ public class GoalScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("Buku", 1);
+        PlayerPrefs.SetInt("Sabun", 1);
+        PlayerPrefs.SetInt("Makan", 1);
+        PlayerPrefs.SetInt("Sapu", 1);
+        PlayerPrefs.SetInt("Semprot",1);
+
         intToBool.Add(0, false);
         intToBool.Add(1, true);
 

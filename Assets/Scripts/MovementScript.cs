@@ -31,10 +31,12 @@ public class MovementScript : MonoBehaviour
     public GameObject[] actionMiniGames;
     public GameObject CameraMiniGame;
     public GameObject CameraMain;
+    private Vector3 originalPos;
 
     // Start is called before the first frame update
     void Start()
     {
+        originalPos = transform.position;
         isPaused = false;
         speed = 2.25f;
         rb = GetComponent<Rigidbody2D>();
@@ -52,6 +54,12 @@ public class MovementScript : MonoBehaviour
 
         CameraMiniGame.SetActive(false);
         CameraMain.SetActive(true);
+    }
+
+    public void ResetPosition(){
+        transform.position = originalPos;
+        isPaused = false;
+        isInAction = false;
     }
 
     // Update is called once per frame
@@ -188,11 +196,14 @@ public class MovementScript : MonoBehaviour
             audioData.clip = goalSound;
             audioData.Play();
 
-            CameraMiniGame.SetActive(true);
-            CameraMain.SetActive(false);
-            actionMiniGames[goalToID[collision.gameObject.name]].SetActive(true);
-            isPaused = true;
+            GameObject miniGame = actionMiniGames[goalToID[collision.gameObject.name]];
+            if (miniGame != null){
+                CameraMiniGame.SetActive(true);
+                CameraMain.SetActive(false);
+                miniGame.SetActive(true);
+            }
 
+            isPaused = true;
             animator.SetInteger("Action", goalToID[collision.gameObject.name]);
             StartCoroutine(StopActionAnim());
 

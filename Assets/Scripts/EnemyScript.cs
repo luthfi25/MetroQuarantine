@@ -38,6 +38,26 @@ public class EnemyScript : MonoBehaviour
         animator = GetComponent<Animator>();
         InvokeRepeating("SuddenTurn", 5.0f, 5.0f);
 
+        ResetPosition();
+        
+        //  { 0, 1, 2, 3, 4}; //up, down, left, right, stop
+        modeToMove.Add("up", 0);
+        modeToMove.Add("down", 1);
+        modeToMove.Add("left", 2);
+        modeToMove.Add("right", 3);
+        modeToMove.Add("stop", 4);
+
+        moveToMode.Add(0, "up");
+        moveToMode.Add(1, "down");
+        moveToMode.Add(2, "left");
+        moveToMode.Add(3, "right");
+        moveToMode.Add(4, "stop");
+
+        audio = GetComponent<AudioSource>();
+        audio.loop = false;
+    }
+
+    public void ResetPosition(){
         switch (character)
         {
             case ("Emak"):
@@ -66,22 +86,6 @@ public class EnemyScript : MonoBehaviour
                 suddenTurnRate = 0.5f;
                 break;
         }
-
-        //  { 0, 1, 2, 3, 4}; //up, down, left, right, stop
-        modeToMove.Add("up", 0);
-        modeToMove.Add("down", 1);
-        modeToMove.Add("left", 2);
-        modeToMove.Add("right", 3);
-        modeToMove.Add("stop", 4);
-
-        moveToMode.Add(0, "up");
-        moveToMode.Add(1, "down");
-        moveToMode.Add(2, "left");
-        moveToMode.Add(3, "right");
-        moveToMode.Add(4, "stop");
-
-        audio = GetComponent<AudioSource>();
-        audio.loop = false;
     }
 
     // Update is called once per frame

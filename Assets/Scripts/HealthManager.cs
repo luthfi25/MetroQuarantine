@@ -17,9 +17,12 @@ public class HealthManager : MonoBehaviour
 
     AudioSource audio;
 
+    public GameObject[] Characters;
+
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("Health", 2);
         int healthCount = PlayerPrefs.GetInt("Health", 2);
         int healthToDisable =  2 - healthCount;
         GameObject[] healths = GameObject.FindGameObjectsWithTag("Health");
@@ -131,7 +134,16 @@ public class HealthManager : MonoBehaviour
     IEnumerator restartScene()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        foreach(GameObject c in Characters){
+            MovementScript ms = c.GetComponent<MovementScript>();
+            EnemyScript es = c.GetComponent<EnemyScript>();
+
+            if (ms != null){
+                ms.ResetPosition();
+            } else if (es != null){
+                es.ResetPosition();
+            }
+        }
     }
 
     IEnumerator showGameOver()

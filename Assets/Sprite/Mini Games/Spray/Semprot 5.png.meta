@@ -1,0 +1,410 @@
+fileFormatVersion: 2
+guid: 111fa1c07738f254d91aa44c15ffc6f1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5913335512133502929
+    second: Semprot 5_0
+  - first:
+      213: 2237138440923685215
+    second: Semprot 5_1
+  - first:
+      213: 7246040322317510770
+    second: Semprot 5_2
+  - first:
+      213: -4324633799950360424
+    second: Semprot 5_3
+  - first:
+      213: -5061244531848868377
+    second: Semprot 5_4
+  - first:
+      213: -7538627200341025181
+    second: Semprot 5_5
+  - first:
+      213: -932637376726100883
+    second: Semprot 5_6
+  - first:
+      213: -9155845165497550642
+    second: Semprot 5_7
+  - first:
+      213: 1037273809877908219
+    second: Semprot 5_8
+  - first:
+      213: 1642469103867398716
+    second: Semprot 5_9
+  - first:
+      213: 4817873480494778097
+    second: Semprot 5_10
+  - first:
+      213: -6680413166775302636
+    second: Semprot 5_11
+  - first:
+      213: -3407000277814196055
+    second: Semprot 5_12
+  - first:
+      213: -1653964463576870604
+    second: Semprot 5_13
+  - first:
+      213: 8257846775795629710
+    second: Semprot 5_14
+  - first:
+      213: 7521551905633122439
+    second: Semprot 5_15
+  - first:
+      213: 9105131609473587919
+    second: Semprot 5_16
+  - first:
+      213: 6022682808267739745
+    second: Semprot 5_17
+  - first:
+      213: -6412466645733840522
+    second: Semprot 5_18
+  - first:
+      213: 7034775618438479651
+    second: Semprot 5_19
+  - first:
+      213: -2821121535266603574
+    second: Semprot 5_20
+  - first:
+      213: 1852921593415015510
+    second: Semprot 5_21
+  - first:
+      213: -8811741872110004070
+    second: Semprot 5_22
+  - first:
+      213: -2419428790904818345
+    second: Semprot 5_23
+  - first:
+      213: -3704951888719892912
+    second: Semprot 5_24
+  - first:
+      213: -1080394325728927020
+    second: Semprot 5_25
+  - first:
+      213: 5905797970454341570
+    second: Semprot 5_26
+  - first:
+      213: -1803786370121259098
+    second: Semprot 5_27
+  - first:
+      213: 3080142596032726968
+    second: Semprot 5_28
+  - first:
+      213: -1575497810187313038
+    second: Semprot 5_29
+  - first:
+      213: -3263208763521069208
+    second: Semprot 5_30
+  - first:
+      213: 4642544102170646029
+    second: Semprot 5_31
+  - first:
+      213: 9184246588608567841
+    second: Semprot 5_32
+  - first:
+      213: -4593998433305253744
+    second: Semprot 5_33
+  - first:
+      213: 8822491438933809179
+    second: Semprot 5_34
+  - first:
+      213: 5411406645004555167
+    second: Semprot 5_35
+  - first:
+      213: 2008473797670246323
+    second: Semprot 5_36
+  - first:
+      213: -7720752899086001865
+    second: Semprot 5_37
+  - first:
+      213: -4603038178747431290
+    second: Semprot 5_38
+  - first:
+      213: 4539445758276096856
+    second: Semprot 5_39
+  - first:
+      213: -4754455257463505059
+    second: Semprot 5_40
+  - first:
+      213: 5858665464849089605
+    second: Semprot 5_0
+  - first:
+      213: -7961545252248079029
+    second: Semprot 5_1
+  - first:
+      213: -8009152047397897896
+    second: Semprot 5_2
+  - first:
+      213: -1452238753644181358
+    second: Semprot 5_3
+  - first:
+      213: -4305298640875375880
+    second: Semprot 5_4
+  - first:
+      213: 3058269719370768152
+    second: Semprot 5_5
+  - first:
+      213: 6554859108014694063
+    second: Semprot 5_6
+  - first:
+      213: -6328061284031343734
+    second: Semprot 5_7
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Semprot 5_0
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 946
+        height: 1425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 544cd2223392e4150800000000000000
+      internalID: 5858665464849089605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Semprot 5_1
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 0
+        width: 1029
+        height: 1425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b453e8076c8e28190800000000000000
+      internalID: -7961545252248079029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Semprot 5_2
+      rect:
+        serializedVersion: 2
+        x: 3202
+        y: 0
+        width: 1120
+        height: 1425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85971cea5a6c9d090800000000000000
+      internalID: -8009152047397897896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Semprot 5_3
+      rect:
+        serializedVersion: 2
+        x: 4746
+        y: 0
+        width: 1300
+        height: 1425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2988bff3c8c98dbe0800000000000000
+      internalID: -1452238753644181358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Semprot 5_4
+      rect:
+        serializedVersion: 2
+        x: 6390
+        y: 0
+        width: 1138
+        height: 1425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2b6a252b18044c0800000000000000
+      internalID: -4305298640875375880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Semprot 5_5
+      rect:
+        serializedVersion: 2
+        x: 7953
+        y: 0
+        width: 1074
+        height: 1425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81f9d6a3b18217a20800000000000000
+      internalID: 3058269719370768152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Semprot 5_6
+      rect:
+        serializedVersion: 2
+        x: 9353
+        y: 0
+        width: 957
+        height: 1425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae13fd21a987fa50800000000000000
+      internalID: 6554859108014694063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 1f2152bd489c544479a29485d7ae129d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

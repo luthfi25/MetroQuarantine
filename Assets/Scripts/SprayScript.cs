@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SprayScript : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class SprayScript : MonoBehaviour
     public Transform coronaSpawnPoint;
     const float WAIT_TIME = 1.0f;
     public MiniGameController miniGameControllerInstance;
+    private float height;
+    private Vector3 destination;
 
     private int coronaCounter;
     // Start is called before the first frame update
@@ -32,8 +36,11 @@ public class SprayScript : MonoBehaviour
             if(hitInformation.collider != null) {
                 GameObject touchedObject = hitInformation.transform.gameObject;
                 if(touchedObject.tag == "Corona"){
-                    Destroy(touchedObject);
+                    touchedObject.GetComponent<Animator>().SetTrigger("dead");
+                    Destroy(touchedObject, 0.75f);
                     coronaCounter++;
+                    miniGameControllerInstance.AddProgressTrack(coronaCounter, 19);
+                    
                 }
             }
 
@@ -43,8 +50,10 @@ public class SprayScript : MonoBehaviour
             if(hitInformation.collider != null) {
                 GameObject touchedObject = hitInformation.transform.gameObject;
                if(touchedObject.tag == "Corona"){
-                    Destroy(touchedObject);
+                    touchedObject.GetComponent<Animator>().SetTrigger("dead");
+                    Destroy(touchedObject, 0.75f);
                     coronaCounter++;
+                    miniGameControllerInstance.AddProgressTrack(coronaCounter, 19);
                 }
             }
         }
@@ -58,6 +67,15 @@ public class SprayScript : MonoBehaviour
             Instantiate(coronaGameObject, new Vector3(normvalue.x, coronaSpawnPoint.position.y, -10f), transform.rotation);
 
             yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+    public void RestartSpray(){
+        coronaCounter = 0;
+
+        GameObject[] coronas = GameObject.FindGameObjectsWithTag("Corona");
+        foreach(GameObject corona in coronas){
+            Destroy(corona);
         }
     }
 }

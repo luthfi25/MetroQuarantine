@@ -1,0 +1,416 @@
+fileFormatVersion: 2
+guid: e7112e1d5575b5e4f97bf9c91b98b871
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7034889916593284773
+    second: Sabun-08_0
+  - first:
+      213: -4992924805288152491
+    second: Sabun-08_1
+  - first:
+      213: 53170604517859209
+    second: Sabun-08_2
+  - first:
+      213: -7848019796089118902
+    second: Sabun-08_3
+  - first:
+      213: 7715774080146011032
+    second: Sabun-08_4
+  - first:
+      213: -209167820914616299
+    second: Sabun-08_5
+  - first:
+      213: -7268474910899956381
+    second: Sabun-08_6
+  - first:
+      213: -443330256089364232
+    second: Sabun-08_7
+  - first:
+      213: -5559147745946079682
+    second: Sabun-08_8
+  - first:
+      213: 2937475632168715826
+    second: Sabun-08_9
+  - first:
+      213: 4842204554993988820
+    second: Sabun-08_10
+  - first:
+      213: -6277081511464525619
+    second: Sabun-08_0
+  - first:
+      213: 6075993581977491275
+    second: Sabun-08_1
+  - first:
+      213: 7572827394033068377
+    second: Sabun-08_2
+  - first:
+      213: 1224949885877085374
+    second: Sabun-08_3
+  - first:
+      213: -475637501760624677
+    second: Sabun-08_4
+  - first:
+      213: -2681873567670169477
+    second: Sabun-08_5
+  - first:
+      213: -8074653403429610752
+    second: Sabun-08_6
+  - first:
+      213: -1622997011318322241
+    second: Sabun-08_7
+  - first:
+      213: -8659270307359951544
+    second: Sabun-08_8
+  - first:
+      213: 8526315729944933482
+    second: Sabun-08_9
+  - first:
+      213: -6391752784171574011
+    second: Sabun-08_10
+  - first:
+      213: -5306240930055006271
+    second: Sabun-08_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sabun-08_0
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc02cfa6f9353e8a0800000000000000
+      internalID: -6277081511464525619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_1
+      rect:
+        serializedVersion: 2
+        x: 1970
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b47525788f3425450800000000000000
+      internalID: 6075993581977491275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_2
+      rect:
+        serializedVersion: 2
+        x: 3268
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95920be6466181960800000000000000
+      internalID: 7572827394033068377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_3
+      rect:
+        serializedVersion: 2
+        x: 4566
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb4eb5f5e65eff010800000000000000
+      internalID: 1224949885877085374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_4
+      rect:
+        serializedVersion: 2
+        x: 5864
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd724b156323669f0800000000000000
+      internalID: -475637501760624677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_5
+      rect:
+        serializedVersion: 2
+        x: 7161
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b70928a033218cad0800000000000000
+      internalID: -2681873567670169477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_6
+      rect:
+        serializedVersion: 2
+        x: 8539
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00bdd2cc28111ff80800000000000000
+      internalID: -8074653403429610752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_7
+      rect:
+        serializedVersion: 2
+        x: 9837
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbbc9d431d4f979e0800000000000000
+      internalID: -1622997011318322241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_8
+      rect:
+        serializedVersion: 2
+        x: 11150
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 845f8b3c88714d780800000000000000
+      internalID: -8659270307359951544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_9
+      rect:
+        serializedVersion: 2
+        x: 12454
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6471366bfe835670800000000000000
+      internalID: 8526315729944933482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sabun-08_10
+      rect:
+        serializedVersion: 2
+        x: 13759
+        y: 0
+        width: 772
+        height: 1376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50dd65f25beeb47a0800000000000000
+      internalID: -6391752784171574011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
