@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
-    GameObject[] healths;
-    public GameObject deadHealth;
-
     public GameObject stopWatch;
     StopWatchScript stopWatchInstance;
 
@@ -23,29 +20,24 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("Health", 2);
-        int healthCount = PlayerPrefs.GetInt("Health", 2);
-        int healthToDisable =  2 - healthCount;
+        audio = GetComponent<AudioSource>();
+        recalculateHealth();
+    }
+
+    void recalculateHealth(){
         GameObject[] healths = GameObject.FindGameObjectsWithTag("Health");
+        GameObject[] deadHealths = GameObject.FindGameObjectsWithTag("Dead-Health");
 
-        stopWatchInstance = stopWatch.GetComponent<StopWatchScript>();
-        if (healthToDisable == 0)
-        {
-            stopWatchInstance.DestroyTime();
-        }
-
-        foreach (GameObject health in healths){
-            if(healthToDisable > 0)
-            {
-                GameObject dh = Instantiate(deadHealth, health.transform.position, health.transform.rotation);
-                
-                dh.transform.SetParent(transform);
-                dh.transform.localScale = new Vector3(1f, 1f, 1f);
-                health.SetActive(false);
-                healthToDisable--;
+        int healthCount = PlayerPrefs.GetInt("Health", 2);
+        for(int i = 0; i < deadHealths.Length; i++){
+            if(healthCount >= 0){
+                deadHealths[i].GetComponent<Image>().enabled = false;
+                healthCount--;
+            } else {
+                healths[i].SetActive(false);
+                deadHealths[i].GetComponent<Image>().enabled = true;
             }
         }
-
-        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -72,7 +64,7 @@ public class HealthManager : MonoBehaviour
 
         //Animate losing health
         GameObject[] healths = GameObject.FindGameObjectsWithTag("Health");
-        Animator healthAnim = healths[0].GetComponent<Animator>();
+        Animator healthAnim = healths[healths.Length-1].GetComponent<Animator>();
         healthAnim.enabled = true;
 
         // Trigger Player Animation
@@ -80,52 +72,26 @@ public class HealthManager : MonoBehaviour
 
         if (healths.Length > 1 && toDestroy > 1)
         {
-            healthAnim = healths[1].GetComponent<Animator>();
+            healthAnim = healths[healths.Length-2].GetComponent<Animator>();
             healthAnim.enabled = true;
         }
 
         int healthCount = PlayerPrefs.GetInt("Health", 2);
-       
+        healthCount -= toDestroy;
 
-        if (healthCount <= 0)
+        if (healthCount < 0)
         {
             //???????
             if (stopWatchInstance == null)
             {
                 stopWatchInstance = stopWatch.GetComponent<StopWatchScript>();
             }
-
-            stopWatchInstance.DestroyTime();
             PlayerPrefs.DeleteKey("Health");
-
             StartCoroutine(showGameOver());
 
         }
         else
         {
-            healthCount--;
-
-            if (toDestroy > 1)
-            {
-                if(healthCount == 0)
-                {
-                    //???????
-                    if (stopWatchInstance == null)
-                    {
-                        stopWatchInstance = stopWatch.GetComponent<StopWatchScript>();
-                    }
-
-                    stopWatchInstance.DestroyTime();
-                    PlayerPrefs.DeleteKey("Health");
-
-                    StartCoroutine(showGameOver());
-
-                    return;
-                }
-                healthCount--;
-            }
-
-
             PlayerPrefs.SetInt("Health", healthCount);
             StartCoroutine(restartScene());
         }
@@ -144,11 +110,13 @@ public class HealthManager : MonoBehaviour
                 es.ResetPosition();
             }
         }
+        recalculateHealth();
     }
 
     IEnumerator showGameOver()
     {
         yield return new WaitForSeconds(1.5f);
+        stopWatchInstance.DestroyTime();
 
         AudioSource[] allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
         foreach (AudioSource audioS in allAudioSources)

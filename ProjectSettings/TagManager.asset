@@ -15,6 +15,7 @@ TagManager:
   - MG-Sabun
   - Corona
   - Corona-Border
+  - Dead-Health
   layers:
   - Default
   - TransparentFX
