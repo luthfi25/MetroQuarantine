@@ -16,6 +16,8 @@ public class MiniGameController : MonoBehaviour
     private Vector3 destination;
     private Vector3 originDestination;
 
+    public UIScript uIScriptInstance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +27,14 @@ public class MiniGameController : MonoBehaviour
     }
 
     void OnEnable(){
+        uIScriptInstance.DisablePause();
         StopWatch.SetActive(true);
         ProgressTrack.SetActive(true);
         ProgressTrackMask.SetActive(true);
     }
 
     void OnDisable(){
+        uIScriptInstance.EnablePause();
         StopWatch.SetActive(false);
         ProgressTrack.SetActive(false);
         ProgressTrackMask.SetActive(false);

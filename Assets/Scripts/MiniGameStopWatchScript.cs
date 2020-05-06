@@ -48,6 +48,11 @@ public class MiniGameStopWatchScript : MonoBehaviour
                 if (mgc != null){
                     mgc.RestartProgressTrack();
                 }
+
+                FoodScript fs = mg.GetComponent<FoodScript>();
+                if (fs != null) {
+                    fs.RestartFood();
+                }
             }
         }
 

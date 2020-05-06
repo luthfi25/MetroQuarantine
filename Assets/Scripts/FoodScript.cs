@@ -17,11 +17,16 @@ public class FoodScript : MonoBehaviour
     const string ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
     private List<TextMeshProUGUI> activeAnswers;
+    public MiniGameController miniGameControllerInstance;
+    public GameObject BackspaceButton;
+
+    private Stack<GameObject> pressedChar;
 
     // Start is called before the first frame update
     void Start()
     {
         activeAnswers = new List<TextMeshProUGUI>();
+        pressedChar = new Stack<GameObject>();
         clearButton = true;
     }
 
@@ -40,6 +45,11 @@ public class FoodScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        if(foods.Count <= 0){
+            this.gameObject.SetActive(false);
+            miniGameControllerInstance.CloseMiniGame();
+        }
+
         if(clearButton){
             foreach(TextMeshProUGUI c in charText){
                 c.transform.parent.gameObject.GetComponent<Button>().interactable = true;
@@ -79,7 +89,8 @@ public class FoodScript : MonoBehaviour
 
     void generateAnswerSpace(){
         int len = foods[0].Length;
-        for(int i = 0; i < len; i++){
+        int i = 0;
+        for(; i < len; i++){
             if(foods[0][i].ToString() == " "){
                 continue;
             }
@@ -89,9 +100,14 @@ public class FoodScript : MonoBehaviour
             answerPh.transform.SetParent(answerParent.transform, false);
             activeAnswers.Add(answerPh.GetComponentInChildren<TextMeshProUGUI>());
         }
+        
+        float backSpaceX = answerParent.transform.position.x + (i * 56) + (BackspaceButton.GetComponent<RectTransform>().rect.width / 2);
+        float backSpaceY = answerParent.transform.position.y + (BackspaceButton.GetComponent<RectTransform>().rect.height / 2);
+        BackspaceButton.GetComponent<RectTransform>().localPosition = new Vector3(backSpaceX, backSpaceY, answerParent.transform.position.z);
     }
 
     public void FillAnswer(GameObject charGo){
+        pressedChar.Push(charGo.transform.parent.gameObject);
         string answer = "";
         string realAnswer = foods[0].Replace(" ", "");
 
@@ -115,6 +131,7 @@ public class FoodScript : MonoBehaviour
                 }
 
                 activeAnswers.RemoveRange(0, activeAnswers.Count);
+                miniGameControllerInstance.AddProgressTrack(5 - foods.Count, 6);
             } else {
                 foreach(TextMeshProUGUI a in activeAnswers){
                     a.text = "";
@@ -122,6 +139,34 @@ public class FoodScript : MonoBehaviour
             }
 
             clearButton = true;
+        }
+    }
+
+    public void RestartFood(){
+        foods = new List<string> (new string[] {"sate", "bakso", "ayam goreng", "burger", "pizza"}); 
+        onScreenChar = "";
+        clearButton = true;
+
+        foreach(TextMeshProUGUI a in activeAnswers){
+            Destroy(a.gameObject.transform.parent.gameObject);
+        }
+
+        activeAnswers.RemoveRange(0, activeAnswers.Count);
+    }
+
+    public void Backspace(){
+        if (pressedChar.Count > 0){
+            pressedChar.Pop().GetComponent<Button>().interactable = true;
+        }
+
+        foreach(TextMeshProUGUI a in activeAnswers){
+            if(a.text == ""){
+                int index = activeAnswers.IndexOf(a);
+                if(index != 0){
+                    activeAnswers[index-1].text = "";   
+                }
+                break;
+            }
         }
     }
 }

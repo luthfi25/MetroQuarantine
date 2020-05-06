@@ -12,15 +12,13 @@ public class GestureDetectorScript : MonoBehaviour
     public Transform gestureOnScreenPrefab;
 
 	private List<Gesture> trainingSet = new List<Gesture>();
-	private List<Point[]> testSet = new List<Point[]>();
-	private bool testDrawn = false;
 
 	private List<Point> points = new List<Point>();
 	private int strokeId = -1;
 
 	private Vector3 virtualKeyPosition = Vector2.zero;
 	private Rect drawArea;
-	private Rect referenceArea;
+	private Color color;
 
 	private RuntimePlatform platform;
 	private int vertexCount = 0;
@@ -37,21 +35,19 @@ public class GestureDetectorScript : MonoBehaviour
 	private String[] originRequiredClasses;
 
 	public GameObject GestureAnimation;
-	public List<AnimationClip> GestureAnimationClip;
+	public GameObject referencePicGO;
+	public List<Sprite> referencePics;
 	
 	//for Book
 	public String mode;
 	public MiniGameController miniGameControllerInstance;
 
+	public GameObject RecognizeButton;
+
     // Start is called before the first frame update
     void Start()
     {
         platform = Application.platform;
-		drawArea = new Rect(15 + Screen.width / 3, Screen.height / 4, Screen.width / 3, Screen.height / 2);
-
-		if(mode == "Book"){
-			referenceArea = new Rect((Screen.width / 2) + 10, 0, (Screen.width / 2)-10, Screen.height);
-		}
 
 		//Load pre-made gestures
 		TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("GestureSet/10-stylus-MEDIUM/");
@@ -62,30 +58,34 @@ public class GestureDetectorScript : MonoBehaviour
 		string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.xml");
 		foreach (string filePath in filePaths)
 			trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
-		
-		//For Book only, load test set
-		int index = 0;
-		while(index < requiredClasses.Count){
-			foreach (string filePath in filePaths) {
-				if(filePath.Contains(requiredClasses[index])){
-					testSet.Add(GestureIO.ReadPointsFromFile(filePath));
-					break;
-				}
-			}
-			index++;
-		}
 
-		originRequiredClasses = new String[6];
+		if (mode == "Soap") {
+			drawArea = new Rect(15 + Screen.width / 3, Screen.height / 4, Screen.width / 3, Screen.height / 2);
+			color = new Color(1,1,1,0.25f);
+			originRequiredClasses = new String[6];
+		} else if (mode == "Book"){
+			drawArea = new Rect(Screen.width / 8, Screen.height / 8, 3 * Screen.width / 8, 3 * Screen.height / 4);
+			color = new Color(1,1,1,0.75f);
+			originRequiredClasses = new String[8];
+		}
+			
 		requiredClasses.CopyTo(originRequiredClasses);
 		GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
     }
 
 	void OnEnable(){
-		GestureAnimation.SetActive(true);
+		if(mode == "Soap"){
+			GestureAnimation.SetActive(true);
+		} else if(mode == "Book"){
+			referencePicGO.SetActive(true);
+			RecognizeButton.SetActive(true);
+		}
 	}
 
 	void OnDisable(){
 		GestureAnimation.SetActive(false);
+		referencePicGO.SetActive(false);
+		RecognizeButton.SetActive(false);
 	}
 
     // Update is called once per frame
@@ -122,8 +122,7 @@ public class GestureDetectorScript : MonoBehaviour
 					gestureLinesRenderer.Clear();
 
 					if(mode == "Book"){
-						testDrawn = false;
-						drawTest(testSet[0]);
+						drawTest(requiredClasses[0]);
 					}
 				}
 
@@ -186,73 +185,78 @@ public class GestureDetectorScript : MonoBehaviour
 				miniGameControllerInstance.CloseMiniGame();
 			}
 
-			drawTest(testSet[0]);
+			drawTest(requiredClasses[0]);
 		}   
     }
 
     void OnGUI() {
-		GUI.color = new Color(1,1,1,0.25f); // half transparent 
+		GUI.color = color;
 		GUI.Box(drawArea, "");
-
-		if(mode == "Book") {
-			GUI.Label(new Rect(10, Screen.height - 40, 100, 50), message);
-
-			if (GUI.Button(new Rect(Screen.width - 100, 10, 100, 30), "Recognize")) {
-				recognized = true;
-
-				Gesture candidate = new Gesture(points.ToArray());
-				Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
-				
-				message = gestureResult.GestureClass + " " + gestureResult.Score;
-
-				if(gestureResult.GestureClass == requiredClasses[0] && gestureResult.Score >= 0.9f){
-					requiredClasses.RemoveAt(0);
-					testSet.RemoveAt(0);
-					recognized = false;
-					strokeId = -1;
-
-					points.Clear();
-
-					foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
-
-						lineRenderer.SetVertexCount(0);
-						Destroy(lineRenderer.gameObject);
-					}
-
-					gestureLinesRenderer.Clear();
-
-					if(requiredClasses.Count == 0) {
-						this.gameObject.SetActive(false);
-						movementScriptInstance.Unpause();
-						miniGameControllerInstance.CloseMiniGame();
-					}
-
-					testDrawn = false;
-					drawTest(testSet[0]);
-					GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
-					miniGameControllerInstance.AddProgressTrack(5 - requiredClasses.Count, 7);
-				}
-			}
-		}
 	}
 
-	void drawTest(Point[] toDraw){
-		if(!testDrawn){
-			testDrawn = true;
-			++strokeId;
-			
-			Transform tmpGesture = Instantiate(gestureOnScreenPrefab, transform.position, transform.rotation) as Transform;
-			currentGestureLineRenderer = tmpGesture.GetComponent<LineRenderer>();
-			
-			gestureLinesRenderer.Add(currentGestureLineRenderer);
-			vertexCount = 0;
+	public void CheckDraw(){
+		recognized = true;
 
-			foreach(Point p in toDraw){
-				points.Add(new Point(p.X, p.Y, strokeId));
+		// Gesture candidate = new Gesture(points.ToArray());
+		// Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
+		
+		// message = gestureResult.GestureClass + " " + gestureResult.Score;
 
-				currentGestureLineRenderer.SetVertexCount(++vertexCount);
-				currentGestureLineRenderer.SetPosition(vertexCount - 1, miniGameControllerInstance.CameraMiniGame.GetComponent<Camera>().ScreenToWorldPoint(new Vector3((2 * Screen.width / 5)+p.X, -p.Y, 1000)));
+		// if(gestureResult.GestureClass == requiredClasses[0] && gestureResult.Score >= 0.9f){
+			requiredClasses.RemoveAt(0);
+			recognized = false;
+			strokeId = -1;
+
+			points.Clear();
+
+			foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
+
+				lineRenderer.SetVertexCount(0);
+				Destroy(lineRenderer.gameObject);
 			}
+
+			gestureLinesRenderer.Clear();
+
+			if(requiredClasses.Count == 0) {
+				this.gameObject.SetActive(false);
+				movementScriptInstance.Unpause();
+				miniGameControllerInstance.CloseMiniGame();
+			}
+
+			drawTest(requiredClasses[0]);
+			miniGameControllerInstance.AddProgressTrack(8 - requiredClasses.Count, 10);
+		// }
+	}
+
+	void drawTest(string test){
+		switch(test){
+			case "fireplace":
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[0];
+				break;
+			case "butterfly":
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[1];
+				break;
+			case "flamingo":
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[2];
+				break;
+			case "lightbulb":
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[3];
+				break;
+			case "mask":
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[4];
+				break;
+			case "leaf":
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[5];
+				break;
+			case "paperclip":
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[6];
+				break;
+			case "rabbit":
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[7];
+				break;
+			default:
+				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[0];
+				break;
 		}
 	}
 

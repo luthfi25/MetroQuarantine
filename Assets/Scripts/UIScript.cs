@@ -130,4 +130,12 @@ public class UIScript : MonoBehaviour
     {
         audio.Play();
     }
+
+    public void DisablePause(){
+        this.gameObject.GetComponent<Button>().interactable = false;
+    }
+
+    public void EnablePause(){
+        this.gameObject.GetComponent<Button>().interactable = true;
+    }
 }
