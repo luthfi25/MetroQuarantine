@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MiniGameController : MonoBehaviour
 {
@@ -8,45 +9,64 @@ public class MiniGameController : MonoBehaviour
     public GameObject CameraMain;
     public MovementScript movementScriptInstance;
     public GameObject StopWatch;
-
-    public GameObject ProgressTrackMask;
-    public GameObject ProgressTrack;
+    public Image ProgressTrack;
+    private bool coolingDown;
+    private float targetFill;
 
     private float height;
     private Vector3 destination;
     private Vector3 originDestination;
 
     public UIScript uIScriptInstance;
+    private bool closing;
+    private GameObject toClose;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        height = ProgressTrackMask.GetComponent<SpriteMask>().bounds.size.y;
-        destination = ProgressTrack.transform.position;
-        originDestination = ProgressTrackMask.transform.position;
     }
 
     void OnEnable(){
         uIScriptInstance.DisablePause();
         StopWatch.SetActive(true);
-        ProgressTrack.SetActive(true);
-        ProgressTrackMask.SetActive(true);
+        ProgressTrack.gameObject.SetActive(true);
+        coolingDown = false;
+        targetFill = 0;
+        closing = false;
     }
 
     void OnDisable(){
         uIScriptInstance.EnablePause();
         StopWatch.SetActive(false);
-        ProgressTrack.SetActive(false);
-        ProgressTrackMask.SetActive(false);
+        ProgressTrack.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ProgressTrackMask.transform.position = Vector3.Lerp(ProgressTrackMask.transform.position, destination, 2f * Time.deltaTime);
+        if(closing){
+            if(ProgressTrack.fillAmount >= 1.0f){
+                doCloseMiniGame();
+            }
+        }
+
+        if (coolingDown)
+        {
+            ProgressTrack.fillAmount += 0.25f * Time.deltaTime;
+            if(ProgressTrack.fillAmount >= targetFill){
+                coolingDown = false;
+            }
+        }
     }
 
-    public void CloseMiniGame(){
+    public void CloseMiniGame(GameObject go){
+        toClose = go;
+        closing = true;
+    }
+
+    void doCloseMiniGame(){
+        toClose.SetActive(false);
         RestartProgressTrack();
         movementScriptInstance.Unpause();
         CameraMiniGame.SetActive(false);
@@ -54,12 +74,11 @@ public class MiniGameController : MonoBehaviour
     }
 
     public void AddProgressTrack(int step, int bound){
-        destination = ProgressTrack.transform.position;
-        destination.y += step * height / bound;
+        targetFill = (float) step / bound;
+        coolingDown = true;
     }
 
     public void RestartProgressTrack(){
-        ProgressTrackMask.transform.position = originDestination;
-        destination = originDestination;
+        ProgressTrack.fillAmount = 0f;
     }
 }

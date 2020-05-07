@@ -46,8 +46,7 @@ public class FoodScript : MonoBehaviour
     void Update()
     {   
         if(foods.Count <= 0){
-            this.gameObject.SetActive(false);
-            miniGameControllerInstance.CloseMiniGame();
+            miniGameControllerInstance.CloseMiniGame(this.gameObject);
         }
 
         if(clearButton){
@@ -131,7 +130,7 @@ public class FoodScript : MonoBehaviour
                 }
 
                 activeAnswers.RemoveRange(0, activeAnswers.Count);
-                miniGameControllerInstance.AddProgressTrack(5 - foods.Count, 6);
+                miniGameControllerInstance.AddProgressTrack(5 - foods.Count, 5);
             } else {
                 foreach(TextMeshProUGUI a in activeAnswers){
                     a.text = "";

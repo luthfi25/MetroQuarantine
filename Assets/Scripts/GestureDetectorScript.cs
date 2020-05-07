@@ -169,20 +169,16 @@ public class GestureDetectorScript : MonoBehaviour
 					gestureLinesRenderer.Clear();
 
 					if(requiredClasses.Count == 0) {
-						this.gameObject.SetActive(false);
-						movementScriptInstance.Unpause();
-						miniGameControllerInstance.CloseMiniGame();
+						miniGameControllerInstance.CloseMiniGame(this.gameObject);
 					}
 
 					GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
-					miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 7);
+					miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 6);
 				}
         	}
 		} else if(mode == "Book"){
 			if(requiredClasses.Count == 0) {
-				this.gameObject.SetActive(false);
-				movementScriptInstance.Unpause();
-				miniGameControllerInstance.CloseMiniGame();
+				miniGameControllerInstance.CloseMiniGame(this.gameObject);
 			}
 
 			drawTest(requiredClasses[0]);
@@ -218,13 +214,11 @@ public class GestureDetectorScript : MonoBehaviour
 			gestureLinesRenderer.Clear();
 
 			if(requiredClasses.Count == 0) {
-				this.gameObject.SetActive(false);
-				movementScriptInstance.Unpause();
-				miniGameControllerInstance.CloseMiniGame();
+				miniGameControllerInstance.CloseMiniGame(this.gameObject);
 			}
 
 			drawTest(requiredClasses[0]);
-			miniGameControllerInstance.AddProgressTrack(8 - requiredClasses.Count, 10);
+			miniGameControllerInstance.AddProgressTrack(8 - requiredClasses.Count, 8);
 		// }
 	}
 

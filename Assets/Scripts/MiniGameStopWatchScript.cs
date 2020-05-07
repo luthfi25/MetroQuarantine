@@ -53,6 +53,11 @@ public class MiniGameStopWatchScript : MonoBehaviour
                 if (fs != null) {
                     fs.RestartFood();
                 }
+
+                BroomScript bs = mg.GetComponent<BroomScript>();
+                if (bs != null){
+                    bs.RestartBroom();
+                }
             }
         }
 

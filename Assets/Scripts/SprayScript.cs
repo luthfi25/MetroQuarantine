@@ -25,8 +25,7 @@ public class SprayScript : MonoBehaviour
     void Update()
     {
         if(coronaCounter >= 15){
-            this.gameObject.SetActive(false);
-            miniGameControllerInstance.CloseMiniGame();
+            miniGameControllerInstance.CloseMiniGame(this.gameObject);
         }
 
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
@@ -39,7 +38,7 @@ public class SprayScript : MonoBehaviour
                     touchedObject.GetComponent<Animator>().SetTrigger("dead");
                     Destroy(touchedObject, 0.75f);
                     coronaCounter++;
-                    miniGameControllerInstance.AddProgressTrack(coronaCounter, 19);
+                    miniGameControllerInstance.AddProgressTrack(coronaCounter, 15);
                     
                 }
             }
@@ -53,7 +52,7 @@ public class SprayScript : MonoBehaviour
                     touchedObject.GetComponent<Animator>().SetTrigger("dead");
                     Destroy(touchedObject, 0.75f);
                     coronaCounter++;
-                    miniGameControllerInstance.AddProgressTrack(coronaCounter, 19);
+                    miniGameControllerInstance.AddProgressTrack(coronaCounter, 15);
                 }
             }
         }
