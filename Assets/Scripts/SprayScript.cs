@@ -12,20 +12,30 @@ public class SprayScript : MonoBehaviour
     public MiniGameController miniGameControllerInstance;
     private float height;
     private Vector3 destination;
+    public GameObject Background;
 
     private int coronaCounter;
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    void OnEnable(){
         StartCoroutine(spawnCorona(WAIT_TIME));
         coronaCounter = 0;
+        Background.SetActive(true);
+    }
+
+    void OnDisable(){
+        Background.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         if(coronaCounter >= 15){
-            miniGameControllerInstance.CloseMiniGame(this.gameObject);
+            miniGameControllerInstance.CloseMiniGame(this.gameObject, "Semprot");
         }
 
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
@@ -61,7 +71,7 @@ public class SprayScript : MonoBehaviour
     IEnumerator spawnCorona(float waitTime)
     {
         while(this.gameObject.activeSelf) {
-            float xValue = Random.Range(1f * (Screen.width / 4), (3 * Screen.width / 4));
+            float xValue = Random.Range(1f * (Screen.width / 4), Screen.width - 20f);
             Vector3 normvalue = Camera.main.ScreenToWorldPoint(new Vector3(xValue, 0f, 0f));
             Instantiate(coronaGameObject, new Vector3(normvalue.x, coronaSpawnPoint.position.y, -10f), transform.rotation);
 

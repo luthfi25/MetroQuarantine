@@ -21,6 +21,8 @@ public class FoodScript : MonoBehaviour
     public GameObject BackspaceButton;
 
     private Stack<GameObject> pressedChar;
+    public List<Sprite> CurrentFoodSprite;
+    public Image CurrentFood;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,8 @@ public class FoodScript : MonoBehaviour
     void Update()
     {   
         if(foods.Count <= 0){
-            miniGameControllerInstance.CloseMiniGame(this.gameObject);
+            miniGameControllerInstance.CloseMiniGame(this.gameObject, "Makan");
+            return;
         }
 
         if(clearButton){
@@ -65,7 +68,8 @@ public class FoodScript : MonoBehaviour
             charText[i].text = "" + onScreenChar[i];
         }
 
-        generateAnswerSpace();          
+        generateAnswerSpace();         
+        CurrentFood.sprite = CurrentFoodSprite[0]; 
     }
 
     string shuffleChar(){
@@ -123,6 +127,7 @@ public class FoodScript : MonoBehaviour
         if (answer.Length == realAnswer.Length){
             if(answer == realAnswer){
                 foods.RemoveAt(0);
+                CurrentFoodSprite.RemoveAt(0);
                 onScreenChar = "";
 
                 foreach(TextMeshProUGUI a in activeAnswers){

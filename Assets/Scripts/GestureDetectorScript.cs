@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using System;
 using System.IO;
@@ -74,16 +75,13 @@ public class GestureDetectorScript : MonoBehaviour
     }
 
 	void OnEnable(){
-		if(mode == "Soap"){
-			GestureAnimation.SetActive(true);
-		} else if(mode == "Book"){
+		if(mode == "Book"){
 			referencePicGO.SetActive(true);
 			RecognizeButton.SetActive(true);
 		}
 	}
 
 	void OnDisable(){
-		GestureAnimation.SetActive(false);
 		referencePicGO.SetActive(false);
 		RecognizeButton.SetActive(false);
 	}
@@ -155,6 +153,8 @@ public class GestureDetectorScript : MonoBehaviour
 
 				if(gestureResult.GestureClass == requiredClasses[0] && gestureResult.Score >= 0.9f){
 					requiredClasses.RemoveAt(0);
+					miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 6);
+
 					recognized = false;
 					strokeId = -1;
 
@@ -169,19 +169,18 @@ public class GestureDetectorScript : MonoBehaviour
 					gestureLinesRenderer.Clear();
 
 					if(requiredClasses.Count == 0) {
-						miniGameControllerInstance.CloseMiniGame(this.gameObject);
+						miniGameControllerInstance.CloseMiniGame(this.gameObject, "Sabun");
+					} else {
+						GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
 					}
-
-					GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
-					miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 6);
 				}
         	}
 		} else if(mode == "Book"){
 			if(requiredClasses.Count == 0) {
-				miniGameControllerInstance.CloseMiniGame(this.gameObject);
+				miniGameControllerInstance.CloseMiniGame(this.gameObject, "Buku");
+			} else {
+				drawTest(requiredClasses[0]);
 			}
-
-			drawTest(requiredClasses[0]);
 		}   
     }
 
@@ -199,57 +198,57 @@ public class GestureDetectorScript : MonoBehaviour
 		// message = gestureResult.GestureClass + " " + gestureResult.Score;
 
 		// if(gestureResult.GestureClass == requiredClasses[0] && gestureResult.Score >= 0.9f){
-			requiredClasses.RemoveAt(0);
-			recognized = false;
-			strokeId = -1;
+		requiredClasses.RemoveAt(0);
+		miniGameControllerInstance.AddProgressTrack(8 - requiredClasses.Count, 8);
+		recognized = false;
+		strokeId = -1;
 
-			points.Clear();
+		points.Clear();
 
-			foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
+		foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
 
-				lineRenderer.SetVertexCount(0);
-				Destroy(lineRenderer.gameObject);
-			}
+			lineRenderer.SetVertexCount(0);
+			Destroy(lineRenderer.gameObject);
+		}
 
-			gestureLinesRenderer.Clear();
+		gestureLinesRenderer.Clear();
 
-			if(requiredClasses.Count == 0) {
-				miniGameControllerInstance.CloseMiniGame(this.gameObject);
-			}
-
+		if(requiredClasses.Count == 0) {
+			miniGameControllerInstance.CloseMiniGame(this.gameObject, "Buku");
+		} else {
 			drawTest(requiredClasses[0]);
-			miniGameControllerInstance.AddProgressTrack(8 - requiredClasses.Count, 8);
+		}
 		// }
 	}
 
 	void drawTest(string test){
 		switch(test){
 			case "fireplace":
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[0];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[0];
 				break;
 			case "butterfly":
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[1];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[1];
 				break;
 			case "flamingo":
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[2];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[2];
 				break;
 			case "lightbulb":
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[3];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[3];
 				break;
 			case "mask":
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[4];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[4];
 				break;
 			case "leaf":
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[5];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[5];
 				break;
 			case "paperclip":
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[6];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[6];
 				break;
 			case "rabbit":
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[7];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[7];
 				break;
 			default:
-				referencePicGO.GetComponent<SpriteRenderer>().sprite = referencePics[0];
+				referencePicGO.GetComponent<Image>().sprite = referencePics[0];
 				break;
 		}
 	}

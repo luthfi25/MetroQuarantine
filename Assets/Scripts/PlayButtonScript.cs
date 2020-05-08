@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayButtonScript : MonoBehaviour
 {
     AudioSource audio;
     public GameObject creditScene;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,5 +46,11 @@ public class PlayButtonScript : MonoBehaviour
     public void closeCredit()
     {
         creditScene.SetActive(false);
+    }
+
+    public void LoadTestGesture(TextMeshProUGUI password){
+        if(password.text.Contains("luthfiganteng")){
+            SceneManager.LoadScene(2);
+        }
     }
 }

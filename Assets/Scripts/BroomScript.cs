@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BroomScript : MonoBehaviour
 {
     private int broomCounter;
     public MiniGameController miniGameControllerInstance;
-    public GameObject BroomButton;
+    public Image BackgroundMessy;
     bool isRight;
+
+    private float targetFill;
+    private bool coolingDown;
 
     // Start is called before the first frame update
     void Start()
@@ -18,18 +22,32 @@ public class BroomScript : MonoBehaviour
     void OnEnable(){
         isRight = true;
         broomCounter = 0;
-        BroomButton.SetActive(true);
+        targetFill = 0f;
+        coolingDown = false;
     }
 
     void OnDisable(){
-        BroomButton.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(broomCounter >= 20){
-            miniGameControllerInstance.CloseMiniGame(this.gameObject);
+        if(broomCounter >= 50){
+            miniGameControllerInstance.CloseMiniGame(this.gameObject, "Sapu");
+        }
+
+        if(coolingDown){
+            // BackgroundMessy.fillAmount -= 0.25f * Time.deltaTime;
+            // if(BackgroundMessy.fillAmount <= targetFill){
+            //     coolingDown = false;
+            // }
+
+            float newA = BackgroundMessy.color.a - 0.25f * Time.deltaTime;
+            BackgroundMessy.color = new Color(BackgroundMessy.color.r, BackgroundMessy.color.g, BackgroundMessy.color.b, newA);
+
+            if(BackgroundMessy.color.a <= targetFill){
+                coolingDown = false;
+            }
         }
     }
 
@@ -43,7 +61,11 @@ public class BroomScript : MonoBehaviour
         }
 
         broomCounter++;
-        miniGameControllerInstance.AddProgressTrack(broomCounter, 20);
+        miniGameControllerInstance.AddProgressTrack(broomCounter, 50);
+        
+        // targetFill = BackgroundMessy.fillAmount - (1f/ 20f);
+        targetFill = BackgroundMessy.color.a - (1f / 50f);
+        coolingDown = true;
     }
 
     public void RestartBroom(){

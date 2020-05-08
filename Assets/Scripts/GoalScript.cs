@@ -46,39 +46,44 @@ public class GoalScript : MonoBehaviour
 
     public void DestroyGoal(GameObject go)
     {
-        switch (go.name)
-        {
-            case "Buku":
-                audio.clip = clip[0];
-                break;
-            case "Sabun":
-                audio.time = 60f;
-                audio.clip = clip[1];
-                break;
-            case "Makan":
-                audio.clip = clip[2];
-                break;
-            case "Sapu":
-                audio.clip = clip[3];
-                break;
-            case "Semprot":
-                audio.clip = clip[4];
-                break;
-            default:
-                break;
-        }
+        // switch (go.name)
+        // {
+        //     case "Buku":
+        //         audio.clip = clip[0];
+        //         break;
+        //     case "Sabun":
+        //         audio.time = 60f;
+        //         audio.clip = clip[1];
+        //         break;
+        //     case "Makan":
+        //         audio.clip = clip[2];
+        //         break;
+        //     case "Sapu":
+        //         audio.clip = clip[3];
+        //         break;
+        //     case "Semprot":
+        //         audio.clip = clip[4];
+        //         break;
+        //     default:
+        //         break;
+        // }
 
-        audio.loop = true;
-        audio.volume = 0.25f;
-        audio.Play();
+        // audio.loop = true;
+        // audio.volume = 0.25f;
+        // audio.time = 0.0f;
+        // audio.Play();
         Destroy(go.GetComponent<Collider2D>());
-        StartCoroutine(finishDestroy(go));
+
+        Destroy(go);
+        PlayerPrefs.SetInt(go.name, 0);
+
+        // StartCoroutine(finishDestroy(go));
     }
 
     IEnumerator finishDestroy(GameObject go)
     {
         yield return new WaitForSeconds(1.5f);
-        audio.Stop();
+        // audio.Stop();
         Destroy(go);
         PlayerPrefs.SetInt(go.name, 0);
     }

@@ -192,7 +192,6 @@ public class MovementScript : MonoBehaviour
         if (collision.gameObject.tag == "Goal")
         {
             isInAction = true;
-            goalScript.DestroyGoal(collision.gameObject);
             audioData.clip = goalSound;
             audioData.Play();
 

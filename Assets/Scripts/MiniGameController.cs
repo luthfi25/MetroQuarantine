@@ -20,6 +20,9 @@ public class MiniGameController : MonoBehaviour
     public UIScript uIScriptInstance;
     private bool closing;
     private GameObject toClose;
+    private string miniGameName;
+
+    public GoalScript goalScriptInstance;
 
 
     // Start is called before the first frame update
@@ -34,6 +37,7 @@ public class MiniGameController : MonoBehaviour
         coolingDown = false;
         targetFill = 0;
         closing = false;
+        miniGameName = "";
     }
 
     void OnDisable(){
@@ -60,12 +64,16 @@ public class MiniGameController : MonoBehaviour
         }
     }
 
-    public void CloseMiniGame(GameObject go){
+    public void CloseMiniGame(GameObject go, string name){
         toClose = go;
         closing = true;
+        miniGameName = name;
     }
 
     void doCloseMiniGame(){
+        GameObject go = GameObject.Find(miniGameName);
+        goalScriptInstance.DestroyGoal(go);
+
         toClose.SetActive(false);
         RestartProgressTrack();
         movementScriptInstance.Unpause();
