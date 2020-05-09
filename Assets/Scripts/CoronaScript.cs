@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CoronaScript : MonoBehaviour
 {
-    private float speed;
+    public float speed;
     private Vector3 moveDir;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(1.25f, 1.75f);
+        speed = Random.Range(1.5f, 3f);
         moveDir = new Vector3(0f, -1f).normalized;
     }
 

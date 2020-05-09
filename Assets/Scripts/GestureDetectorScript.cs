@@ -33,6 +33,7 @@ public class GestureDetectorScript : MonoBehaviour
 
     public MovementScript movementScriptInstance;
     public List<String> requiredClasses = new List<String>();
+	String activeClass;
 	private String[] originRequiredClasses;
 
 	public GameObject GestureAnimation;
@@ -44,6 +45,9 @@ public class GestureDetectorScript : MonoBehaviour
 	public MiniGameController miniGameControllerInstance;
 
 	public GameObject RecognizeButton;
+	private bool isDrawing;
+
+	public GameObject[] Tutorial;
 
     // Start is called before the first frame update
     void Start()
@@ -51,14 +55,13 @@ public class GestureDetectorScript : MonoBehaviour
         platform = Application.platform;
 
 		//Load pre-made gestures
-		TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("GestureSet/10-stylus-MEDIUM/");
-		foreach (TextAsset gestureXml in gesturesXml)
-			trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
+		// TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("GestureSet/10-stylus-MEDIUM/");
+		// foreach (TextAsset gestureXml in gesturesXml)
+		// 	trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
 
-		//Load user custom gestures
-		string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.xml");
-		foreach (string filePath in filePaths)
-			trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
+		TextAsset[] testGesturesXml = Resources.LoadAll<TextAsset>("Test Gestures/");
+		foreach (TextAsset testGestureXml in testGesturesXml)
+			trainingSet.Add(GestureIO.ReadGestureFromXML(testGestureXml.text));
 
 		if (mode == "Soap") {
 			drawArea = new Rect(15 + Screen.width / 3, Screen.height / 4, Screen.width / 3, Screen.height / 2);
@@ -71,14 +74,19 @@ public class GestureDetectorScript : MonoBehaviour
 		}
 			
 		requiredClasses.CopyTo(originRequiredClasses);
-		GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
+		activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
+		GestureAnimation.GetComponent<Animator>().SetTrigger(activeClass);
     }
 
 	void OnEnable(){
 		if(mode == "Book"){
 			referencePicGO.SetActive(true);
 			RecognizeButton.SetActive(true);
+			Tutorial[0].SetActive(true);
+		} else if(mode == "Soap") {
+			Tutorial[1].SetActive(true);
 		}
+		isDrawing = true;
 	}
 
 	void OnDisable(){
@@ -120,7 +128,7 @@ public class GestureDetectorScript : MonoBehaviour
 					gestureLinesRenderer.Clear();
 
 					if(mode == "Book"){
-						drawTest(requiredClasses[0]);
+						drawTest(activeClass);
 					}
 				}
 
@@ -151,8 +159,8 @@ public class GestureDetectorScript : MonoBehaviour
 				
 				message = gestureResult.GestureClass + " " + gestureResult.Score;
 
-				if(gestureResult.GestureClass == requiredClasses[0] && gestureResult.Score >= 0.9f){
-					requiredClasses.RemoveAt(0);
+				if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.9f){
+					requiredClasses.Remove(activeClass);
 					miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 6);
 
 					recognized = false;
@@ -171,7 +179,8 @@ public class GestureDetectorScript : MonoBehaviour
 					if(requiredClasses.Count == 0) {
 						miniGameControllerInstance.CloseMiniGame(this.gameObject, "Sabun");
 					} else {
-						GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
+						activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
+						GestureAnimation.GetComponent<Animator>().SetTrigger(activeClass);
 					}
 				}
         	}
@@ -179,46 +188,51 @@ public class GestureDetectorScript : MonoBehaviour
 			if(requiredClasses.Count == 0) {
 				miniGameControllerInstance.CloseMiniGame(this.gameObject, "Buku");
 			} else {
-				drawTest(requiredClasses[0]);
+				drawTest(activeClass);
 			}
 		}   
     }
 
     void OnGUI() {
-		GUI.color = color;
-		GUI.Box(drawArea, "");
+		if(isDrawing){
+			GUI.color = color;
+			GUI.Box(drawArea, "");
+			//TO DELETE
+			GUI.Label(new Rect(10, Screen.height - 40, 500, 50), message);
+		}
 	}
 
 	public void CheckDraw(){
 		recognized = true;
 
-		// Gesture candidate = new Gesture(points.ToArray());
-		// Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
+		Gesture candidate = new Gesture(points.ToArray());
+		Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
 		
-		// message = gestureResult.GestureClass + " " + gestureResult.Score;
+		message = gestureResult.GestureClass + " " + gestureResult.Score;
 
-		// if(gestureResult.GestureClass == requiredClasses[0] && gestureResult.Score >= 0.9f){
-		requiredClasses.RemoveAt(0);
-		miniGameControllerInstance.AddProgressTrack(8 - requiredClasses.Count, 8);
-		recognized = false;
-		strokeId = -1;
+		if(gestureResult.GestureClass == requiredClasses[0] && gestureResult.Score >= 0.9f){
+			requiredClasses.Remove(activeClass);
+			miniGameControllerInstance.AddProgressTrack(8 - requiredClasses.Count, 8);
+			recognized = false;
+			strokeId = -1;
 
-		points.Clear();
+			points.Clear();
 
-		foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
+			foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
 
-			lineRenderer.SetVertexCount(0);
-			Destroy(lineRenderer.gameObject);
+				lineRenderer.SetVertexCount(0);
+				Destroy(lineRenderer.gameObject);
+			}
+
+			gestureLinesRenderer.Clear();
+
+			if(requiredClasses.Count == 0) {
+				miniGameControllerInstance.CloseMiniGame(this.gameObject, "Buku");
+			} else {
+				activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
+				drawTest(activeClass);
+			}
 		}
-
-		gestureLinesRenderer.Clear();
-
-		if(requiredClasses.Count == 0) {
-			miniGameControllerInstance.CloseMiniGame(this.gameObject, "Buku");
-		} else {
-			drawTest(requiredClasses[0]);
-		}
-		// }
 	}
 
 	void drawTest(string test){
@@ -264,6 +278,11 @@ public class GestureDetectorScript : MonoBehaviour
 		}
 
 		gestureLinesRenderer.Clear();
-		GestureAnimation.GetComponent<Animator>().SetTrigger(requiredClasses[0]);
+		activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
+		GestureAnimation.GetComponent<Animator>().SetTrigger(activeClass);
+	}
+
+	public void ToggleGUI(){
+		isDrawing = !isDrawing;
 	}
 }

@@ -8,11 +8,12 @@ public class SprayScript : MonoBehaviour
 {
     public GameObject coronaGameObject;
     public Transform coronaSpawnPoint;
-    const float WAIT_TIME = 1.0f;
+    const float WAIT_TIME = 1.5f;
     public MiniGameController miniGameControllerInstance;
     private float height;
     private Vector3 destination;
     public GameObject Background;
+    public GameObject Tutorial;
 
     private int coronaCounter;
     // Start is called before the first frame update
@@ -22,7 +23,7 @@ public class SprayScript : MonoBehaviour
     }
 
     void OnEnable(){
-        StartCoroutine(spawnCorona(WAIT_TIME));
+        Tutorial.SetActive(true);
         coronaCounter = 0;
         Background.SetActive(true);
     }
@@ -45,8 +46,9 @@ public class SprayScript : MonoBehaviour
             if(hitInformation.collider != null) {
                 GameObject touchedObject = hitInformation.transform.gameObject;
                 if(touchedObject.tag == "Corona"){
+                    touchedObject.GetComponent<CoronaScript>().speed = 0f;
                     touchedObject.GetComponent<Animator>().SetTrigger("dead");
-                    Destroy(touchedObject, 0.75f);
+                    Destroy(touchedObject, 0.5f);
                     coronaCounter++;
                     miniGameControllerInstance.AddProgressTrack(coronaCounter, 15);
                     
@@ -59,8 +61,9 @@ public class SprayScript : MonoBehaviour
             if(hitInformation.collider != null) {
                 GameObject touchedObject = hitInformation.transform.gameObject;
                if(touchedObject.tag == "Corona"){
+                    touchedObject.GetComponent<CoronaScript>().speed = 0f;
                     touchedObject.GetComponent<Animator>().SetTrigger("dead");
-                    Destroy(touchedObject, 0.75f);
+                    Destroy(touchedObject, 0.5f);
                     coronaCounter++;
                     miniGameControllerInstance.AddProgressTrack(coronaCounter, 15);
                 }
@@ -71,7 +74,7 @@ public class SprayScript : MonoBehaviour
     IEnumerator spawnCorona(float waitTime)
     {
         while(this.gameObject.activeSelf) {
-            float xValue = Random.Range(1f * (Screen.width / 4), Screen.width - 20f);
+            float xValue = Random.Range(1f * (Screen.width / 4), Screen.width - 200f);
             Vector3 normvalue = Camera.main.ScreenToWorldPoint(new Vector3(xValue, 0f, 0f));
             Instantiate(coronaGameObject, new Vector3(normvalue.x, coronaSpawnPoint.position.y, -10f), transform.rotation);
 
@@ -86,5 +89,9 @@ public class SprayScript : MonoBehaviour
         foreach(GameObject corona in coronas){
             Destroy(corona);
         }
+    }
+
+    public void ActivateCorona(){
+        StartCoroutine(spawnCorona(WAIT_TIME));
     }
 }

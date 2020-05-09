@@ -192,8 +192,7 @@ public class MovementScript : MonoBehaviour
         if (collision.gameObject.tag == "Goal")
         {
             isInAction = true;
-            audioData.clip = goalSound;
-            audioData.Play();
+            // audioData.PlayOneShot(goalSound);
 
             GameObject miniGame = actionMiniGames[goalToID[collision.gameObject.name]];
             if (miniGame != null){

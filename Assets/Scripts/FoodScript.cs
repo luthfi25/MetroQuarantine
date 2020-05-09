@@ -22,7 +22,10 @@ public class FoodScript : MonoBehaviour
 
     private Stack<GameObject> pressedChar;
     public List<Sprite> CurrentFoodSprite;
+    private string activeFood;
     public Image CurrentFood;
+
+    public GameObject Tutorial;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +38,7 @@ public class FoodScript : MonoBehaviour
     void OnEnable(){
         foods = new List<string> (new string[] {"sate", "bakso", "ayam goreng", "burger", "pizza"}); 
         onScreenChar = "";
-        charParent.SetActive(true);
-        answerParent.SetActive(true);
+        Tutorial.SetActive(true);
     }
 
     void OnDisable(){
@@ -63,17 +65,18 @@ public class FoodScript : MonoBehaviour
             return;
         }
 
+        activeFood = foods[Random.Range(0, foods.Count - 1)];
         onScreenChar = shuffleChar();
         for(int i = 0; i < onScreenChar.Length; i++){
             charText[i].text = "" + onScreenChar[i];
         }
 
         generateAnswerSpace();         
-        CurrentFood.sprite = CurrentFoodSprite[0]; 
+        MapFoodSprite(activeFood);
     }
 
     string shuffleChar(){
-        string shuffledChar = foods[0].Replace(" ", "");
+        string shuffledChar = activeFood.Replace(" ", "");
 
         while (shuffledChar.Length < 15){
             shuffledChar = shuffledChar + ALPHABET[Random.Range(0, ALPHABET.Length-1)];
@@ -91,10 +94,10 @@ public class FoodScript : MonoBehaviour
     }
 
     void generateAnswerSpace(){
-        int len = foods[0].Length;
+        int len = activeFood.Length;
         int i = 0;
         for(; i < len; i++){
-            if(foods[0][i].ToString() == " "){
+            if(activeFood[i].ToString() == " "){
                 continue;
             }
 
@@ -112,7 +115,7 @@ public class FoodScript : MonoBehaviour
     public void FillAnswer(GameObject charGo){
         pressedChar.Push(charGo.transform.parent.gameObject);
         string answer = "";
-        string realAnswer = foods[0].Replace(" ", "");
+        string realAnswer = activeFood.Replace(" ", "");
 
         foreach(TextMeshProUGUI a in activeAnswers){
             answer += a.text;
@@ -126,8 +129,7 @@ public class FoodScript : MonoBehaviour
 
         if (answer.Length == realAnswer.Length){
             if(answer == realAnswer){
-                foods.RemoveAt(0);
-                CurrentFoodSprite.RemoveAt(0);
+                foods.Remove(activeFood);
                 onScreenChar = "";
 
                 foreach(TextMeshProUGUI a in activeAnswers){
@@ -172,5 +174,28 @@ public class FoodScript : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void MapFoodSprite(string name){
+        switch(name){
+			case "sate":
+				CurrentFood.sprite = CurrentFoodSprite[0];
+				break;
+			case "bakso":
+				CurrentFood.sprite = CurrentFoodSprite[1];
+				break;
+			case "ayam goreng":
+				CurrentFood.sprite = CurrentFoodSprite[2];
+				break;
+			case "burger":
+				CurrentFood.sprite = CurrentFoodSprite[3];
+				break;
+			case "pizza":
+				CurrentFood.sprite = CurrentFoodSprite[4];
+				break;
+			default:
+				CurrentFood.sprite = CurrentFoodSprite[5];
+				break;
+		}
     }
 }

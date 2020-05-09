@@ -40,9 +40,13 @@ public class Demo : MonoBehaviour {
 			trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
 
 		//Load user custom gestures
-		string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.xml");
-		foreach (string filePath in filePaths)
-			trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
+		// string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.xml");
+		// foreach (string filePath in filePaths)
+		// 	trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
+
+		TextAsset[] testGesturesXml = Resources.LoadAll<TextAsset>("Test Gestures/");
+		foreach (TextAsset testGestureXml in testGesturesXml)
+			trainingSet.Add(GestureIO.ReadGestureFromXML(testGestureXml.text));
 	}
 
 	void Update () {

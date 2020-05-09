@@ -12,6 +12,7 @@ public class BroomScript : MonoBehaviour
 
     private float targetFill;
     private bool coolingDown;
+    public GameObject Tutorial;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class BroomScript : MonoBehaviour
         broomCounter = 0;
         targetFill = 0f;
         coolingDown = false;
+        Tutorial.SetActive(true);
     }
 
     void OnDisable(){

@@ -9,7 +9,8 @@ public class MiniGameController : MonoBehaviour
     public GameObject CameraMain;
     public MovementScript movementScriptInstance;
     public GameObject StopWatch;
-    public Image ProgressTrack;
+    public GameObject ProgressTrack;
+    private Image ProgressBar;
     private bool coolingDown;
     private float targetFill;
 
@@ -23,6 +24,7 @@ public class MiniGameController : MonoBehaviour
     private string miniGameName;
 
     public GoalScript goalScriptInstance;
+    public GameObject SuccessBig;
 
 
     // Start is called before the first frame update
@@ -31,35 +33,39 @@ public class MiniGameController : MonoBehaviour
     }
 
     void OnEnable(){
-        uIScriptInstance.DisablePause();
-        StopWatch.SetActive(true);
-        ProgressTrack.gameObject.SetActive(true);
+        uIScriptInstance.gameObject.SetActive(false);
         coolingDown = false;
         targetFill = 0;
         closing = false;
         miniGameName = "";
+        SuccessBig.SetActive(false);
     }
 
     void OnDisable(){
-        uIScriptInstance.EnablePause();
+        uIScriptInstance.gameObject.SetActive(true);
         StopWatch.SetActive(false);
-        ProgressTrack.gameObject.SetActive(false);
+        ProgressTrack.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(ProgressBar == null){
+            ProgressBar = GameObject.Find("Progress Track").GetComponent<Image>();
+        }
+
         if(closing){
-            if(ProgressTrack.fillAmount >= 1.0f){
+            if(ProgressBar.fillAmount >= 1.0f){
                 doCloseMiniGame();
             }
         }
 
         if (coolingDown)
         {
-            ProgressTrack.fillAmount += 0.25f * Time.deltaTime;
-            if(ProgressTrack.fillAmount >= targetFill){
+            ProgressBar.fillAmount += 0.25f * Time.deltaTime;
+            if(ProgressBar.fillAmount >= targetFill){
                 coolingDown = false;
+                disableSuccessText();
             }
         }
     }
@@ -84,9 +90,15 @@ public class MiniGameController : MonoBehaviour
     public void AddProgressTrack(int step, int bound){
         targetFill = (float) step / bound;
         coolingDown = true;
+
+        SuccessBig.SetActive(true);
     }
 
     public void RestartProgressTrack(){
-        ProgressTrack.fillAmount = 0f;
+        ProgressBar.fillAmount = 0f;
+    }
+
+    void disableSuccessText(){
+        SuccessBig.SetActive(false);
     }
 }

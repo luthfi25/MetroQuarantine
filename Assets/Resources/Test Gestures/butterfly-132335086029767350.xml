@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Gesture Name = "butterfly">
+	<Stroke>
+		<Point X = "820" Y = "-407" T = "0" Pressure = "0" />
+		<Point X = "818.5" Y = "-408" T = "0" Pressure = "0" />
+		<Point X = "819" Y = "-407" T = "0" Pressure = "0" />
+		<Point X = "819" Y = "-407" T = "0" Pressure = "0" />
+	</Stroke>
+</Gesture>

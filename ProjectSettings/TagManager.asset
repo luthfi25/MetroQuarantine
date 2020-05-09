@@ -26,10 +26,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Goal
-  - Player
-  - Furniture
-  - Border
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -52,6 +52,24 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floors
+    uniqueID: 4189047395
+    locked: 0
+  - name: Walls
+    uniqueID: 524987167
+    locked: 0
+  - name: Background
+    uniqueID: 2713565067
+    locked: 0
+  - name: Character
+    uniqueID: 1935305039
+    locked: 0
+  - name: Foreground
+    uniqueID: 1717863101
+    locked: 0
+  - name: UI
+    uniqueID: 1712383439
     locked: 0
   - name: Corona
     uniqueID: 3799611767
