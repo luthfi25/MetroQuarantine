@@ -11,7 +11,8 @@ public class MiniGameController : MonoBehaviour
     public GameObject StopWatch;
     public GameObject ProgressTrack;
     private Image ProgressBar;
-    private bool coolingDown;
+    public bool CoolingDown;
+    public bool CooldownMistake;
     private float targetFill;
 
     private float height;
@@ -25,6 +26,8 @@ public class MiniGameController : MonoBehaviour
 
     public GoalScript goalScriptInstance;
     public GameObject SuccessBig;
+    public GameObject MistakeBig;
+    bool CoolingDownReverse;
 
 
     // Start is called before the first frame update
@@ -34,8 +37,8 @@ public class MiniGameController : MonoBehaviour
 
     void OnEnable(){
         uIScriptInstance.gameObject.SetActive(false);
-        coolingDown = false;
-        targetFill = 0;
+        CoolingDown = false;
+        targetFill = 1f;
         closing = false;
         miniGameName = "";
         SuccessBig.SetActive(false);
@@ -49,7 +52,7 @@ public class MiniGameController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {      
         if(ProgressBar == null){
             ProgressBar = GameObject.Find("Progress Track").GetComponent<Image>();
         }
@@ -60,12 +63,30 @@ public class MiniGameController : MonoBehaviour
             }
         }
 
-        if (coolingDown)
+        if (CoolingDown)
         {
             ProgressBar.fillAmount += 0.25f * Time.deltaTime;
             if(ProgressBar.fillAmount >= targetFill){
-                coolingDown = false;
+                ProgressBar.fillAmount = targetFill;
+                CoolingDown = false;
                 disableSuccessText();
+            }
+        }
+
+        if(CooldownMistake){
+            if(targetFill < ProgressBar.fillAmount){
+                ProgressBar.fillAmount -= 0.5f * Time.deltaTime;
+                if(ProgressBar.fillAmount <= targetFill){
+                    CooldownMistake = false;
+                }
+            }
+
+            if(!MistakeBig.activeInHierarchy){
+                MistakeBig.SetActive(true);
+            }
+        } else {
+            if(MistakeBig.activeInHierarchy){
+                MistakeBig.SetActive(false);
             }
         }
     }
@@ -89,16 +110,30 @@ public class MiniGameController : MonoBehaviour
 
     public void AddProgressTrack(int step, int bound){
         targetFill = (float) step / bound;
-        coolingDown = true;
+        CoolingDown = true;
 
         SuccessBig.SetActive(true);
     }
 
     public void RestartProgressTrack(){
-        ProgressBar.fillAmount = 0f;
+        targetFill = 0f;
+        CooldownByMistake();
     }
 
     void disableSuccessText(){
         SuccessBig.SetActive(false);
+    }
+
+    public void CooldownByMistake(){
+        
+        CooldownMistake = true;
+        StartCoroutine(doCooldownByMistake());
+    }
+
+    IEnumerator doCooldownByMistake(){
+        yield return new WaitForSeconds(0.5f);
+        if(targetFill >= ProgressBar.fillAmount){
+            CooldownMistake = false;
+        }
     }
 }

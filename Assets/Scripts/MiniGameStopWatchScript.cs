@@ -16,7 +16,7 @@ public class MiniGameStopWatchScript : MonoBehaviour
     }
 
     void OnEnable(){
-        curTime = 60f;
+        curTime = 120f;
     }
 
     // Update is called once per frame
@@ -62,12 +62,13 @@ public class MiniGameStopWatchScript : MonoBehaviour
         }
 
         curTime -= Time.deltaTime;
+        float minutes = (int)(curTime / 60) % 60;
         float seconds = curTime % 60;
 
-        SprayStopWatchText.text = seconds.ToString("00.00");
+        SprayStopWatchText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
     }
 
     void restartTime(){
-        curTime = 60f;
+        curTime = 120f;
     }
 }

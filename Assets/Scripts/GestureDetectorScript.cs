@@ -74,8 +74,6 @@ public class GestureDetectorScript : MonoBehaviour
 		}
 			
 		requiredClasses.CopyTo(originRequiredClasses);
-		activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
-		GestureAnimation.GetComponent<Animator>().SetTrigger(activeClass);
     }
 
 	void OnEnable(){
@@ -157,9 +155,11 @@ public class GestureDetectorScript : MonoBehaviour
 				Gesture candidate = new Gesture(points.ToArray());
 				Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
 				
-				message = gestureResult.GestureClass + " " + gestureResult.Score;
+				Debug.Log(gestureResult.GestureClass + " " + gestureResult.Score + " " + activeClass);
 
-				if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.9f){
+				// if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.9f){
+				if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.25f){
+
 					requiredClasses.Remove(activeClass);
 					miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 6);
 
@@ -182,6 +182,21 @@ public class GestureDetectorScript : MonoBehaviour
 						activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
 						GestureAnimation.GetComponent<Animator>().SetTrigger(activeClass);
 					}
+				} else {
+					miniGameControllerInstance.CooldownByMistake();
+
+					recognized = false;
+					strokeId = -1;
+
+					points.Clear();
+
+					foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
+
+						lineRenderer.SetVertexCount(0);
+						Destroy(lineRenderer.gameObject);
+					}
+
+					gestureLinesRenderer.Clear();
 				}
         	}
 		} else if(mode == "Book"){
@@ -284,5 +299,10 @@ public class GestureDetectorScript : MonoBehaviour
 
 	public void ToggleGUI(){
 		isDrawing = !isDrawing;
+	}
+
+	public void ActivateGesture(){
+		activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
+		GestureAnimation.GetComponent<Animator>().SetTrigger(activeClass);
 	}
 }

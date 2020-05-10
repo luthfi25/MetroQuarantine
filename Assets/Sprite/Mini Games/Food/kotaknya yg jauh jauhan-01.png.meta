@@ -1,0 +1,668 @@
+fileFormatVersion: 2
+guid: 6f2cfccda38275f47911b45aa978bc9d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3011354832070943658
+    second: kotaknya yg jauh jauhan-01_0
+  - first:
+      213: 1001196972468539134
+    second: kotaknya yg jauh jauhan-01_1
+  - first:
+      213: -2280614113534334451
+    second: kotaknya yg jauh jauhan-01_2
+  - first:
+      213: -3277372442503980803
+    second: kotaknya yg jauh jauhan-01_3
+  - first:
+      213: -3797209602433064175
+    second: kotaknya yg jauh jauhan-01_4
+  - first:
+      213: -2834913858235970451
+    second: kotaknya yg jauh jauhan-01_5
+  - first:
+      213: -740580656971153874
+    second: kotaknya yg jauh jauhan-01_6
+  - first:
+      213: -376233909610016985
+    second: kotaknya yg jauh jauhan-01_7
+  - first:
+      213: -6058299163868591628
+    second: kotaknya yg jauh jauhan-01_8
+  - first:
+      213: 8265931971190113510
+    second: kotaknya yg jauh jauhan-01_9
+  - first:
+      213: 1112818307719263663
+    second: kotaknya yg jauh jauhan-01_10
+  - first:
+      213: 5194115441431121225
+    second: kotaknya yg jauh jauhan-01_11
+  - first:
+      213: 3274747681694019478
+    second: kotaknya yg jauh jauhan-01_12
+  - first:
+      213: 1000848727271110812
+    second: kotaknya yg jauh jauhan-01_13
+  - first:
+      213: 2559678256644736752
+    second: kotaknya yg jauh jauhan-01_14
+  - first:
+      213: -4303187604411808087
+    second: kotaknya yg jauh jauhan-01_15
+  - first:
+      213: -9036950478542664907
+    second: kotaknya yg jauh jauhan-01_16
+  - first:
+      213: -3249655012836206928
+    second: kotaknya yg jauh jauhan-01_17
+  - first:
+      213: -4440382496929702692
+    second: kotaknya yg jauh jauhan-01_18
+  - first:
+      213: -2891994073756501958
+    second: kotaknya yg jauh jauhan-01_19
+  - first:
+      213: -5775054477030967518
+    second: kotaknya yg jauh jauhan-01_20
+  - first:
+      213: 6528622845347340135
+    second: kotaknya yg jauh jauhan-01_21
+  - first:
+      213: -2537595228275395924
+    second: kotaknya yg jauh jauhan-01_22
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1062
+        width: 1920
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c51cd2cb48536d0800000000000000
+      internalID: -3011354832070943658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 789
+        width: 315
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe0f268757f4ed00800000000000000
+      internalID: 1001196972468539134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_2
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 783
+        width: 261
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a2b050c81a950e0800000000000000
+      internalID: -2280614113534334451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_3
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 783
+        width: 252
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df855e7b02f6482d0800000000000000
+      internalID: -3277372442503980803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_4
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 785
+        width: 270
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 113664d2cf99d4bc0800000000000000
+      internalID: -3797209602433064175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_5
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 780
+        width: 312
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c430faddc58a8d0800000000000000
+      internalID: -2834913858235970451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_6
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 587
+        width: 310
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2e75b5f0dde8b5f0800000000000000
+      internalID: -740580656971153874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_7
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 576
+        width: 252
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f0d39a04957caf0800000000000000
+      internalID: -376233909610016985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_8
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 571
+        width: 255
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f9019a32099ceba0800000000000000
+      internalID: -6058299163868591628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_9
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 511
+        width: 256
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e4c450455d76b270800000000000000
+      internalID: 8265931971190113510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_10
+      rect:
+        serializedVersion: 2
+        x: 1550
+        y: 517
+        width: 267
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa5782bda56817f00800000000000000
+      internalID: 1112818307719263663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_11
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 330
+        width: 301
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94d8fd07974351840800000000000000
+      internalID: 5194115441431121225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 213
+        width: 159
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fe7688aad327d20800000000000000
+      internalID: 3274747681694019478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_13
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 213
+        width: 159
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9875ee5d9ab3ed00800000000000000
+      internalID: 1000848727271110812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_14
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 213
+        width: 160
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f6c99a00ddc58320800000000000000
+      internalID: 2559678256644736752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_15
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 213
+        width: 159
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a68b2d4ca10844c0800000000000000
+      internalID: -4303187604411808087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_16
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 213
+        width: 159
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53b0ba96b6d469280800000000000000
+      internalID: -9036950478542664907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_17
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 29
+        width: 159
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b69455bbf7e6e2d0800000000000000
+      internalID: -3249655012836206928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_18
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 29
+        width: 159
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc94ab25a79062c0800000000000000
+      internalID: -4440382496929702692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_19
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 29
+        width: 159
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a38753d56b29dd7d0800000000000000
+      internalID: -2891994073756501958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_20
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 29
+        width: 160
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2273a0afc82eadfa0800000000000000
+      internalID: -5775054477030967518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_21
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 29
+        width: 160
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76f9d6143e35a9a50800000000000000
+      internalID: 6528622845347340135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kotaknya yg jauh jauhan-01_22
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 29
+        width: 160
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca23beaa596a8ccd0800000000000000
+      internalID: -2537595228275395924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: fa40f8b429dc5934894c32f19eee748f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
