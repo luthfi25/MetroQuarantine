@@ -45,6 +45,7 @@ public class FoodScript : MonoBehaviour
         onScreenChar = "";
         Tutorial.SetActive(true);
         clearAnswer = false;
+        CurrentFood.gameObject.GetComponent<Animator>().enabled = false;
     }
 
     void OnDisable(){
@@ -166,7 +167,7 @@ public class FoodScript : MonoBehaviour
                 CurrentFood.gameObject.GetComponent<Animator>().enabled = true;
                 foods.Remove(activeFood);
                 onScreenChar = "";
-                miniGameControllerInstance.AddProgressTrack(5 - foods.Count, 5);
+                miniGameControllerInstance.AddProgressTrack(5 - foods.Count, 5, true);
             } else {
                 miniGameControllerInstance.CooldownByMistake();
             }

@@ -13,6 +13,7 @@ public class BroomScript : MonoBehaviour
     private float targetFill;
     private bool coolingDown;
     public GameObject Tutorial;
+    public GameObject SuccessText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class BroomScript : MonoBehaviour
         targetFill = 0f;
         coolingDown = false;
         Tutorial.SetActive(true);
+        SuccessText.SetActive(false);
     }
 
     void OnDisable(){
@@ -36,6 +38,10 @@ public class BroomScript : MonoBehaviour
     {
         if(broomCounter >= 50){
             miniGameControllerInstance.CloseMiniGame(this.gameObject, "Sapu");
+        }
+
+        if(!miniGameControllerInstance.CoolingDown){
+            SuccessText.SetActive(false);
         }
 
         if(coolingDown){
@@ -62,8 +68,14 @@ public class BroomScript : MonoBehaviour
             isRight = true;
         }
 
+        // float randX = Random.Range(Screen.width / 3, 2 * Screen.width / 3);
+        // Vector3 curPos = btn.gameObject.GetComponent<RectTransform>().localPosition;
+        // Vector3 parentPos = btn.transform.GetComponentInParent<RectTransform>().anchoredPosition.
+        // btn.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(randX, curPos.y, curPos.z);
+
         broomCounter++;
-        miniGameControllerInstance.AddProgressTrack(broomCounter, 50);
+        miniGameControllerInstance.AddProgressTrack(broomCounter, 50, false);
+        SuccessText.SetActive(true);
         
         // targetFill = BackgroundMessy.fillAmount - (1f/ 20f);
         targetFill = BackgroundMessy.color.a - (1f / 50f);

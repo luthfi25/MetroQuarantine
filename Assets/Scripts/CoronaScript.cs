@@ -10,7 +10,7 @@ public class CoronaScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(1.5f, 3f);
+        speed = Random.Range(2.5f, 3.5f);
         moveDir = new Vector3(0f, -1f).normalized;
     }
 

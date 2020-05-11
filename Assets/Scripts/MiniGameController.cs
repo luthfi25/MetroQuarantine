@@ -48,6 +48,10 @@ public class MiniGameController : MonoBehaviour
         uIScriptInstance.gameObject.SetActive(true);
         StopWatch.SetActive(false);
         ProgressTrack.SetActive(false);
+        MistakeBig.SetActive(false);
+        ProgressBar.fillAmount = 0f;
+        CoolingDown = false;
+        CooldownMistake = false;
     }
 
     // Update is called once per frame
@@ -60,6 +64,7 @@ public class MiniGameController : MonoBehaviour
         if(closing){
             if(ProgressBar.fillAmount >= 1.0f){
                 doCloseMiniGame();
+                return;
             }
         }
 
@@ -108,11 +113,13 @@ public class MiniGameController : MonoBehaviour
         CameraMain.SetActive(true);
     }
 
-    public void AddProgressTrack(int step, int bound){
+    public void AddProgressTrack(int step, int bound, bool showSuccessText){
         targetFill = (float) step / bound;
         CoolingDown = true;
 
-        SuccessBig.SetActive(true);
+        if(showSuccessText){
+            SuccessBig.SetActive(true);
+        }
     }
 
     public void RestartProgressTrack(){

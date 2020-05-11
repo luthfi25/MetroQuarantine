@@ -191,8 +191,9 @@ public class MovementScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Goal")
         {
-            isInAction = true;
-            // audioData.PlayOneShot(goalSound);
+            // isInAction = true;
+            audioData.PlayOneShot(goalSound);
+            collision.enabled = false;
 
             GameObject miniGame = actionMiniGames[goalToID[collision.gameObject.name]];
             if (miniGame != null){
@@ -202,8 +203,8 @@ public class MovementScript : MonoBehaviour
             }
 
             isPaused = true;
-            animator.SetInteger("Action", goalToID[collision.gameObject.name]);
-            StartCoroutine(StopActionAnim());
+            // animator.SetInteger("Action", goalToID[collision.gameObject.name]);
+            // StartCoroutine(StopActionAnim());
 
         } else if (collision.gameObject.tag == "Door")
         {

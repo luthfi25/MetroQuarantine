@@ -7,6 +7,7 @@ public class MiniGameStopWatchScript : MonoBehaviour
 {
     public TextMeshProUGUI SprayStopWatchText;
     private float curTime;
+    private float originTime;
     public GameObject[] miniGames;
 
     // Start is called before the first frame update
@@ -15,8 +16,13 @@ public class MiniGameStopWatchScript : MonoBehaviour
         
     }
 
+    public void SetTime(float seconds){
+        curTime = seconds;
+        originTime = seconds;
+    }
+
     void OnEnable(){
-        curTime = 120f;
+        curTime = 120f; //reference only
     }
 
     // Update is called once per frame
@@ -69,6 +75,6 @@ public class MiniGameStopWatchScript : MonoBehaviour
     }
 
     void restartTime(){
-        curTime = 120f;
+        curTime = originTime;
     }
 }
