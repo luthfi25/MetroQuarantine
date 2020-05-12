@@ -16,6 +16,9 @@ public class HealthManager : MonoBehaviour
 
     public GameObject[] Characters;
 
+    public GameObject[] Healths;
+    public GameObject[] DeadHealths;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +28,17 @@ public class HealthManager : MonoBehaviour
     }
 
     void recalculateHealth(){
-        GameObject[] healths = GameObject.FindGameObjectsWithTag("Health");
-        GameObject[] deadHealths = GameObject.FindGameObjectsWithTag("Dead-Health");
+        // GameObject[] healths = GameObject.FindGameObjectsWithTag("Health");
+        // GameObject[] deadHealths = GameObject.FindGameObjectsWithTag("Dead-Health");
 
         int healthCount = PlayerPrefs.GetInt("Health", 2);
-        for(int i = 0; i < deadHealths.Length; i++){
+        for(int i = 0; i < DeadHealths.Length; i++){
             if(healthCount >= 0){
-                deadHealths[i].GetComponent<Image>().enabled = false;
+                DeadHealths[i].GetComponent<Image>().enabled = false;
                 healthCount--;
             } else {
-                healths[i].SetActive(false);
-                deadHealths[i].GetComponent<Image>().enabled = true;
+                Healths[i].SetActive(false);
+                DeadHealths[i].GetComponent<Image>().enabled = true;
             }
         }
     }
@@ -63,20 +66,20 @@ public class HealthManager : MonoBehaviour
         }
 
         //Animate losing health
-        GameObject[] healths = GameObject.FindGameObjectsWithTag("Health");
-        Animator healthAnim = healths[healths.Length-1].GetComponent<Animator>();
+        // GameObject[] healths = GameObject.FindGameObjectsWithTag("Health");
+        int healthCount = PlayerPrefs.GetInt("Health", 2);
+        Animator healthAnim = Healths[healthCount].GetComponent<Animator>();
         healthAnim.enabled = true;
 
         // Trigger Player Animation
         GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>().TriggerDead();
 
-        if (healths.Length > 1 && toDestroy > 1)
+        if (healthCount > 0 && toDestroy > 1)
         {
-            healthAnim = healths[healths.Length-2].GetComponent<Animator>();
+            healthAnim = Healths[healthCount-1].GetComponent<Animator>();
             healthAnim.enabled = true;
         }
 
-        int healthCount = PlayerPrefs.GetInt("Health", 2);
         healthCount -= toDestroy;
 
         if (healthCount < 0)

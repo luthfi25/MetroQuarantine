@@ -17,15 +17,13 @@ public class FoodScript : MonoBehaviour
     const string ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
     private List<TextMeshProUGUI> activeAnswers;
-    public MiniGameController miniGameControllerInstance;
+    private MiniGameController miniGameControllerInstance;
     public GameObject BackspaceButton;
 
     private Stack<GameObject> pressedChar;
     public List<Sprite> CurrentFoodSprite;
     private string activeFood;
     public Image CurrentFood;
-
-    public GameObject Tutorial;
 
     public TextMeshProUGUI HintText;
 
@@ -37,13 +35,13 @@ public class FoodScript : MonoBehaviour
     {
         activeAnswers = new List<TextMeshProUGUI>();
         pressedChar = new Stack<GameObject>();
-        clearButton = true;
+        miniGameControllerInstance = GameObject.Find("Camera Mini Games").GetComponent<MiniGameController>();
     }
 
     void OnEnable(){
+        clearButton = true;
         foods = new List<string> (new string[] {"sate ayam", "bakso kuah", "ayam goreng", "beef burger", "cheese pizza"}); 
         onScreenChar = "";
-        Tutorial.SetActive(true);
         clearAnswer = false;
         CurrentFood.gameObject.GetComponent<Animator>().enabled = false;
     }

@@ -15,10 +15,6 @@ public class MiniGameController : MonoBehaviour
     public bool CooldownMistake;
     private float targetFill;
 
-    private float height;
-    private Vector3 destination;
-    private Vector3 originDestination;
-
     public UIScript uIScriptInstance;
     private bool closing;
     private GameObject toClose;
@@ -27,7 +23,11 @@ public class MiniGameController : MonoBehaviour
     public GoalScript goalScriptInstance;
     public GameObject SuccessBig;
     public GameObject MistakeBig;
-    bool CoolingDownReverse;
+    public GameObject SucessSmall;
+
+    public GameObject[] MiniGames;
+    public GameObject[] Tutorials;
+    public Transform MiniGameCanvas;
 
 
     // Start is called before the first frame update
@@ -38,10 +38,12 @@ public class MiniGameController : MonoBehaviour
     void OnEnable(){
         uIScriptInstance.gameObject.SetActive(false);
         CoolingDown = false;
+        ProgressBar.fillAmount = 0f;
         targetFill = 1f;
         closing = false;
         miniGameName = "";
         SuccessBig.SetActive(false);
+        SucessSmall.SetActive(false);
     }
 
     void OnDisable(){
@@ -49,7 +51,6 @@ public class MiniGameController : MonoBehaviour
         StopWatch.SetActive(false);
         ProgressTrack.SetActive(false);
         MistakeBig.SetActive(false);
-        ProgressBar.fillAmount = 0f;
         CoolingDown = false;
         CooldownMistake = false;
     }
@@ -106,7 +107,8 @@ public class MiniGameController : MonoBehaviour
         GameObject go = GameObject.Find(miniGameName);
         goalScriptInstance.DestroyGoal(go);
 
-        toClose.SetActive(false);
+        // toClose.SetActive(false);
+        Destroy(toClose);
         RestartProgressTrack();
         movementScriptInstance.Unpause();
         CameraMiniGame.SetActive(false);
@@ -122,6 +124,15 @@ public class MiniGameController : MonoBehaviour
         }
     }
 
+    public void AddProgressTrackSmall(int step, int bound, bool showSuccessText){
+        targetFill = (float) step / bound;
+        CoolingDown = true;
+
+        if(showSuccessText){
+            SucessSmall.SetActive(true);
+        }
+    }
+
     public void RestartProgressTrack(){
         targetFill = 0f;
         CooldownByMistake();
@@ -129,6 +140,7 @@ public class MiniGameController : MonoBehaviour
 
     void disableSuccessText(){
         SuccessBig.SetActive(false);
+        SucessSmall.SetActive(false);
     }
 
     public void CooldownByMistake(){
@@ -141,6 +153,75 @@ public class MiniGameController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if(targetFill >= ProgressBar.fillAmount){
             CooldownMistake = false;
+        }
+    }
+
+    public void InstantiateMiniGame(string name){
+        GameObject go;
+        switch(name){
+            case "Book":
+                go = Instantiate(MiniGames[0]);
+                go.transform.SetParent(MiniGameCanvas, false);
+                break;
+            case "Soap":
+                go = Instantiate(MiniGames[1]);
+                go.transform.SetParent(MiniGameCanvas, false);
+                break;
+            case "Food":
+                go = Instantiate(MiniGames[2]);
+                go.transform.SetParent(MiniGameCanvas, false);
+                break;
+            case "Spray":
+                go = Instantiate(MiniGames[3]);
+                go.transform.SetParent(this.gameObject.transform);
+                break;
+            case "Broom":
+                go = Instantiate(MiniGames[4]);
+                go.transform.SetParent(MiniGameCanvas, false);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ActivateTutorial(string name){
+        switch(name){
+            case "Buku":
+                Tutorials[0].SetActive(true);
+                break;
+            case "Sabun":
+                Tutorials[1].SetActive(true);
+                break;
+            case "Makan":
+                Tutorials[2].SetActive(true);
+                break;
+            case "Semprot":
+                Tutorials[3].SetActive(true);
+                break;
+            case "Sapu":
+                Tutorials[4].SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ToggleGUI(bool active){
+        GameObject soap = GameObject.Find("Soap(Clone)");
+        GameObject book = GameObject.Find("Book(Clone)");
+
+        if(soap != null){
+            if(active){
+                soap.GetComponent<GestureDetectorScript>().EnableGUI();
+            } else {
+                soap.GetComponent<GestureDetectorScript>().DisableGUI();
+            }  
+        } else if (book != null){
+            if(active){
+                book.GetComponent<GestureDetectorScript>().EnableGUI();
+            } else {
+                book.GetComponent<GestureDetectorScript>().DisableGUI();
+            }  
         }
     }
 }

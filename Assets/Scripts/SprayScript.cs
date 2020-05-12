@@ -10,28 +10,19 @@ public class SprayScript : MonoBehaviour
     public Transform coronaSpawnPoint;
     const float WAIT_TIME = 1f;
     public MiniGameController miniGameControllerInstance;
-    private float height;
-    private Vector3 destination;
-    public GameObject Background;
-    public GameObject Tutorial;
-    public GameObject SuccessText;
-
     private int coronaCounter;
     // Start is called before the first frame update
     void Start()
     {
-        
+        miniGameControllerInstance = GameObject.Find("Camera Mini Games").GetComponent<MiniGameController>();    
+        ActivateCorona();
     }
 
     void OnEnable(){
-        Tutorial.SetActive(true);
         coronaCounter = 0;
-        Background.SetActive(true);
-        SuccessText.SetActive(false);
     }
 
     void OnDisable(){
-        Background.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,10 +30,6 @@ public class SprayScript : MonoBehaviour
     {
         if(coronaCounter >= 15){
             miniGameControllerInstance.CloseMiniGame(this.gameObject, "Semprot");
-        }
-
-        if(!miniGameControllerInstance.CoolingDown){
-            SuccessText.SetActive(false);
         }
 
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
@@ -56,8 +43,7 @@ public class SprayScript : MonoBehaviour
                     touchedObject.GetComponent<Animator>().SetTrigger("dead");
                     Destroy(touchedObject, 0.5f);
                     coronaCounter++;
-                    miniGameControllerInstance.AddProgressTrack(coronaCounter, 15, false);
-                    SuccessText.SetActive(true);
+                    miniGameControllerInstance.AddProgressTrackSmall(coronaCounter, 15, true);
                 }
             }
 
@@ -71,8 +57,7 @@ public class SprayScript : MonoBehaviour
                     touchedObject.GetComponent<Animator>().SetTrigger("dead");
                     Destroy(touchedObject, 0.5f);
                     coronaCounter++;
-                    miniGameControllerInstance.AddProgressTrack(coronaCounter, 15, false);
-                    SuccessText.SetActive(true);
+                    miniGameControllerInstance.AddProgressTrackSmall(coronaCounter, 15, true);
                 }
             }
         }

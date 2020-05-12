@@ -94,6 +94,30 @@ namespace PDollarGestureRecognizer
 			return gestureClass == "" ? new Result() {GestureClass = "No match", Score = 0.0f} : new Result() {GestureClass = gestureClass, Score = Mathf.Max((minDistance - 2.0f) / -2.0f, 0.0f)};
         }
 
+        public static Dictionary<string, float> ClassifyArr(Gesture candidate, Gesture[] trainingSet)
+        {
+            Dictionary<string, float> tempArr = new Dictionary<string, float>();
+            
+            foreach (Gesture template in trainingSet)
+            {
+                float dist = GreedyCloudMatch(candidate.Points, template.Points);
+                if(tempArr.ContainsKey(template.Name)){
+                    if(dist < tempArr[template.Name]){
+                        tempArr[template.Name] = dist;
+                    }
+                } else {
+                    tempArr.Add(template.Name, dist);
+                }
+            }
+
+            Dictionary<string, float> resArr = new Dictionary<string, float>();
+            foreach(KeyValuePair<string,float> gesture in tempArr){
+                resArr.Add(gesture.Key, Mathf.Max((gesture.Value - 2.0f) / -2.0f, 0.0f));
+            }
+
+            return resArr;
+        }
+
         /// <summary>
         /// Implements greedy search for a minimum-distance matching between two point clouds
         /// </summary>

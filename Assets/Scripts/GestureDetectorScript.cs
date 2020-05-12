@@ -45,36 +45,32 @@ public class GestureDetectorScript : MonoBehaviour
 	public MiniGameController miniGameControllerInstance;
 
 	public GameObject RecognizeButton;
-	private bool isDrawing;
-
-	public GameObject[] Tutorial;
+	public bool isDrawing;
 	public Animator HandAnimation;
 	private bool isAnimating;
 	public GestureHolderScript gestureHolderScripInstance;
 	public TextMeshProUGUI ScoreText;
+	private GameObject line;
 
     // Start is called before the first frame update
     void Start()
     {
         platform = Application.platform;
-
-		//Load pre-made gestures
-		// TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("GestureSet/10-stylus-MEDIUM/");
-		// foreach (TextAsset gestureXml in gesturesXml)
-		// 	trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
+		miniGameControllerInstance = GameObject.Find("Camera Mini Games").GetComponent<MiniGameController>();    
+		originRequiredClasses = new String[6];
 
 		if (mode == "Soap") {
 			drawArea = new Rect(15 + Screen.width / 3, Screen.height / 4, Screen.width / 3, Screen.height / 2);
 			color = new Color(1,1,1,0.25f);
-			originRequiredClasses = new String[6];
+			gestureHolderScripInstance.MoveDown();
 		} else if (mode == "Book"){
 			drawArea = new Rect(Screen.width / 8, Screen.height / 8, 3 * Screen.width / 8, 3 * Screen.height / 4);
 			color = new Color(1,1,1,0.25f);
-			originRequiredClasses = new String[6];
 			
 			//Randomly remove 2 elements from requiredClass
 			requiredClasses.RemoveAt(UnityEngine.Random.Range(0, requiredClasses.Count - 1));
 			requiredClasses.RemoveAt(UnityEngine.Random.Range(0, requiredClasses.Count - 1));
+			ActivateGesture();
 		}
 
 		TextAsset[] testGesturesXml = Resources.LoadAll<TextAsset>("Test Gestures/");
@@ -95,9 +91,6 @@ public class GestureDetectorScript : MonoBehaviour
 		if(mode == "Book"){
 			referencePicGO.SetActive(true);
 			RecognizeButton.SetActive(true);
-			Tutorial[0].SetActive(true);
-		} else if(mode == "Soap") {
-			Tutorial[1].SetActive(true);
 		}
 
 		isDrawing = true;
@@ -238,10 +231,11 @@ public class GestureDetectorScript : MonoBehaviour
 		recognized = true;
 
 		Gesture candidate = new Gesture(points.ToArray());
-		Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
+		Dictionary<string, float> gestureResult = PointCloudRecognizer.ClassifyArr(candidate, trainingSet.ToArray());
 
-		if(gestureResult.GestureClass == activeClass){
-			if(gestureResult.Score >= 0.85f) {
+		if(gestureResult.ContainsKey(activeClass) && gestureResult[activeClass] <= 1f){
+			// Debug.Log(activeClass+" "+gestureResult[activeClass]);
+			if(gestureResult[activeClass] >= 0.9f) {
 				ScoreText.text = "Berhasil :)";
 				ScoreText.color = new Color(0.027044f, 0.8113208f, 0f, 1f);
 
@@ -267,7 +261,7 @@ public class GestureDetectorScript : MonoBehaviour
 					drawTest(activeClass);
 				}
 			} else {
-				ScoreText.text = "Sedikit Lagi!\n Skor kamu " + (int) (gestureResult.Score * 100) + "%";
+				ScoreText.text = "Sedikit Lagi!\n Skor kamu " + (int) (gestureResult[activeClass] * 100) + "%";
 				ScoreText.color = new Color(0f, 0f, 0f, 1f);
 			}
 		} else {
@@ -276,7 +270,6 @@ public class GestureDetectorScript : MonoBehaviour
 		}
 
 		ScoreText.gameObject.GetComponent<Animator>().SetTrigger("Expand");
-		Debug.Log(gestureResult.GestureClass + " " + gestureResult.Score + " " + activeClass);
 	}
 
 	void drawTest(string test){
@@ -333,8 +326,24 @@ public class GestureDetectorScript : MonoBehaviour
 		}
 	}
 
-	public void ToggleGUI(){
-		isDrawing = !isDrawing;
+	public void DisableGUI(){
+		line = GameObject.Find("GestureOnScreen(Clone)");
+		if(line != null){
+			line.SetActive(false);
+		}
+
+		isDrawing = false;
+	}
+
+	public void EnableGUI(){
+		if(!isAnimating){
+			isDrawing = true;
+
+			if(line != null){
+				line.SetActive(true);
+				line = null;
+			}
+		}
 	}
 
 	public void ActivateGesture(){
@@ -352,7 +361,7 @@ public class GestureDetectorScript : MonoBehaviour
 		string[] triggers = new String[] {"1st Step","2nd Step","3rd Step","4th Step","5th Step","6th Step"};
 		HandAnimation.SetTrigger(triggers[i]);
 		isAnimating = true;
-		ToggleGUI();
+		DisableGUI();
 		gestureHolderScripInstance.MoveUp();
 		StartCoroutine(disableAnimate());
 	}
@@ -360,7 +369,7 @@ public class GestureDetectorScript : MonoBehaviour
 	IEnumerator disableAnimate(){
 		yield return new WaitForSeconds(2.0125f);
 		isAnimating = false;
-		ToggleGUI();
+		EnableGUI();
 		GestureAnimation.gameObject.SetActive(false);
 		gestureHolderScripInstance.MoveDown();
 	}

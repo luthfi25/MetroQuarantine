@@ -25,7 +25,7 @@ public class PlayButtonScript : MonoBehaviour
 
     public void LoadLevel(int level)
     {
-        SceneManager.LoadScene(level);
+        SceneManager.LoadSceneAsync(level);
     }
 
     public void ExitGame()

@@ -26,9 +26,18 @@ public class UIScript : MonoBehaviour
     void Start()
     {
         isWinTriggered = false;
-        HighScoreText.gameObject.SetActive(false);
-        pauseScreen.SetActive(false);
-        hmScript = healthManager.GetComponent<HealthManager>();
+        if(HighScoreText != null){
+            HighScoreText.gameObject.SetActive(false);
+        }
+
+        if(pauseScreen != null){
+            pauseScreen.SetActive(false);
+        }
+
+        if(healthManager != null){
+            hmScript = healthManager.GetComponent<HealthManager>();
+        }
+
         audio = GetComponent<AudioSource>();
 
         firstTimePlay = PlayerPrefs.GetInt("FirstTime", 1);
@@ -36,6 +45,8 @@ public class UIScript : MonoBehaviour
         {
             PlayerPrefs.SetInt("FirstTime", 0);
             cutScene.GetComponent<CutsceneScript>().PlayCutscene();
+        } else {
+            Destroy(cutScene);
         }
     }
 
@@ -61,6 +72,11 @@ public class UIScript : MonoBehaviour
     {
         pauseScreen.SetActive(false);
         Time.timeScale = 1;
+
+        MiniGameController mgc = GameObject.Find("Camera Mini Games").GetComponent<MiniGameController>();
+        if(mgc != null){
+            mgc.ToggleGUI(true);
+        }
     }
 
     public void ReplayGame()

@@ -59,10 +59,13 @@ TagManager:
   - name: Walls
     uniqueID: 524987167
     locked: 0
+  - name: Character Behind
+    uniqueID: 2008908061
+    locked: 0
   - name: Background
     uniqueID: 2713565067
     locked: 0
-  - name: Character
+  - name: Character Front
     uniqueID: 1935305039
     locked: 0
   - name: Foreground

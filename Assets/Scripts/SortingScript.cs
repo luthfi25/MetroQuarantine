@@ -45,6 +45,38 @@ public class SortingScript : MonoBehaviour
             sortingOrder--;*/
         }
 
+        // int sortingOrder = fullObjects.Length;
+        // foreach(GameObject go in fullObjects)
+        // {
+        //     // if(go.transform.name != "Radius")
+        //     // {
+        //     SpriteRenderer sr = go.gameObject.GetComponent<SpriteRenderer>();
+        //     sr.sortingOrder = sortingOrder;
+        //     sortingOrder--;
+        //     // }
+
+        //     /*SpriteRenderer sr = go.gameObject.GetComponent<SpriteRenderer>();
+        //     sr.sortingOrder = sortingOrder;
+        //     sortingOrder--;*/
+        // }
+
+        // bool bgFound = false;
+        // for(int i = 0; i < fullObjects.Length; i++){
+        //     if((fullObjects[i].gameObject.tag != "Player" && fullObjects[i].gameObject.tag != "Enemy") || i >= 3){
+        //         bgFound = true;
+        //     }
+
+        //     SpriteRenderer sr = fullObjects[i].gameObject.GetComponent<SpriteRenderer>();
+
+        //     if(fullObjects[i].gameObject.tag == "Player" || fullObjects[i].gameObject.tag == "Enemy"){
+        //         if(bgFound){
+        //             sr.sortingLayerName = "Character Behind";
+        //         } else {
+        //             sr.sortingLayerName = "Character Front";
+        //         }
+        //     }
+        // }
+
     }
 
     private int CompareYPos(GameObject a, GameObject b)

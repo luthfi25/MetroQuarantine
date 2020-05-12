@@ -28,7 +28,6 @@ public class MovementScript : MonoBehaviour
     public GoalScript goalScript;
     bool isInAction;
     Dictionary<string, int> goalToID = new Dictionary<string, int>();
-    public GameObject[] actionMiniGames;
     public GameObject CameraMiniGame;
     public GameObject CameraMain;
     private Vector3 originalPos;
@@ -195,12 +194,13 @@ public class MovementScript : MonoBehaviour
             audioData.PlayOneShot(goalSound);
             collision.enabled = false;
 
-            GameObject miniGame = actionMiniGames[goalToID[collision.gameObject.name]];
-            if (miniGame != null){
-                CameraMiniGame.SetActive(true);
-                CameraMain.SetActive(false);
-                miniGame.SetActive(true);
-            }
+            // GameObject miniGame = actionMiniGames[goalToID[collision.gameObject.name]];
+            // if (miniGame != null){
+            CameraMiniGame.SetActive(true);
+            CameraMiniGame.GetComponent<MiniGameController>().ActivateTutorial(collision.gameObject.name);
+            CameraMain.SetActive(false);
+            //     miniGame.SetActive(true);
+            // }
 
             isPaused = true;
             // animator.SetInteger("Action", goalToID[collision.gameObject.name]);
