@@ -43,7 +43,6 @@ public class UIScript : MonoBehaviour
         firstTimePlay = PlayerPrefs.GetInt("FirstTime", 1);
         if (firstTimePlay == 1)
         {
-            PlayerPrefs.SetInt("FirstTime", 0);
             cutScene.GetComponent<CutsceneScript>().PlayCutscene();
         } else {
             Destroy(cutScene);

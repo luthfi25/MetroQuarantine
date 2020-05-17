@@ -13,10 +13,19 @@ public class BroomScript : MonoBehaviour
     private float targetFill;
     private bool coolingDown;
 
+    public List<AudioClip> clips;
+    private AudioClip broomingClip;
+    bool isClosing;
+
     // Start is called before the first frame update
     void Start()
     {
         miniGameControllerInstance = GameObject.Find("Camera Mini Games").GetComponent<MiniGameController>();
+        broomingClip = clips[0];
+
+        float[] broomingClipSample = new float[]{};
+        broomingClip.GetData(broomingClipSample, 0);
+        broomingClip.SetData(broomingClipSample, 2); 
     }
 
     void OnEnable(){
@@ -24,6 +33,7 @@ public class BroomScript : MonoBehaviour
         broomCounter = 0;
         targetFill = 0f;
         coolingDown = false;
+        isClosing = false;
     }
 
     void OnDisable(){
@@ -32,8 +42,10 @@ public class BroomScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(broomCounter >= 50){
-            miniGameControllerInstance.CloseMiniGame(this.gameObject, "Sapu");
+        if(broomCounter >= 50 && !isClosing){
+            isClosing = true;
+            miniGameControllerInstance.PlaySound(clips[1], false);
+            miniGameControllerInstance.CloseMiniGameDelay(this.gameObject, "Sapu", 2f);
         }
 
         if(coolingDown){
@@ -52,6 +64,10 @@ public class BroomScript : MonoBehaviour
     }
 
     public void MoveButton(GameObject btn){
+        if(broomCounter >= 49){
+            Destroy(btn.gameObject);
+        }
+
         if(isRight){
             btn.gameObject.transform.Translate(-5f, 0f, 0f);
             isRight = false;
@@ -71,6 +87,7 @@ public class BroomScript : MonoBehaviour
         // targetFill = BackgroundMessy.fillAmount - (1f/ 20f);
         targetFill = BackgroundMessy.color.a - (1f / 50f);
         coolingDown = true;
+        miniGameControllerInstance.PlaySound(broomingClip, false);
     }
 
     public void RestartBroom(){

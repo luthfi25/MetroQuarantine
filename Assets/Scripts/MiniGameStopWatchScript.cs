@@ -10,6 +10,8 @@ public class MiniGameStopWatchScript : MonoBehaviour
     private float originTime;
     public GameObject[] miniGames;
 
+    private bool freezeTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class MiniGameStopWatchScript : MonoBehaviour
 
     void OnEnable(){
         curTime = 120f; //reference only
+        freezeTime = false;
     }
 
     // Update is called once per frame
@@ -67,6 +70,10 @@ public class MiniGameStopWatchScript : MonoBehaviour
             }
         }
 
+        if (freezeTime){
+            return;
+        }
+
         curTime -= Time.deltaTime;
         float minutes = (int)(curTime / 60) % 60;
         float seconds = curTime % 60;
@@ -76,5 +83,9 @@ public class MiniGameStopWatchScript : MonoBehaviour
 
     void restartTime(){
         curTime = originTime;
+    }
+
+    public void SetFreezeTime(bool val){
+        freezeTime = val;
     }
 }

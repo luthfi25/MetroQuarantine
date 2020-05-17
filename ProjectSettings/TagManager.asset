@@ -16,6 +16,7 @@ TagManager:
   - Corona
   - Corona-Border
   - Dead-Health
+  - Gesture
   layers:
   - Default
   - TransparentFX

@@ -34,6 +34,7 @@ public class CutsceneScript : MonoBehaviour
         {
             if(SceneManager.GetActiveScene().buildIndex == 1){
                 ui.ReplayGame();
+                PlayerPrefs.SetInt("FirstTime", 0);
             } else {
                 firstScene.SetActive(true);
                 GameObject.Find("Cutscene 11").SetActive(false);

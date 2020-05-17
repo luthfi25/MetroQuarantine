@@ -50,7 +50,11 @@ public class GestureDetectorScript : MonoBehaviour
 	private bool isAnimating;
 	public GestureHolderScript gestureHolderScripInstance;
 	public TextMeshProUGUI ScoreText;
-	private GameObject line;
+	private GameObject[] line;
+
+	public List<AudioClip> clips;
+	bool isSwiping;
+	bool isClosing;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +89,7 @@ public class GestureDetectorScript : MonoBehaviour
 		}
 
 		requiredClasses.CopyTo(originRequiredClasses);
+		line = new GameObject[]{};
     }
 
 	void OnEnable(){
@@ -95,6 +100,9 @@ public class GestureDetectorScript : MonoBehaviour
 
 		isDrawing = true;
 		ScoreText.text = "";
+		isSwiping = false;
+		isAnimating = false;
+		isClosing = false;
 	}
 
 	void OnDisable(){
@@ -107,12 +115,15 @@ public class GestureDetectorScript : MonoBehaviour
     [Obsolete]
     void Update()
     {
-		if(requiredClasses.Count == 0){
+		if(requiredClasses.Count == 0 && !isClosing){
 			if(!isAnimating){
+				isClosing = true;
+				miniGameControllerInstance.PlaySound(clips[2], false);
+				
 				if(mode == "Soap"){
-					miniGameControllerInstance.CloseMiniGame(this.gameObject, "Sabun");
+					miniGameControllerInstance.CloseMiniGameDelay(this.gameObject, "Sabun", 1f);
 				} else if(mode == "Book"){
-					miniGameControllerInstance.CloseMiniGame(this.gameObject, "Buku");
+					miniGameControllerInstance.CloseMiniGameDelay(this.gameObject, "Buku", 1f);
 				}
 			}
 		}
@@ -162,15 +173,30 @@ public class GestureDetectorScript : MonoBehaviour
 			}
 			
 			if (Input.GetMouseButton(0)) {
+				if(!isSwiping){
+					isSwiping = true;
+					if(mode == "Soap"){
+						miniGameControllerInstance.PlaySound(clips[0], false);
+					} else if(mode == "Book"){
+						miniGameControllerInstance.PlaySound(clips[0], true);
+					}
+				}
+
 				points.Add(new Point(virtualKeyPosition.x, -virtualKeyPosition.y, strokeId));
 
 				currentGestureLineRenderer.SetVertexCount(++vertexCount);
-				currentGestureLineRenderer.SetPosition(vertexCount - 1, Camera.main.ScreenToWorldPoint(new Vector3(virtualKeyPosition.x, virtualKeyPosition.y, 1000)));
+				currentGestureLineRenderer.SetPosition(vertexCount - 1, Camera.main.ScreenToWorldPoint(new Vector3(virtualKeyPosition.x, virtualKeyPosition.y, 10)));
 			}
 		}
 
-		if(mode == "Soap"){
-			if(Input.GetMouseButtonUp(0)){
+		if(Input.GetMouseButtonUp(0)){
+
+			if(isSwiping){
+				isSwiping = false;
+				miniGameControllerInstance.StopSound();
+			}
+
+			if(mode == "Soap"){
 				recognized = true;
 
 				Gesture candidate = new Gesture(points.ToArray());
@@ -178,6 +204,7 @@ public class GestureDetectorScript : MonoBehaviour
 
 				if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.75f){
 				// if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.25f){
+
 					requiredClasses.Remove(activeClass);
 					miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 6, true);
 
@@ -214,7 +241,7 @@ public class GestureDetectorScript : MonoBehaviour
 
 					gestureLinesRenderer.Clear();
 				}
-        	}
+			}
 		}
     }
 
@@ -235,7 +262,9 @@ public class GestureDetectorScript : MonoBehaviour
 
 		if(gestureResult.ContainsKey(activeClass) && gestureResult[activeClass] <= 1f){
 			// Debug.Log(activeClass+" "+gestureResult[activeClass]);
-			if(gestureResult[activeClass] >= 0.9f) {
+			if(gestureResult[activeClass] >= 0.85f) {
+				miniGameControllerInstance.PlaySound(clips[1], false);
+
 				ScoreText.text = "Berhasil :)";
 				ScoreText.color = new Color(0.027044f, 0.8113208f, 0f, 1f);
 
@@ -254,9 +283,7 @@ public class GestureDetectorScript : MonoBehaviour
 
 				gestureLinesRenderer.Clear();
 
-				if(requiredClasses.Count == 0) {
-					miniGameControllerInstance.CloseMiniGame(this.gameObject, "Buku");
-				} else {
+				if(requiredClasses.Count != 0) {
 					activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
 					drawTest(activeClass);
 				}
@@ -327,9 +354,11 @@ public class GestureDetectorScript : MonoBehaviour
 	}
 
 	public void DisableGUI(){
-		line = GameObject.Find("GestureOnScreen(Clone)");
-		if(line != null){
-			line.SetActive(false);
+		if(mode == "Book"){
+			line = GameObject.FindGameObjectsWithTag("Gesture");
+			foreach(GameObject l in line){
+				l.SetActive(false);
+			}
 		}
 
 		isDrawing = false;
@@ -339,9 +368,13 @@ public class GestureDetectorScript : MonoBehaviour
 		if(!isAnimating){
 			isDrawing = true;
 
-			if(line != null){
-				line.SetActive(true);
-				line = null;
+			if(mode == "Book"){
+				if(line.Length > 0){
+					foreach(GameObject l in line){
+						l.SetActive(true);
+					}
+					Array.Clear(line, 0, line.Length);
+				}
 			}
 		}
 	}
@@ -363,6 +396,7 @@ public class GestureDetectorScript : MonoBehaviour
 		isAnimating = true;
 		DisableGUI();
 		gestureHolderScripInstance.MoveUp();
+		miniGameControllerInstance.PlaySound(clips[1], true);
 		StartCoroutine(disableAnimate());
 	}
 
@@ -371,6 +405,9 @@ public class GestureDetectorScript : MonoBehaviour
 		isAnimating = false;
 		EnableGUI();
 		GestureAnimation.gameObject.SetActive(false);
-		gestureHolderScripInstance.MoveDown();
+		miniGameControllerInstance.StopSound();
+		if(requiredClasses.Count > 0){
+			gestureHolderScripInstance.MoveDown();
+		}
 	}
 }

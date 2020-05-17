@@ -29,10 +29,14 @@ public class MiniGameController : MonoBehaviour
     public GameObject[] Tutorials;
     public Transform MiniGameCanvas;
 
+    AudioSource[] audioSources;
+    public MiniGameStopWatchScript miniGameStopWatchScriptInstance;
+
 
     // Start is called before the first frame update
     void Start()
-    {
+    {  
+        audioSources = GetComponents<AudioSource>();
     }
 
     void OnEnable(){
@@ -44,6 +48,7 @@ public class MiniGameController : MonoBehaviour
         miniGameName = "";
         SuccessBig.SetActive(false);
         SucessSmall.SetActive(false);
+        miniGameStopWatchScriptInstance.SetFreezeTime(false);
     }
 
     void OnDisable(){
@@ -100,7 +105,13 @@ public class MiniGameController : MonoBehaviour
     public void CloseMiniGame(GameObject go, string name){
         toClose = go;
         closing = true;
+        StopSound();
         miniGameName = name;
+    }
+
+    public void CloseMiniGameDelay(GameObject go, string name, float delayTime){
+        miniGameStopWatchScriptInstance.SetFreezeTime(true);
+        StartCoroutine(closingDelay(go, name, delayTime));
     }
 
     void doCloseMiniGame(){
@@ -223,5 +234,27 @@ public class MiniGameController : MonoBehaviour
                 book.GetComponent<GestureDetectorScript>().DisableGUI();
             }  
         }
+    }
+
+    public void PlaySound(AudioClip clip, bool loop){
+        if(loop){
+            audioSources[0].clip = clip;
+            float clipTime = Random.Range(0f, 1f) * clip.length;
+            audioSources[0].time = clipTime;
+            audioSources[0].Play();
+        } else {
+            audioSources[1].PlayOneShot(clip);
+        }
+    }
+
+    public void StopSound(){
+        audioSources[0].clip = null;
+        audioSources[0].Stop();
+        audioSources[1].Stop();
+    }
+
+    IEnumerator closingDelay(GameObject go, string name, float delayTime){
+        yield return new WaitForSeconds(delayTime);
+        CloseMiniGame(go, name);
     }
 }

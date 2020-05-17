@@ -450,8 +450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGameControllerInstance: {fileID: 0}
   BackgroundMessy: {fileID: 5478920618055650797}
-  Tutorial: {fileID: 0}
-  SuccessText: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: 7bcf6526f78c09f47bb37ae3bc6eba4f, type: 3}
+  - {fileID: 8300000, guid: 3b67ea5dd84f9294397d5fc696062933, type: 3}
 --- !u!1 &5478920619295365585
 GameObject:
   m_ObjectHideFlags: 0

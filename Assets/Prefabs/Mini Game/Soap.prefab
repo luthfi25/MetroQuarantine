@@ -287,12 +287,14 @@ MonoBehaviour:
   mode: Soap
   miniGameControllerInstance: {fileID: 0}
   RecognizeButton: {fileID: 0}
-  Tutorial:
-  - {fileID: 0}
-  - {fileID: 0}
+  isDrawing: 0
   HandAnimation: {fileID: 4603359976606345550}
   gestureHolderScripInstance: {fileID: 4603359976347261559}
   ScoreText: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: e2764399538e6364eabe20b5da6125df, type: 3}
+  - {fileID: 8300000, guid: a24e3fae8f19304409b4b81f29f6f23b, type: 3}
+  - {fileID: 8300000, guid: 6e3cb24c1fccee546bc47ddd3dedf220, type: 3}
 --- !u!1 &4603359977229099060
 GameObject:
   m_ObjectHideFlags: 0

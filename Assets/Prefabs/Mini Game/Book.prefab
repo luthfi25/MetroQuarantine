@@ -229,6 +229,10 @@ MonoBehaviour:
   HandAnimation: {fileID: 0}
   gestureHolderScripInstance: {fileID: 0}
   ScoreText: {fileID: 8868620541228681178}
+  clips:
+  - {fileID: 8300000, guid: 4b027ad962d5ff0479f9ab734f0ba391, type: 3}
+  - {fileID: 8300000, guid: 587e8cabcfcf0ce4da0e239d2f98d2a7, type: 3}
+  - {fileID: 8300000, guid: 6e3cb24c1fccee546bc47ddd3dedf220, type: 3}
 --- !u!1 &8868620540674436068
 GameObject:
   m_ObjectHideFlags: 0
