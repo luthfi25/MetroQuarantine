@@ -167,6 +167,7 @@ MonoBehaviour:
     type: 3}
   coronaSpawnPoint: {fileID: 3983227519303424299}
   miniGameControllerInstance: {fileID: 0}
-  Background: {fileID: 0}
-  Tutorial: {fileID: 0}
-  SuccessText: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: d818e0471571f8d40b614b82b1502586, type: 3}
+  - {fileID: 8300000, guid: 504e1d7a64bbb0341bc53edd634a9eda, type: 3}
+  - {fileID: 8300000, guid: 3b67ea5dd84f9294397d5fc696062933, type: 3}

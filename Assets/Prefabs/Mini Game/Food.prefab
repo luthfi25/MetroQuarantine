@@ -264,7 +264,6 @@ MonoBehaviour:
   answerParent: {fileID: 1245504838557880683}
   answerPlaceHolder: {fileID: 4514046871433962148, guid: fcccf9e14ae0d1e43969c56e8d897a30,
     type: 3}
-  miniGameControllerInstance: {fileID: 0}
   BackspaceButton: {fileID: 6019097360069238380}
   CurrentFoodSprite:
   - {fileID: 21300000, guid: be10f1efd54611445b3a3a68f71ba816, type: 3}
@@ -273,8 +272,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3ee321a366236c846badaf11006f5ca1, type: 3}
   - {fileID: 21300000, guid: 10b4866d6bb826b46a9dc560ce79e69e, type: 3}
   CurrentFood: {fileID: 1245504838897948263}
-  Tutorial: {fileID: 0}
   HintText: {fileID: 1245504838552978022}
+  clips:
+  - {fileID: 8300000, guid: f3e11d4ad15a8ff4980ed1104e12873d, type: 3}
+  - {fileID: 8300000, guid: f85eb13a296d33e459fedf5ca941503e, type: 3}
+  - {fileID: 8300000, guid: 64548279f10d0ca429d067b600265087, type: 3}
+  - {fileID: 8300000, guid: a3a81d252e8975245a23407042fa84e9, type: 3}
 --- !u!1 &1245504837733956173
 GameObject:
   m_ObjectHideFlags: 0

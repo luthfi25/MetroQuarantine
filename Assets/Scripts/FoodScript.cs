@@ -30,11 +30,16 @@ public class FoodScript : MonoBehaviour
     const float NEW_LINE = -75f;
     private bool clearAnswer;
 
+    public List<AudioClip> clips;
+    private bool isClosing;
+    private HashSet<int> randomFillIndex;
+
     // Start is called before the first frame update
     void Start()
     {
         activeAnswers = new List<TextMeshProUGUI>();
         pressedChar = new Stack<GameObject>();
+        randomFillIndex = new HashSet<int>();
         miniGameControllerInstance = GameObject.Find("Camera Mini Games").GetComponent<MiniGameController>();
     }
 
@@ -44,6 +49,7 @@ public class FoodScript : MonoBehaviour
         onScreenChar = "";
         clearAnswer = false;
         CurrentFood.gameObject.GetComponent<Animator>().enabled = false;
+        isClosing = false;
     }
 
     void OnDisable(){
@@ -55,7 +61,11 @@ public class FoodScript : MonoBehaviour
     void Update()
     {   
         if(foods.Count <= 0){
-            miniGameControllerInstance.CloseMiniGame(this.gameObject, "Makan");
+            if(!isClosing){
+                isClosing = true;
+                miniGameControllerInstance.PlaySound(clips[3], false);
+                miniGameControllerInstance.CloseMiniGameDelay(this.gameObject, "Makan", 1f);
+            }
             return;
         }
 
@@ -72,8 +82,10 @@ public class FoodScript : MonoBehaviour
         }
 
         if(clearAnswer){
-            foreach(TextMeshProUGUI a in activeAnswers){
-                a.text = "";
+            for(int i = 0; i < activeAnswers.Count; i++){
+                if(!randomFillIndex.Contains(i)){
+                    activeAnswers[i].text = "";
+                }
             }
 
             clearAnswer = false;
@@ -91,6 +103,7 @@ public class FoodScript : MonoBehaviour
 
         generateAnswerSpace();         
         MapFoodSprite(activeFood);
+        miniGameControllerInstance.StopSound();
     }
 
     string shuffleChar(){
@@ -124,6 +137,16 @@ public class FoodScript : MonoBehaviour
         bool foundSpace = false;
         int spaceMark = 0;
 
+        randomFillIndex.Clear();
+        while(randomFillIndex.Count <= 0.3 * len){
+            int randomCand = Random.Range(0, len);
+            if(activeFood[randomCand].ToString() == " "){
+                continue;
+            }
+
+            randomFillIndex.Add(randomCand);
+        }
+
         for(; i < len; i++){
             if(activeFood[i].ToString() == " "){
                 foundSpace = true;
@@ -140,11 +163,23 @@ public class FoodScript : MonoBehaviour
             }
 
             answerPh.transform.SetParent(answerParent.transform, false);
+            
+            if(randomFillIndex.Contains(i)){
+                answerPh.GetComponentInChildren<TextMeshProUGUI>().text = activeFood[i].ToString();
+                answerPh.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0.75f, 1f);
+
+                if(foundSpace){
+                    randomFillIndex.Remove(i);
+                    randomFillIndex.Add(i-1);
+                }
+            }
+
             activeAnswers.Add(answerPh.GetComponentInChildren<TextMeshProUGUI>());
         }
     }
 
     public void FillAnswer(GameObject charGo){
+        miniGameControllerInstance.PlaySound(clips[0], false);
         pressedChar.Push(charGo.transform.parent.gameObject);
         string answer = "";
         string realAnswer = activeFood.Replace(" ", "");
@@ -155,12 +190,22 @@ public class FoodScript : MonoBehaviour
             if(a.text == ""){
                 a.text = charGo.GetComponent<TextMeshProUGUI>().text;
                 answer += a.text;
+                
+                int curIndex = activeAnswers.IndexOf(a);
+                while(curIndex <= activeAnswers.Count - 1 && randomFillIndex.Contains(curIndex+1)){
+                    answer += activeAnswers[curIndex + 1].text;
+                    curIndex++;
+                }
+
                 break;
             }
         }
 
         if (answer.Length == realAnswer.Length){
             if(answer == realAnswer){
+                //sound
+                miniGameControllerInstance.PlaySound(clips[2], true);
+
                 CurrentFood.color = new Color(1f, 1f, 1f, 1f);
                 CurrentFood.gameObject.GetComponent<Animator>().enabled = true;
                 foods.Remove(activeFood);
@@ -187,16 +232,15 @@ public class FoodScript : MonoBehaviour
     }
 
     public void Backspace(){
+        miniGameControllerInstance.PlaySound(clips[0], false);
+
         if (pressedChar.Count > 0){
             pressedChar.Pop().GetComponent<Button>().interactable = true;
         }
 
-        foreach(TextMeshProUGUI a in activeAnswers){
-            if(a.text == ""){
-                int index = activeAnswers.IndexOf(a);
-                if(index != 0){
-                    activeAnswers[index-1].text = "";   
-                }
+        for(int i = activeAnswers.Count - 1; i >= 0; i--){
+            if(activeAnswers[i].text != "" && !randomFillIndex.Contains(i)){
+                activeAnswers[i].text = "";
                 break;
             }
         }

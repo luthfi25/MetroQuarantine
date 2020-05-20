@@ -11,6 +11,9 @@ public class SprayScript : MonoBehaviour
     const float WAIT_TIME = 1f;
     public MiniGameController miniGameControllerInstance;
     private int coronaCounter;
+
+    public List<AudioClip> clips;
+    private bool isClosing;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,7 @@ public class SprayScript : MonoBehaviour
 
     void OnEnable(){
         coronaCounter = 0;
+        isClosing = false;
     }
 
     void OnDisable(){
@@ -29,7 +33,12 @@ public class SprayScript : MonoBehaviour
     void Update()
     {
         if(coronaCounter >= 15){
-            miniGameControllerInstance.CloseMiniGame(this.gameObject, "Semprot");
+            if(!isClosing){
+                isClosing = true;
+                miniGameControllerInstance.PlaySound(clips[2], false);
+                miniGameControllerInstance.CloseMiniGameDelay(this.gameObject, "Semprot", 1f);
+            }
+            return;
         }
 
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
@@ -44,6 +53,9 @@ public class SprayScript : MonoBehaviour
                     Destroy(touchedObject, 0.5f);
                     coronaCounter++;
                     miniGameControllerInstance.AddProgressTrackSmall(coronaCounter, 15, true);
+
+                    int randIndex = Random.Range(0, 2);
+                    miniGameControllerInstance.PlaySound(clips[randIndex], false);
                 }
             }
 
@@ -58,6 +70,9 @@ public class SprayScript : MonoBehaviour
                     Destroy(touchedObject, 0.5f);
                     coronaCounter++;
                     miniGameControllerInstance.AddProgressTrackSmall(coronaCounter, 15, true);
+
+                    int randIndex = Random.Range(0, 2);
+                    miniGameControllerInstance.PlaySound(clips[randIndex], false);
                 }
             }
         }
