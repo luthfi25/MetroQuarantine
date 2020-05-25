@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,8 +25,6 @@ public class MovementScript : MonoBehaviour
     public AudioClip doorSound;
     public AudioClip screamSound;
 
-    public GoalScript goalScript;
-    bool isInAction;
     Dictionary<string, int> goalToID = new Dictionary<string, int>();
     public GameObject CameraMiniGame;
     public GameObject CameraMain;
@@ -43,7 +41,6 @@ public class MovementScript : MonoBehaviour
         stopWatchInstance = stopWatch.GetComponent<StopWatchScript>();
         audioData = GetComponent<AudioSource>();
         audioData.loop = false;
-        isInAction = false;
 
         goalToID.Add("Buku", 0);
         goalToID.Add("Sabun", 1);
@@ -51,14 +48,14 @@ public class MovementScript : MonoBehaviour
         goalToID.Add("Sapu", 3);
         goalToID.Add("Semprot", 4);
 
-        CameraMiniGame.SetActive(false);
-        CameraMain.SetActive(true);
+        // to be reverted
+        // CameraMiniGame.SetActive(false);
+        // CameraMain.SetActive(true);
     }
 
     public void ResetPosition(){
         transform.position = originalPos;
         isPaused = false;
-        isInAction = false;
     }
 
     // Update is called once per frame
@@ -95,12 +92,6 @@ public class MovementScript : MonoBehaviour
             // horizonTrans = Input.GetAxis("Horizontal");
             // vertiTrans = Input.GetAxis("Vertical");
 
-            if (isInAction)
-            {
-                horizonTrans = 0f;
-                vertiTrans = 0f;
-            }
-
             if (horizonTrans > 0.5f || horizonTrans < -0.5f)
             {
                 horizonTrans = Mathf.Round(horizonTrans);
@@ -121,7 +112,7 @@ public class MovementScript : MonoBehaviour
     {
         if (coll.gameObject.tag == "Enemy")
         { 
-            if (isPaused || isInAction)
+            if (isPaused)
             {
                 return;
             }
@@ -135,6 +126,7 @@ public class MovementScript : MonoBehaviour
 
             isPaused = true;
             GameObject parent = coll.gameObject.transform.parent.gameObject;
+            Handheld.Vibrate();
             StartCoroutine(playerDead(0.25f, parent));
         }
     }
@@ -147,11 +139,6 @@ public class MovementScript : MonoBehaviour
             rb.isKinematic = false;
         } else if (coll.gameObject.tag == "Enemy")
         {
-            if (isInAction)
-            {
-                return;
-            }
-
             audioData.volume = 1f;
             audioData.clip = screamSound;
             audioData.Play();
@@ -159,7 +146,8 @@ public class MovementScript : MonoBehaviour
             isPaused = true;
             animator.SetFloat("speed-horizon", 0f);
             animator.SetFloat("speed-vert", 0f);
-
+            
+            Handheld.Vibrate();
             StartCoroutine(playerDead(0.0f, coll.gameObject));
         } else if (coll.gameObject.tag == "Furniture")
         {
@@ -190,21 +178,13 @@ public class MovementScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Goal")
         {
-            // isInAction = true;
             audioData.PlayOneShot(goalSound);
             collision.enabled = false;
 
-            // GameObject miniGame = actionMiniGames[goalToID[collision.gameObject.name]];
-            // if (miniGame != null){
             CameraMiniGame.SetActive(true);
             CameraMiniGame.GetComponent<MiniGameController>().ActivateTutorial(collision.gameObject.name);
             CameraMain.SetActive(false);
-            //     miniGame.SetActive(true);
-            // }
-
             isPaused = true;
-            // animator.SetInteger("Action", goalToID[collision.gameObject.name]);
-            // StartCoroutine(StopActionAnim());
 
         } else if (collision.gameObject.tag == "Door")
         {
@@ -213,13 +193,6 @@ public class MovementScript : MonoBehaviour
             DoorScript ds = collision.gameObject.GetComponent<DoorScript>();
             ds.doAnimateOpen();
         }
-    }
-
-    IEnumerator StopActionAnim()
-    {
-        yield return new WaitForSeconds(3f);
-        animator.SetInteger("Action", -1);
-        isInAction = false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -31,6 +31,7 @@ public class MiniGameController : MonoBehaviour
 
     AudioSource[] audioSources;
     public MiniGameStopWatchScript miniGameStopWatchScriptInstance;
+    public Canvas MainCanvas;
 
 
     // Start is called before the first frame update
@@ -49,6 +50,7 @@ public class MiniGameController : MonoBehaviour
         SuccessBig.SetActive(false);
         SucessSmall.SetActive(false);
         miniGameStopWatchScriptInstance.SetFreezeTime(false);
+        MainCanvas.gameObject.SetActive(false);
     }
 
     void OnDisable(){
@@ -58,6 +60,7 @@ public class MiniGameController : MonoBehaviour
         MistakeBig.SetActive(false);
         CoolingDown = false;
         CooldownMistake = false;
+        MainCanvas.gameObject.SetActive(true);
     }
 
     // Update is called once per frame

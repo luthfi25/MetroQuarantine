@@ -17,6 +17,7 @@ TagManager:
   - Corona-Border
   - Dead-Health
   - Gesture
+  - MainCamera MiniGames
   layers:
   - Default
   - TransparentFX

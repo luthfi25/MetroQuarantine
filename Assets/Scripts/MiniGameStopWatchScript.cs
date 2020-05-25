@@ -36,6 +36,7 @@ public class MiniGameStopWatchScript : MonoBehaviour
 
     void decreaseTime(){
         if (curTime <= 0f){
+            Handheld.Vibrate();
             restartTime();
 
             foreach(GameObject mg in miniGames){

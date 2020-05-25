@@ -1,5 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,6 +19,7 @@ public class UIScript : MonoBehaviour
 
     int firstTimePlay;
     public GameObject cutScene;
+    public GameObject chooseCharacter;
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +43,12 @@ public class UIScript : MonoBehaviour
         if (firstTimePlay == 1)
         {
             cutScene.GetComponent<CutsceneScript>().PlayCutscene();
+            return;
         } else {
             Destroy(cutScene);
         }
+
+        chooseCharacter.SetActive(true);
     }
 
     // Update is called once per frame

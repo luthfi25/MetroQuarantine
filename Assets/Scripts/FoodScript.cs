@@ -212,6 +212,7 @@ public class FoodScript : MonoBehaviour
                 onScreenChar = "";
                 miniGameControllerInstance.AddProgressTrack(5 - foods.Count, 5, true);
             } else {
+                Handheld.Vibrate();
                 miniGameControllerInstance.CooldownByMistake();
             }
 

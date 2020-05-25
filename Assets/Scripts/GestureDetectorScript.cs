@@ -240,6 +240,7 @@ public class GestureDetectorScript : MonoBehaviour
 					}
 
 					gestureLinesRenderer.Clear();
+					Handheld.Vibrate();
 				}
 			}
 		}
@@ -288,10 +289,12 @@ public class GestureDetectorScript : MonoBehaviour
 					drawTest(activeClass);
 				}
 			} else {
+				Handheld.Vibrate();
 				ScoreText.text = "Sedikit Lagi!\n Skor kamu " + (int) (gestureResult[activeClass] * 100) + "%";
 				ScoreText.color = new Color(0f, 0f, 0f, 1f);
 			}
 		} else {
+			Handheld.Vibrate();
 			ScoreText.text = "Coba lagi :(";
 			ScoreText.color = new Color(1f, 0f, 0f, 1f);
 		}
