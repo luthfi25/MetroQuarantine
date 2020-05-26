@@ -8,7 +8,7 @@ public class MiniGameStopWatchScript : MonoBehaviour
     public TextMeshProUGUI SprayStopWatchText;
     private float curTime;
     private float originTime;
-    public GameObject[] miniGames;
+    public List<GameObject> miniGames;
 
     private bool freezeTime;
 
@@ -68,6 +68,11 @@ public class MiniGameStopWatchScript : MonoBehaviour
                 if (bs != null){
                     bs.RestartBroom();
                 }
+
+                PuzzleScript ps = mg.GetComponent<PuzzleScript>();
+                if (ps != null){
+                    ps.RestartPuzzle();
+                }
             }
         }
 
@@ -88,5 +93,9 @@ public class MiniGameStopWatchScript : MonoBehaviour
 
     public void SetFreezeTime(bool val){
         freezeTime = val;
+    }
+
+    public void AddMiniGame(GameObject mg){
+        miniGames.Add(mg);
     }
 }

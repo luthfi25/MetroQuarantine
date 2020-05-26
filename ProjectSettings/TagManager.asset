@@ -18,6 +18,7 @@ TagManager:
   - Dead-Health
   - Gesture
   - MainCamera MiniGames
+  - Trash Can
   layers:
   - Default
   - TransparentFX

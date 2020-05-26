@@ -43,7 +43,6 @@ public class MiniGameController : MonoBehaviour
     void OnEnable(){
         uIScriptInstance.gameObject.SetActive(false);
         CoolingDown = false;
-        ProgressBar.fillAmount = 0f;
         targetFill = 1f;
         closing = false;
         miniGameName = "";
@@ -66,9 +65,6 @@ public class MiniGameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {      
-        if(ProgressBar == null){
-            ProgressBar = GameObject.Find("Progress Track").GetComponent<Image>();
-        }
 
         if(closing){
             if(ProgressBar.fillAmount >= 1.0f){
@@ -176,26 +172,34 @@ public class MiniGameController : MonoBehaviour
             case "Book":
                 go = Instantiate(MiniGames[0]);
                 go.transform.SetParent(MiniGameCanvas, false);
+                miniGameStopWatchScriptInstance.AddMiniGame(go);
                 break;
             case "Soap":
                 go = Instantiate(MiniGames[1]);
                 go.transform.SetParent(MiniGameCanvas, false);
+                miniGameStopWatchScriptInstance.AddMiniGame(go);
                 break;
             case "Food":
                 go = Instantiate(MiniGames[2]);
                 go.transform.SetParent(MiniGameCanvas, false);
+                miniGameStopWatchScriptInstance.AddMiniGame(go);
                 break;
             case "Spray":
                 go = Instantiate(MiniGames[3]);
                 go.transform.SetParent(this.gameObject.transform);
+                miniGameStopWatchScriptInstance.AddMiniGame(go);
                 break;
             case "Broom":
                 go = Instantiate(MiniGames[4]);
                 go.transform.SetParent(MiniGameCanvas, false);
+                miniGameStopWatchScriptInstance.AddMiniGame(go);
                 break;
             default:
                 break;
         }
+
+        ProgressBar = GameObject.Find("Progress Track").GetComponent<Image>();
+        ProgressBar.fillAmount = 0f;
     }
 
     public void ActivateTutorial(string name){

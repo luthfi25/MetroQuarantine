@@ -48,9 +48,8 @@ public class MovementScript : MonoBehaviour
         goalToID.Add("Sapu", 3);
         goalToID.Add("Semprot", 4);
 
-        // to be reverted
-        // CameraMiniGame.SetActive(false);
-        // CameraMain.SetActive(true);
+        CameraMiniGame.SetActive(false);
+        CameraMain.SetActive(true);
     }
 
     public void ResetPosition(){

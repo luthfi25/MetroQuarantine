@@ -38,7 +38,7 @@ public class PuzzlePieceScript : EventTrigger
         dragging = false;
 
         int id = int.Parse(GetComponentInChildren<TextMeshProUGUI>().text);
-        bool validPos = GameObject.Find("Puzzle").GetComponent<PuzzleScript>().ValidPosition(id, transform.position);
+        bool validPos = GameObject.Find("Puzzle(Clone)").GetComponent<PuzzleScript>().ValidPosition(id, transform.position);
         
         if(validPos){
             locked = true;
