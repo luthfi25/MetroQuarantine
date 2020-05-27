@@ -11,16 +11,26 @@ public class EnemySpawnerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(RuntimeAnimatorController npcAnim in NPCAnimations){
-            int randIndex = Random.Range(0, SpawnPositions.Count);
-            GameObject npc = Instantiate(NPCPrefab, SpawnPositions[randIndex].position, transform.rotation);
-            
-            Animator npcAnimator;
-            if(npc.TryGetComponent<Animator>(out npcAnimator)){
-                npcAnimator.runtimeAnimatorController = npcAnim;
-            }
+        RuntimeAnimatorController[] NPCAnimationsDup = new RuntimeAnimatorController[NPCAnimations.Count];
+        NPCAnimations.CopyTo(NPCAnimationsDup);
+        Animator npcAnimator;
 
-            SpawnPositions.RemoveAt(randIndex);
+        for(int i = 0; i < SpawnPositions.Count; i++){
+            GameObject npc = Instantiate(NPCPrefab, SpawnPositions[i].position, transform.rotation);
+
+            if(i < 5){
+                int randIndex = Random.Range(0, NPCAnimations.Count);
+                if(npc.TryGetComponent<Animator>(out npcAnimator)){
+                    npcAnimator.runtimeAnimatorController = NPCAnimations[randIndex];
+                }
+
+                NPCAnimations.RemoveAt(randIndex);
+            } else {
+                int randIndex = Random.Range(0, 5);
+                if(npc.TryGetComponent<Animator>(out npcAnimator)){
+                    npcAnimator.runtimeAnimatorController = NPCAnimationsDup[randIndex];
+                }
+            }
         }
     }
 
