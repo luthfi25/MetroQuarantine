@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class ChooseCharacterScript : MonoBehaviour
 {
-    public List<RuntimeAnimatorController> characterControllers;
-    public Animator MainCharacterAnimator;
+    [SerializeField] private List<RuntimeAnimatorController> characterControllers;
+    [SerializeField] private List<Sprite> sprites;
+    [SerializeField] private MainCharacterScript mainCharacterScript;
+    [SerializeField] private GameManagerScript gameManagerScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        MainCharacterAnimator.enabled = false;
-    }
 
-    void OnEnable(){
-        Time.timeScale = 0;
     }
 
     // Update is called once per frame
@@ -23,10 +21,14 @@ public class ChooseCharacterScript : MonoBehaviour
         
     }
 
-    public void StartGame(int index){
-        MainCharacterAnimator.enabled = true;
-        MainCharacterAnimator.runtimeAnimatorController = characterControllers[index];
-        Time.timeScale = 1;
+    public void ChooseCharacter(int index){
+        List<Sprite> chosenSprites = new List<Sprite>();
+        for(int i = 0; i <= 3; i++){
+            chosenSprites.Add(sprites[(4*index) + i]);
+        }
+
+        mainCharacterScript.ChangeAsset(characterControllers[index], chosenSprites);
+        gameManagerScript.StartGame();
         Destroy(this.gameObject);
     }
 }

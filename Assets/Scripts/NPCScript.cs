@@ -22,6 +22,7 @@ public class NPCScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
 
+    private bool isFreeze = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,10 @@ public class NPCScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(isFreeze) {
+            return;
+        }
+
         if(bumpTime > 0f){
             transform.position += moveDir * SPEED * 2f * Time.deltaTime;
             bumpTime -= Time.deltaTime;
@@ -42,6 +47,9 @@ public class NPCScript : MonoBehaviour
 
     void ChangeOrientation(string orientationVal){
         if(TryGetComponent<SpriteRenderer>(out spriteRenderer) && TryGetComponent<Animator>(out animator)){
+            spriteRenderer.enabled = true;
+            animator.enabled = true;
+
             switch(orientationVal){
                 case "down":
                     speedHorizon = 0f;
@@ -63,6 +71,11 @@ public class NPCScript : MonoBehaviour
                     speedVertical = 0f;
                     spriteRenderer.sprite = FaceRight;
                     break;
+                case "halt":
+                    speedHorizon = 0f;
+                    speedVertical = 0f;
+                    animator.enabled = false;
+                    break;
                 default:
                     break;
             }
@@ -75,35 +88,41 @@ public class NPCScript : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D coll){
-        string bumpOrientation;
-        string newOrientation;
 
-        switch(orientation){
-            case "down":
-                bumpOrientation = "up";
-                newOrientation = "left";
-                break;
-            case "up":
-                bumpOrientation = "down";
-                newOrientation = "right";
-                break;
-            case "left":
-                bumpOrientation = "right";
-                newOrientation = "up";
-                break;
-            case "right":
-                bumpOrientation = "left";
-                newOrientation = "down";
-                break;
-            default:
-                bumpOrientation = "left";
-                newOrientation = "down";
-                break;
+        if(coll.gameObject.CompareTag("Player")){
+            ChangeOrientation("halt");
+            isFreeze = true;
+        } else {
+            string bumpOrientation;
+            string newOrientation;
+
+            switch(orientation){
+                case "down":
+                    bumpOrientation = "up";
+                    newOrientation = "left";
+                    break;
+                case "up":
+                    bumpOrientation = "down";
+                    newOrientation = "right";
+                    break;
+                case "left":
+                    bumpOrientation = "right";
+                    newOrientation = "up";
+                    break;
+                case "right":
+                    bumpOrientation = "left";
+                    newOrientation = "down";
+                    break;
+                default:
+                    bumpOrientation = "left";
+                    newOrientation = "down";
+                    break;
+            }
+
+            bumpTime = 0.3f;
+            ChangeOrientation(bumpOrientation);
+            StartCoroutine(ChangeOrientationDelay(0.3f, newOrientation));
         }
-
-        bumpTime = 0.3f;
-        ChangeOrientation(bumpOrientation);
-        StartCoroutine(ChangeOrientationDelay(0.3f, newOrientation));
     }
 
     IEnumerator ChangeOrientationDelay(float time, string orientationVal){

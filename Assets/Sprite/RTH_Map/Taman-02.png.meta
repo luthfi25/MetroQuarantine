@@ -1,0 +1,644 @@
+fileFormatVersion: 2
+guid: cbff5ba21a74c8a409a7ab8f1d8cfcfe
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5102416922703663673
+    second: Taman-02_0
+  - first:
+      213: -5395357839172074111
+    second: Taman-02_1
+  - first:
+      213: 3478756947895344610
+    second: Taman-02_2
+  - first:
+      213: -6579063373516989810
+    second: Taman-02_3
+  - first:
+      213: -4695448839892810663
+    second: Taman-02_4
+  - first:
+      213: 5339464126618135870
+    second: Taman-02_5
+  - first:
+      213: -6180330167530674633
+    second: Taman-02_6
+  - first:
+      213: 2672462024494617368
+    second: Taman-02_7
+  - first:
+      213: -5323195529817602797
+    second: Taman-02_8
+  - first:
+      213: 42936195077967513
+    second: Taman-02_9
+  - first:
+      213: 4192139581663485770
+    second: Taman-02_10
+  - first:
+      213: -5409391569861321606
+    second: Taman-02_11
+  - first:
+      213: 1405751623552158489
+    second: Taman-02_12
+  - first:
+      213: -4378201272402986609
+    second: Taman-02_13
+  - first:
+      213: -7785815180797739835
+    second: Taman-02_14
+  - first:
+      213: 2227287152223123215
+    second: Taman-02_15
+  - first:
+      213: 2839475787437342256
+    second: Taman-02_16
+  - first:
+      213: 7315952014747091779
+    second: Taman-02_17
+  - first:
+      213: -2272452394485849619
+    second: Taman-02_18
+  - first:
+      213: 1345539685002006007
+    second: Taman-02_19
+  - first:
+      213: 1071284031514522124
+    second: Taman-02_20
+  - first:
+      213: -551116589752660338
+    second: Taman-02_21
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Taman-02_0
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 4591
+        width: 547
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93291bd482d6fc640800000000000000
+      internalID: 5102416922703663673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_1
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 4591
+        width: 545
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 185870091a6df15b0800000000000000
+      internalID: -5395357839172074111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_2
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 3879
+        width: 1586
+        height: 1070
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed593b4307074030800000000000000
+      internalID: 3478756947895344610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_3
+      rect:
+        serializedVersion: 2
+        x: 3803
+        y: 3879
+        width: 1065
+        height: 1070
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8a9cba18b872b4a0800000000000000
+      internalID: -6579063373516989810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_4
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 4032
+        width: 547
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9544b2d582a66deb0800000000000000
+      internalID: -4695448839892810663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_5
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 4032
+        width: 545
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3de30e5556991a40800000000000000
+      internalID: 5339464126618135870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_6
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 3362
+        width: 543
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73624b9157e0b3aa0800000000000000
+      internalID: -6180330167530674633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_7
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 3362
+        width: 546
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81319bd4d0e761520800000000000000
+      internalID: 2672462024494617368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_8
+      rect:
+        serializedVersion: 2
+        x: 1969
+        y: 3051
+        width: 2657
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315464f7ed53026b0800000000000000
+      internalID: -5323195529817602797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_9
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 2782
+        width: 543
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e01afed3a889000800000000000000
+      internalID: 42936195077967513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_10
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 2782
+        width: 545
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4f18e51db87d2a30800000000000000
+      internalID: 4192139581663485770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_11
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 2154
+        width: 542
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c5c63070bfde4b0800000000000000
+      internalID: -5409391569861321606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_12
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 2154
+        width: 543
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b414457ab328310800000000000000
+      internalID: 1405751623552158489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_13
+      rect:
+        serializedVersion: 2
+        x: 1937
+        y: 1648
+        width: 1065
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f89b143b3218d33c0800000000000000
+      internalID: -4378201272402986609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_14
+      rect:
+        serializedVersion: 2
+        x: 3519
+        y: 2160
+        width: 558
+        height: 563
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ccf4b5185a33f390800000000000000
+      internalID: -7785815180797739835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_15
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 1601
+        width: 542
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f07fc014dd9e8ee10800000000000000
+      internalID: 2227287152223123215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_16
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 1601
+        width: 543
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03e768a3f28d76720800000000000000
+      internalID: 2839475787437342256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_17
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 978
+        width: 543
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 343cdc8889b778560800000000000000
+      internalID: 7315952014747091779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_18
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 978
+        width: 543
+        height: 543
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de16fa15690a670e0800000000000000
+      internalID: -2272452394485849619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_19
+      rect:
+        serializedVersion: 2
+        x: 1927
+        y: 372
+        width: 1064
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd4cbbe6315ca210800000000000000
+      internalID: 1345539685002006007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_20
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 427
+        width: 543
+        height: 541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c02b8f79627fdde00800000000000000
+      internalID: 1071284031514522124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taman-02_21
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 427
+        width: 543
+        height: 541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8ec7fda16a0a58f0800000000000000
+      internalID: -551116589752660338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 245b4b04396ff864c8bf478656a9b6cc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
