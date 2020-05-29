@@ -8,6 +8,7 @@ public class MainCharacterScript : MonoBehaviour
     public Sprite FaceUp;
     public Sprite FaceLeft;
     public Sprite FaceRight;
+    private Sprite currentSprite;
 
     readonly string[] ORIENTATION = {"down", "up", "left", "right"};
     string orientation;
@@ -18,24 +19,32 @@ public class MainCharacterScript : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Animator animator;
-    [SerializeField] GameManagerScript gameManager;
+    Rigidbody2D rigidbody2D;
+    [SerializeField] RTHGameManagerScript gameManager;
 
     private Vector3 initPosition;
     private bool isFreeze = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
         initPosition = transform.position;
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if(isFreeze){
+        if(isFreeze || orientation == "halt"){
+            rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             return;
         }
 
-        transform.position += moveDir * SPEED * Time.deltaTime;
+        // transform.position += moveDir * SPEED * Time.deltaTime;
+        if(orientation != "halt"){
+            rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rigidbody2D.velocity = moveDir * SPEED;
+        }
     }
 
     public void ChangeOrientation(string orientationVal){
@@ -43,34 +52,37 @@ public class MainCharacterScript : MonoBehaviour
             return;
         }
 
-        if(TryGetComponent<SpriteRenderer>(out spriteRenderer) && TryGetComponent<Animator>(out animator)){
+        GameObject avatar = GetAvatar();
+
+        if(avatar.TryGetComponent<SpriteRenderer>(out spriteRenderer) && avatar.TryGetComponent<Animator>(out animator)){
             animator.enabled = true;
 
             switch(orientationVal){
                 case "down":
                     speedHorizon = 0f;
                     speedVertical = -1f;
-                    spriteRenderer.sprite = FaceDown;
+                    currentSprite = FaceDown;
                     break;
                 case "up":
                     speedHorizon = 0f;
                     speedVertical = 1f;
-                    spriteRenderer.sprite = FaceUp;
+                    currentSprite = FaceUp;
                     break;
                 case "left":
                     speedHorizon = -1f;
                     speedVertical = 0f;
-                    spriteRenderer.sprite = FaceLeft;
+                    currentSprite = FaceLeft;
                     break;
                 case "right":
                     speedHorizon = 1f;
                     speedVertical = 0f;
-                    spriteRenderer.sprite = FaceRight;
+                    currentSprite = FaceRight;
                     break;
                 case "halt":
                     speedHorizon = 0f;
                     speedVertical = 0f;
                     animator.enabled = false;
+                    spriteRenderer.sprite = currentSprite;
                     break;
                 default:
                     break;
@@ -83,6 +95,8 @@ public class MainCharacterScript : MonoBehaviour
             
             moveDir = new Vector3(speedHorizon, speedVertical, 0f);
             orientation = orientationVal;
+        } else {
+            Debug.Log("error accessing avatar.");
         }
     }
 
@@ -97,9 +111,12 @@ public class MainCharacterScript : MonoBehaviour
         if(coll.gameObject.CompareTag("Enemy")){
             ChangeOrientation("halt");
 
-            if(TryGetComponent<Animator>(out animator)){
+            GameObject avatar = GetAvatar();
+            if(avatar.TryGetComponent<Animator>(out animator)){
                 animator.enabled = true;
                 animator.SetTrigger("dead");
+            } else {
+                Debug.Log("Error accessing avatar.");
             }
 
             StartCoroutine(gameManager.PlayerDamage());
@@ -108,9 +125,12 @@ public class MainCharacterScript : MonoBehaviour
     }
 
     public void Reset(){
-        if(TryGetComponent<Animator>(out animator)){
+        GameObject avatar = GetAvatar();
+        if(avatar.TryGetComponent<Animator>(out animator)){
             animator.enabled = true;
             animator.ResetTrigger("dead");
+        } else {
+            Debug.Log("Error accessing avatar.");
         }
 
         transform.position = initPosition;
@@ -120,8 +140,12 @@ public class MainCharacterScript : MonoBehaviour
     }
 
     public void ChangeAsset(RuntimeAnimatorController animatorController, List<Sprite> faces){
-        if(TryGetComponent<Animator>(out animator)){
+        GameObject avatar = GetAvatar();
+        if(avatar.TryGetComponent<Animator>(out animator)){
+            animator.enabled = true;
             animator.runtimeAnimatorController = animatorController;
+        } else {
+            Debug.Log("Error accessing avatar.");
         }
 
         FaceUp = faces[0];
@@ -131,5 +155,17 @@ public class MainCharacterScript : MonoBehaviour
 
         ChangeOrientation("down");
         ChangeOrientation("halt");
+    }
+
+    GameObject GetAvatar(){
+        Transform[] children = transform.GetComponentsInChildren<Transform>();
+        foreach (Transform child in children) {
+            if (child.name == "Avatar") {
+                return child.gameObject;
+            }
+        }
+
+        Debug.Log("Can't find avatar.");
+        return null;
     }
 }

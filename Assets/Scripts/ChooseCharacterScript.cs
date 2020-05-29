@@ -7,7 +7,7 @@ public class ChooseCharacterScript : MonoBehaviour
     [SerializeField] private List<RuntimeAnimatorController> characterControllers;
     [SerializeField] private List<Sprite> sprites;
     [SerializeField] private MainCharacterScript mainCharacterScript;
-    [SerializeField] private GameManagerScript gameManagerScript;
+    [SerializeField] private RTHGameManagerScript gameManagerScript;
 
     // Start is called before the first frame update
     void Start()

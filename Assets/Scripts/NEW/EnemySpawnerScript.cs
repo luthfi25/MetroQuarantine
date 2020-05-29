@@ -32,22 +32,22 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
     void InitNPC(){
-        Animator npcAnimator;
+        NPCScript nPCScript;
 
         for(int i = 0; i < SpawnPositions.Count; i++){
             GameObject npc = Instantiate(NPCPrefab, SpawnPositions[i].position, transform.rotation);
 
             if(i < 5){
                 int randIndex = Random.Range(0, NPCAnimations.Count);
-                if(npc.TryGetComponent<Animator>(out npcAnimator)){
-                    npcAnimator.runtimeAnimatorController = NPCAnimations[randIndex];
+                if(npc.TryGetComponent<NPCScript>(out nPCScript)){
+                    nPCScript.InitAnimator(NPCAnimations[randIndex]);
                 }
 
                 NPCAnimations.RemoveAt(randIndex);
             } else {
                 int randIndex = Random.Range(0, 5);
-                if(npc.TryGetComponent<Animator>(out npcAnimator)){
-                    npcAnimator.runtimeAnimatorController = staticNPCAnimations[randIndex];
+                if(npc.TryGetComponent<NPCScript>(out nPCScript)){
+                    nPCScript.InitAnimator(staticNPCAnimations[randIndex]);
                 }
             }
         }

@@ -8,7 +8,7 @@ public class RTHHealthScript : MonoBehaviour
     [SerializeField] private List<GameObject> healthGameObjects;
     [SerializeField] private List<GameObject> deadHealthGameObjects;
 
-    [SerializeField] private GameManagerScript gameManagerScript;
+    [SerializeField] private RTHGameManagerScript gameManagerScript;
 
     const int MAX_HEALTH = 3;
 

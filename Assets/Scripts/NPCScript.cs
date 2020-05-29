@@ -21,6 +21,7 @@ public class NPCScript : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Animator animator;
+    Rigidbody2D rigidbody2D;
 
     private bool isFreeze = false;
     // Start is called before the first frame update
@@ -34,6 +35,10 @@ public class NPCScript : MonoBehaviour
     void FixedUpdate()
     {
         if(isFreeze) {
+            if(TryGetComponent<Rigidbody2D>(out rigidbody2D)){
+                rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+
             return;
         }
 
@@ -46,7 +51,9 @@ public class NPCScript : MonoBehaviour
     }
 
     void ChangeOrientation(string orientationVal){
-        if(TryGetComponent<SpriteRenderer>(out spriteRenderer) && TryGetComponent<Animator>(out animator)){
+        GameObject avatar = GetAvatar();
+
+        if(avatar.TryGetComponent<SpriteRenderer>(out spriteRenderer) && avatar.TryGetComponent<Animator>(out animator)){
             spriteRenderer.enabled = true;
             animator.enabled = true;
 
@@ -84,6 +91,8 @@ public class NPCScript : MonoBehaviour
             animator.SetFloat("Speed-Vertical", speedVertical);
             moveDir = new Vector3(speedHorizon, speedVertical, 0f);
             orientation = orientationVal;
+        } else {
+            Debug.Log("Error accessing avatar.");
         }
     }
 
@@ -128,5 +137,26 @@ public class NPCScript : MonoBehaviour
     IEnumerator ChangeOrientationDelay(float time, string orientationVal){
         yield return new WaitForSeconds(time);
         ChangeOrientation(orientationVal);
+    }
+
+    public void InitAnimator(RuntimeAnimatorController anim){
+        GameObject avatar = GetAvatar();
+        if(avatar.TryGetComponent<Animator>(out animator)){
+            animator.runtimeAnimatorController = anim;
+        } else {
+            Debug.Log("error accessing avatar");
+        }
+    }
+
+    GameObject GetAvatar(){
+        Transform[] children = transform.GetComponentsInChildren<Transform>();
+        foreach (Transform child in children) {
+            if (child.name == "Avatar") {
+                return child.gameObject;
+            }
+        }
+
+        Debug.Log("Can't find avatar.");
+        return null;
     }
 }

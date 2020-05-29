@@ -5,19 +5,42 @@ using UnityEngine;
 public class GoalController : MonoBehaviour
 {
     public GameObject GoalPrefab;
-    [SerializeField] private int goalCounter;
+    [SerializeField] private List<Sprite> goalSprites; 
+    [SerializeField] private List<Vector2> goalShadowPos;
+    [SerializeField] private List<Vector2> goalShadowScales;
+    [SerializeField] private List<BoxCollider2D> goalSpawnArea;
 
     // Start is called before the first frame update
     void Start()
     {
-        int initCounter = 0;
-        while(initCounter < goalCounter){
-            float randomX = Random.Range(Screen.width / 10, 9 * Screen.width / 10);
-            float randomY = Random.Range(Screen.height / 10, 9 * Screen.height / 10);
-            Vector3 randomPos = new Vector3(randomX, randomY, 10f);
-            GameObject gp = Instantiate(GoalPrefab, Camera.main.ScreenToWorldPoint(randomPos), transform.rotation);
-            gp.transform.SetParent(transform);
-            initCounter++;
+        foreach(BoxCollider2D collider2D in goalSpawnArea){
+            int i = 1;
+            while (i <= 2){
+                float randomX = Random.Range(collider2D.bounds.min.x, collider2D.bounds.max.x);
+                float randomY = Random.Range(collider2D.bounds.min.y, collider2D.bounds.max.y);
+                Vector3 randomPos = new Vector3(randomX, randomY, 0f);
+
+                GameObject gp = Instantiate(GoalPrefab, randomPos, transform.rotation);
+            
+                int randSpriteIndex = Random.Range(0, goalSprites.Count);
+                SpriteRenderer spriteRenderer;
+                if(gp.TryGetComponent<SpriteRenderer>(out spriteRenderer)){    
+                    spriteRenderer.sprite = goalSprites[randSpriteIndex];
+                } else {
+                    Debug.LogError("no sprite renderer.");
+                }
+
+                Transform shadow = gp.transform.Find("Shadow");
+                if(shadow != null){
+                    shadow.localPosition = goalShadowPos[randSpriteIndex];
+                    shadow.localScale = goalShadowScales[randSpriteIndex];
+                } else {
+                    Debug.LogError("no shadow.");
+                }
+
+                gp.transform.SetParent(transform);
+                i++;
+            }
         }
     }
 
