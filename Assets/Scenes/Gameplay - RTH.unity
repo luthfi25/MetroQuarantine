@@ -165,7 +165,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.4067745, y: 0.56496906}
+  m_Offset: {x: 5.11162, y: 0.56496906}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -176,7 +176,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.717503, y: 13.655363}
+  m_Size: {x: 9.307812, y: 13.655363}
   m_EdgeRadius: 0
 --- !u!1 &5530942
 GameObject:
@@ -622,7 +622,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1798857876}
-        m_MethodName: activateChooseCharacter
+        m_MethodName: ActivateChooseCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4975,7 +4975,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 747051626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 309c2b6ac2edfa34794428b7df3d17f9, type: 3}
+  m_Script: {fileID: 11500000, guid: fdadbd66e3c4ad647a611b672b95394c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stopWatchText: {fileID: 1986859960}
@@ -6596,7 +6596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1020303288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6820,7 +6820,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.73063755, y: 0.162364}
+  m_Offset: {x: 0.73063755, y: 0.86720943}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6831,7 +6831,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.1931553, y: 9.659412}
+  m_Size: {x: 4.1931553, y: 8.249722}
   m_EdgeRadius: 0
 --- !u!1 &1053279823
 GameObject:
@@ -7093,6 +7093,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 30d6df26ce180514e9ad15dafd36924d, type: 2}
   NPCPrefab: {fileID: 6057675651545601139, guid: 098e5f772f162bd4aa2298981d9dde69,
     type: 3}
+  level: RTH
 --- !u!1 &1074896433
 GameObject:
   m_ObjectHideFlags: 0
@@ -8712,7 +8713,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6181812, y: -2.2617915}
+  m_Offset: {x: 0.6181812, y: -3.4512188}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8723,7 +8724,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.4253483, y: 6.8207593}
+  m_Size: {x: 4.4253483, y: 4.4419045}
   m_EdgeRadius: 0
 --- !u!1 &1300898812
 GameObject:
@@ -9267,7 +9268,6 @@ MonoBehaviour:
   - {fileID: 21300006, guid: 79a74342e6161094a96fa9611eb662ab, type: 3}
   - {fileID: 21300000, guid: 79a74342e6161094a96fa9611eb662ab, type: 3}
   mainCharacterScript: {fileID: 2002018784}
-  gameManagerScript: {fileID: 1798857876}
 --- !u!114 &1314299316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10331,7 +10331,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1469352605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2233fc57b1f21c841810e24dce91c1a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 18095ca40c18bd04fba1d9a5dbc16003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
@@ -10343,7 +10343,6 @@ MonoBehaviour:
   - {fileID: 1363569932}
   - {fileID: 252717971}
   - {fileID: 1119360731}
-  gameManagerScript: {fileID: 1798857876}
 --- !u!1 &1472575155
 GameObject:
   m_ObjectHideFlags: 0
@@ -10449,10 +10448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b7efbfbaa356e41a9027e12f4ccbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rTHStopWatchScript: {fileID: 747051630}
   scoreText: {fileID: 1821632293}
   highScoreText: {fileID: 81449611}
-  nextLevelButton: {fileID: 0}
+  nextLevelButton: {fileID: 1020303287}
 --- !u!1 &1526039137
 GameObject:
   m_ObjectHideFlags: 0
@@ -10822,7 +10820,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.6327763, y: -0.11299324}
+  m_Offset: {x: -4.6327763, y: 0.9442797}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10833,7 +10831,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.937851, y: 19.531075}
+  m_Size: {x: 3.937851, y: 16.711702}
   m_EdgeRadius: 0
 --- !u!1 &1693334993
 GameObject:
@@ -11438,14 +11436,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winScreen: {fileID: 1513950033}
   gameOverScreen: {fileID: 110102571}
-  rTHStopWatchScript: {fileID: 747051630}
+  stopWatchScript: {fileID: 747051630}
   goalText: {fileID: 1526039141}
   goalsTook: 0
   mainCharacterScript: {fileID: 2002018784}
   enemySpawnerScript: {fileID: 1068408640}
-  rTHHealthScript: {fileID: 1469352609}
   chooseCharacterScreen: {fileID: 1314299313}
   tutorialScreen: {fileID: 51333864}
+  health: 3
+  healthScript: {fileID: 1469352609}
   soundManagerScript: {fileID: 426296116}
   masterClip: {fileID: 8300000, guid: af07ccf41d595734b83b7c836d54412e, type: 3}
   master2ndClip: {fileID: 8300000, guid: 3331247adf0ce3f45917638f868850a4, type: 3}
@@ -12969,7 +12968,6 @@ MonoBehaviour:
   FaceUp: {fileID: 21300004, guid: 79a74342e6161094a96fa9611eb662ab, type: 3}
   FaceLeft: {fileID: 21300006, guid: 79a74342e6161094a96fa9611eb662ab, type: 3}
   FaceRight: {fileID: 21300000, guid: 79a74342e6161094a96fa9611eb662ab, type: 3}
-  gameManager: {fileID: 1798857876}
 --- !u!1 &2008064126
 GameObject:
   m_ObjectHideFlags: 0

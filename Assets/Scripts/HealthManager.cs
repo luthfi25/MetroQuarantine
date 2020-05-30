@@ -60,7 +60,7 @@ public class HealthManager : MonoBehaviour
                 stopWatchInstance = stopWatch.GetComponent<StopWatchScript>();
             }
 
-            stopWatchInstance.DestroyTime();
+            // stopWatchInstance.DestroyTime();
             PlayerPrefs.DeleteKey("Health");
             return;
         }
@@ -119,7 +119,7 @@ public class HealthManager : MonoBehaviour
     IEnumerator showGameOver()
     {
         yield return new WaitForSeconds(1.5f);
-        stopWatchInstance.DestroyTime();
+        // stopWatchInstance.DestroyTime();
 
         AudioSource[] allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
         foreach (AudioSource audioS in allAudioSources)

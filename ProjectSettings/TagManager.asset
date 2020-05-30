@@ -19,6 +19,7 @@ TagManager:
   - Gesture
   - MainCamera MiniGames
   - Trash Can
+  - Goal-House
   layers:
   - Default
   - TransparentFX

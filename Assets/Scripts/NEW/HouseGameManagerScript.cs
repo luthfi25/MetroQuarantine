@@ -3,41 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RTHGameManagerScript : MonoBehaviour, IGameManager
+public class HouseGameManagerScript : MonoBehaviour, IGameManager
 {
-    [SerializeField] private GameObject winScreen;
-    [SerializeField] private GameObject gameOverScreen;
-
-    [SerializeField] private StopWatchScript stopWatchScript;
-    [SerializeField] private TextModifier goalText;
-    [SerializeField] private int goalsTook;
-    [SerializeField] private MainCharacterScript mainCharacterScript;
-    [SerializeField] private EnemySpawnerScript enemySpawnerScript;
-    [SerializeField] private GameObject chooseCharacterScreen;
     [SerializeField] private GameObject tutorialScreen;
+    [SerializeField] private GameObject chooseCharacterScreen;
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject cutSceneScreen;
 
     [SerializeField] private int health = 3;
     const int MAX_HEALTH = 3;
     [SerializeField] private HealthScript healthScript;
 
+    [SerializeField] MainCharacterScript mainCharacterScript;
+    [SerializeField] EnemySpawnerScript enemySpawnerScript;
+    [SerializeField] StopWatchScript stopWatchScript;
+
+    [SerializeField] private int goalsTook;
+    [SerializeField] private GameObject CameraMiniGames;
+    [SerializeField] private GameObject CameraMain;
+
     [SerializeField] private SoundManagerScript soundManagerScript;
     [SerializeField] private AudioClip masterClip;
-    [SerializeField] private AudioClip master2ndClip;
     [SerializeField] private AudioClip buttonPressedClip;
     [SerializeField] private AudioClip playerDamageClip;
     [SerializeField] private AudioClip goalTookClip;
     [SerializeField] private AudioClip gameOverClip;
     [SerializeField] private AudioClip winClip;
+    [SerializeField] private AudioClip doorClip;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 0;
-        tutorialScreen.SetActive(true);
-        PlayClip("master");
-        PlayClip("master2nd");
 
-        PlayerPrefs.SetInt("RTH-FirstTime", 1);
+        int firstTime = PlayerPrefs.GetInt("House-FirstTime", -1);
+        if(firstTime == -1){
+            cutSceneScreen.SetActive(true);
+        } else {
+            ActivateTutorial();
+        }
+        
+        PlayClip("master");
     }
 
     // Update is called once per frame
@@ -81,25 +88,51 @@ public class RTHGameManagerScript : MonoBehaviour, IGameManager
     }
 
     public void GoalTook(string goalName){
-        goalsTook++;
-        goalText.ChangeText(goalsTook.ToString() + "/12");
         PlayClip("goal");
 
-        if(goalsTook >= 12){
+        CameraMiniGames.SetActive(true);
+        CameraMain.SetActive(false);
+        stopWatchScript.SetFreeze(true); 
+        enemySpawnerScript.ForceFreeze();
+
+        MiniGameController miniGameController;
+        if(CameraMiniGames.TryGetComponent<MiniGameController>(out miniGameController)){
+            miniGameController.ActivateTutorial(goalName);
+        }
+    }
+
+    public void GoalFinished(){
+        goalsTook++;
+
+        CameraMiniGames.SetActive(false);
+        CameraMain.SetActive(true);
+        stopWatchScript.SetFreeze(false);
+        enemySpawnerScript.UnFreeze();
+        
+        if(goalsTook >= 5){
             WinGame();
         }
     }
 
     public IEnumerator PlayerDamage(string enemyName){
         health--;
+        int timeExtension = 10;
+
         Handheld.Vibrate();
-        stopWatchScript.AddTime(10);
-        healthScript.DecreaseHealth(health);
         enemySpawnerScript.ForceFreeze();
         PlayClip("damage");
 
-        yield return new WaitForSeconds(1.5f);
+        if(enemyName.Contains("Babeh")){
+            health--;
+            timeExtension += 10;
+        }
 
+        stopWatchScript.AddTime(timeExtension);
+        healthScript.DecreaseHealth(health);
+    
+
+        yield return new WaitForSeconds(1.5f);
+        
         if(health <= 0){
             GameOver();
         } else {
@@ -119,16 +152,12 @@ public class RTHGameManagerScript : MonoBehaviour, IGameManager
 
     public void StartGame(){
         Time.timeScale = 1;
-        goalText.ChangeText(goalsTook.ToString() + "/12");
     }
 
     public void PlayClip(string option){
         switch(option){
             case "master":
                 soundManagerScript.PlayMaster(masterClip);
-                break;
-            case "master2nd":
-                soundManagerScript.PlayMaster2nd(master2ndClip);
                 break;
             case "button":
                 soundManagerScript.PlayOneShot(buttonPressedClip);
@@ -146,7 +175,10 @@ public class RTHGameManagerScript : MonoBehaviour, IGameManager
             case "game over":
                 soundManagerScript.DisableMasters();
                 soundManagerScript.PlayOneShot(gameOverClip);
-                break;         
+                break;
+            case "door":
+                soundManagerScript.PlayOneShot(doorClip);
+                break;
             default:
                 break;
         }
@@ -157,7 +189,16 @@ public class RTHGameManagerScript : MonoBehaviour, IGameManager
         chooseCharacterScreen.SetActive(true);
     }
 
+    public void ActivateTutorial(){
+        Destroy(cutSceneScreen);
+        tutorialScreen.SetActive(true);
+    }
+
     public void RunCustomFunction(string functionName){
-       return; 
+        Invoke(functionName, 0f);
+    }
+
+    public void PlayDoorSound(){
+        PlayClip("door");
     }
 }

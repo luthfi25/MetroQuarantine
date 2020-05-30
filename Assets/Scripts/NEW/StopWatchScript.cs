@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RTHStopWatchScript : MonoBehaviour
+public class StopWatchScript : MonoBehaviour
 {
     [SerializeField] private TextModifier stopWatchText;
     [SerializeField] private TextModifier stopWatchExtensionText;
@@ -66,5 +66,9 @@ public class RTHStopWatchScript : MonoBehaviour
     public void DisableExtension(){
         isFreeze = false;
         stopWatchExtensionText.gameObject.SetActive(false);
+    }
+
+    public void SetFreeze(bool freezeValue){
+        isFreeze = freezeValue;
     }
 }

@@ -37,6 +37,11 @@ public class SprayScript : MonoBehaviour
                 isClosing = true;
                 miniGameControllerInstance.PlaySound(clips[2], false);
                 miniGameControllerInstance.CloseMiniGameDelay(this.gameObject, "Semprot", 1f);
+
+                GameObject[] coronas = GameObject.FindGameObjectsWithTag("Corona");
+                foreach(GameObject corona in coronas){
+                    Destroy(corona);
+                }
             }
             return;
         }
@@ -80,10 +85,10 @@ public class SprayScript : MonoBehaviour
 
     IEnumerator spawnCorona(float waitTime)
     {
-        while(this.gameObject.activeSelf) {
+        while(this.gameObject.activeSelf && !isClosing) {
             float xValue = Random.Range(1f * (Screen.width / 4), Screen.width - 200f);
             Vector3 normvalue = Camera.main.ScreenToWorldPoint(new Vector3(xValue, 0f, 0f));
-            Instantiate(coronaGameObject, new Vector3(normvalue.x, coronaSpawnPoint.position.y, -10f), transform.rotation);
+            Instantiate(coronaGameObject, new Vector3(normvalue.x, coronaSpawnPoint.position.y, 0f), transform.rotation);
 
             yield return new WaitForSeconds(waitTime);
         }

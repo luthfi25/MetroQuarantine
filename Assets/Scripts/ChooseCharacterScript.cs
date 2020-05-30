@@ -7,12 +7,15 @@ public class ChooseCharacterScript : MonoBehaviour
     [SerializeField] private List<RuntimeAnimatorController> characterControllers;
     [SerializeField] private List<Sprite> sprites;
     [SerializeField] private MainCharacterScript mainCharacterScript;
-    [SerializeField] private RTHGameManagerScript gameManagerScript;
+    private IGameManager gameManagerScript;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        GameObject gameManager = GameObject.Find("_GAME MANAGER");
+        if(!gameManager.TryGetComponent<IGameManager>(out gameManagerScript)){
+            Debug.Log("Can't find IGameManager");
+        }
     }
 
     // Update is called once per frame

@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CutsceneScript : MonoBehaviour
 {
-    public UIScript ui;
+    [SerializeField] IGameManager gameManagerScript;
     private GameObject firstScene;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject gameManager = GameObject.Find("_GAME MANAGER");
+        if(!gameManager.TryGetComponent<IGameManager>(out gameManagerScript)){
+            Debug.Log("Can't find IGameManager");
+        }
     }
 
     // Update is called once per frame
@@ -33,11 +36,11 @@ public class CutsceneScript : MonoBehaviour
         if(next.name == this.gameObject.name)
         {
             if(SceneManager.GetActiveScene().buildIndex == 1){
-                ui.ReplayGame();
-                PlayerPrefs.SetInt("FirstTime", 0);
+                gameManagerScript.RunCustomFunction("ActivateTutorial");
+                PlayerPrefs.SetInt("House-FirstTime", 1);
             } else {
                 firstScene.SetActive(true);
-                GameObject.Find("Cutscene 11").SetActive(false);
+                GameObject.Find("Cutscene 10").SetActive(false);
             }
 
             this.gameObject.SetActive(false);

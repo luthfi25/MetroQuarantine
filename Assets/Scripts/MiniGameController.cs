@@ -7,7 +7,7 @@ public class MiniGameController : MonoBehaviour
 {
     public GameObject CameraMiniGame;
     public GameObject CameraMain;
-    public MovementScript movementScriptInstance;
+    [SerializeField] private HouseGameManagerScript houseGameManagerScript;
     public GameObject StopWatch;
     public GameObject ProgressTrack;
     private Image ProgressBar;
@@ -15,12 +15,10 @@ public class MiniGameController : MonoBehaviour
     public bool CooldownMistake;
     private float targetFill;
 
-    public UIScript uIScriptInstance;
     private bool closing;
     private GameObject toClose;
     private string miniGameName;
 
-    public GoalScript goalScriptInstance;
     public GameObject SuccessBig;
     public GameObject MistakeBig;
     public GameObject SucessSmall;
@@ -38,10 +36,14 @@ public class MiniGameController : MonoBehaviour
     void Start()
     {  
         audioSources = GetComponents<AudioSource>();
+
+        GameObject gameManager = GameObject.Find("_GAME MANAGER");
+        if(!gameManager.TryGetComponent<HouseGameManagerScript>(out houseGameManagerScript)){
+            Debug.Log("Can't find IGameManager");
+        }
     }
 
     void OnEnable(){
-        uIScriptInstance.gameObject.SetActive(false);
         CoolingDown = false;
         targetFill = 1f;
         closing = false;
@@ -53,7 +55,6 @@ public class MiniGameController : MonoBehaviour
     }
 
     void OnDisable(){
-        uIScriptInstance.gameObject.SetActive(true);
         StopWatch.SetActive(false);
         ProgressTrack.SetActive(false);
         MistakeBig.SetActive(false);
@@ -114,15 +115,15 @@ public class MiniGameController : MonoBehaviour
     }
 
     void doCloseMiniGame(){
-        GameObject go = GameObject.Find(miniGameName);
-        goalScriptInstance.DestroyGoal(go);
+        // GameObject go = GameObject.Find(miniGameName);
+        // goalScriptInstance.DestroyGoal(go);
 
         // toClose.SetActive(false);
         Destroy(toClose);
         RestartProgressTrack();
-        movementScriptInstance.Unpause();
         CameraMiniGame.SetActive(false);
         CameraMain.SetActive(true);
+        houseGameManagerScript.GoalFinished();
     }
 
     public void AddProgressTrack(int step, int bound, bool showSuccessText){

@@ -9,11 +9,27 @@ public class EnemySpawnerScript : MonoBehaviour
     public GameObject NPCPrefab;
     private List<RuntimeAnimatorController> staticNPCAnimations;
 
+    [SerializeField] private string level;
+    [SerializeField] private Dictionary<string, Vector3> initPositions;
+
     // Start is called before the first frame update
     void Start()
     {
-        staticNPCAnimations = new List<RuntimeAnimatorController>(NPCAnimations);
-        InitNPC();
+        if(level == "House"){
+            initPositions = new Dictionary<string, Vector3>();
+
+            GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(GameObject Enemy in Enemies){
+                int randPosIndex = Random.Range(0, SpawnPositions.Count);
+                Enemy.transform.position = SpawnPositions[randPosIndex].position;
+                initPositions.Add(Enemy.name, Enemy.transform.position);
+
+                SpawnPositions.RemoveAt(randPosIndex);
+            }
+        } else if (level == "RTH"){
+            staticNPCAnimations = new List<RuntimeAnimatorController>(NPCAnimations);
+            InitNPC();
+        }
     }
 
     // Update is called once per frame
@@ -24,11 +40,23 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void Reset(){
         GameObject[] NPCs = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject NPC in NPCs){
-            Destroy(NPC);
-        }
+        NPCScript nPCScript;
 
-        InitNPC();
+        if(level == "House"){
+            foreach(GameObject NPC in NPCs){
+                NPC.transform.position = initPositions[NPC.name];
+                
+                if(NPC.TryGetComponent<NPCScript>(out nPCScript)){
+                    nPCScript.Reset();
+                }
+            }
+        } else if (level == "RTH"){
+            foreach(GameObject NPC in NPCs){
+                Destroy(NPC);
+            }
+
+            InitNPC();
+        }
     }
 
     void InitNPC(){
@@ -53,5 +81,27 @@ public class EnemySpawnerScript : MonoBehaviour
         }
 
         NPCAnimations = new List<RuntimeAnimatorController>(staticNPCAnimations);
+    }
+
+    public void ForceFreeze(){
+        GameObject[] NPCs = GameObject.FindGameObjectsWithTag("Enemy");
+        NPCScript nPCScript;
+
+        foreach(GameObject NPC in NPCs){
+            if(NPC.TryGetComponent<NPCScript>(out nPCScript)){
+                nPCScript.SetFreeze(true);
+            }
+        }
+    }
+
+    public void UnFreeze(){
+        GameObject[] NPCs = GameObject.FindGameObjectsWithTag("Enemy");
+        NPCScript nPCScript;
+
+        foreach(GameObject NPC in NPCs){
+            if(NPC.TryGetComponent<NPCScript>(out nPCScript)){
+                nPCScript.SetFreeze(false);
+            }
+        }
     }
 }

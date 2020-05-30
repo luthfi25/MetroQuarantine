@@ -34,4 +34,16 @@ public class DoorScript : MonoBehaviour
         // animator.SetBool("open", false);
         srr.sprite = sr;
     }
+
+    void OnTriggerEnter2D(Collider2D coll){
+        if(coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Enemy")){
+            doAnimateOpen();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D coll){
+        if(coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Enemy")){
+            doAnimateClose();
+        }
+    }
 }

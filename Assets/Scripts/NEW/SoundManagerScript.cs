@@ -11,6 +11,10 @@ public class SoundManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        doGetComponents();
+    }
+
+    void doGetComponents(){
         AudioSource[] audioSources = GetComponents<AudioSource>();
         MasterAudioSource = audioSources[0];
         Master2ndAudioSource = audioSources[1];
@@ -24,16 +28,28 @@ public class SoundManagerScript : MonoBehaviour
     }
 
     public void PlayMaster(AudioClip clip){
+        if(MasterAudioSource == null){
+            doGetComponents();
+        }
+
         MasterAudioSource.clip = clip;
         MasterAudioSource.Play();
     }
 
     public void PlayMaster2nd(AudioClip clip){
+        if(Master2ndAudioSource == null){
+            doGetComponents();
+        }
+
         Master2ndAudioSource.clip = clip;
         Master2ndAudioSource.Play();
     }
 
     public void PlayOneShot(AudioClip clip){
+        if(OneShotAudioSource == null){
+            doGetComponents();
+        }
+
         OneShotAudioSource.PlayOneShot(clip);
     }
 

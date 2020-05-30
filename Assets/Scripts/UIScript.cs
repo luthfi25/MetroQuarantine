@@ -105,42 +105,44 @@ public class UIScript : MonoBehaviour
 
     public void WinGame()
     {
-        if (isWinTriggered)
-        {
-            return;
-        }
+        return;
 
-        AudioSource[] allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
-        foreach (AudioSource audioS in allAudioSources)
-        {
-            audioS.Stop();
-        }
+        // if (isWinTriggered)
+        // {
+        //     return;
+        // }
 
-        audio.clip = winSound;
-        audio.loop = false;
-        audio.Play();
+        // AudioSource[] allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+        // foreach (AudioSource audioS in allAudioSources)
+        // {
+        //     audioS.Stop();
+        // }
 
-        isWinTriggered = true;
-        winScreen.SetActive(true);
+        // audio.clip = winSound;
+        // audio.loop = false;
+        // audio.Play();
 
-        // set Highscore
-        float curTime = PlayerPrefs.GetFloat("Stopwatch", 0.0f);
-        float bestTime = PlayerPrefs.GetFloat("HighScore", float.MaxValue);
+        // isWinTriggered = true;
+        // winScreen.SetActive(true);
 
-        if (curTime < bestTime)
-        {
-            HighScoreText.gameObject.SetActive(true);
-            PlayerPrefs.SetFloat("HighScore", curTime);
-        }
+        // // set Highscore
+        // float curTime = PlayerPrefs.GetFloat("Stopwatch", 0.0f);
+        // float bestTime = PlayerPrefs.GetFloat("HighScore", float.MaxValue);
 
-        float seconds = curTime % 60;
-        int minutes = (int)(curTime / 60) % 60;
+        // if (curTime < bestTime)
+        // {
+        //     HighScoreText.gameObject.SetActive(true);
+        //     PlayerPrefs.SetFloat("HighScore", curTime);
+        // }
 
-        TimeText.text = minutes.ToString("00") + ":" + seconds.ToString("00.00");
+        // float seconds = curTime % 60;
+        // int minutes = (int)(curTime / 60) % 60;
 
-        PlayerPrefs.DeleteKey("Health");
-        PlayerPrefs.DeleteKey("Stopwatch");
-        Time.timeScale = 0;
+        // TimeText.text = minutes.ToString("00") + ":" + seconds.ToString("00.00");
+
+        // PlayerPrefs.DeleteKey("Health");
+        // PlayerPrefs.DeleteKey("Stopwatch");
+        // Time.timeScale = 0;
     }
 
     public void buttonPressed()

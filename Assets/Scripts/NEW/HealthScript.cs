@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RTHHealthScript : MonoBehaviour
+public class HealthScript : MonoBehaviour
 {
     [SerializeField] private int health = 3;
     [SerializeField] private List<GameObject> healthGameObjects;
     [SerializeField] private List<GameObject> deadHealthGameObjects;
-
-    [SerializeField] private RTHGameManagerScript gameManagerScript;
-
-    const int MAX_HEALTH = 3;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -24,24 +20,18 @@ public class RTHHealthScript : MonoBehaviour
         
     }
 
-    public void Reset(){
-        if(health <= 0){
-            gameManagerScript.GameOver();
-        }
-
+    public void Reset(int newHealth){
         for(int i = 0; i < healthGameObjects.Count; i++){
-            if(i >= health){
+            if(i >= newHealth){
                 //destroy
                 healthGameObjects[i].SetActive(false);
             }
         }
     }
 
-    public void DecreaseHealth(){
-        health--;
-
+    public void DecreaseHealth(int newHealth){
         for(int i = 0; i < healthGameObjects.Count; i++){
-            if(i >= health){
+            if(i >= newHealth){
                 //destroy
                 if(healthGameObjects[i].activeInHierarchy){
                     Animator healthAnim;

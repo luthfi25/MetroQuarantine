@@ -20,7 +20,7 @@ public class MainCharacterScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     Rigidbody2D rigidbody2D;
-    [SerializeField] RTHGameManagerScript gameManager;
+    private IGameManager gameManagerScript;
 
     private Vector3 initPosition;
     private bool isFreeze = false;
@@ -31,6 +31,11 @@ public class MainCharacterScript : MonoBehaviour
     {
         initPosition = transform.position;
         rigidbody2D = GetComponent<Rigidbody2D>();
+
+        GameObject gameManager = GameObject.Find("_GAME MANAGER");
+        if(!gameManager.TryGetComponent<IGameManager>(out gameManagerScript)){
+            Debug.Log("Can't find IGameManager");
+        }
     }
 
     void FixedUpdate()
@@ -81,7 +86,6 @@ public class MainCharacterScript : MonoBehaviour
                 case "halt":
                     speedHorizon = 0f;
                     speedVertical = 0f;
-                    animator.enabled = false;
                     spriteRenderer.sprite = currentSprite;
                     break;
                 default:
@@ -102,8 +106,14 @@ public class MainCharacterScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.gameObject.CompareTag("Goal")){
-            gameManager.GoalTook();
+            gameManagerScript.GoalTook(collision.gameObject.name);
             Destroy(collision.gameObject);
+        } else if(collision.gameObject.CompareTag("Goal-House")){
+            ChangeOrientation("halt");
+            gameManagerScript.GoalTook(collision.gameObject.name);
+            Destroy(collision.gameObject);
+        } else if(collision.gameObject.CompareTag("Door")){
+            gameManagerScript.RunCustomFunction("PlayDoorSound");
         }
     }
 
@@ -113,13 +123,12 @@ public class MainCharacterScript : MonoBehaviour
 
             GameObject avatar = GetAvatar();
             if(avatar.TryGetComponent<Animator>(out animator)){
-                animator.enabled = true;
                 animator.SetTrigger("dead");
             } else {
                 Debug.Log("Error accessing avatar.");
             }
 
-            StartCoroutine(gameManager.PlayerDamage());
+            StartCoroutine(gameManagerScript.PlayerDamage(coll.gameObject.name));
             isFreeze = true;
         }
     }

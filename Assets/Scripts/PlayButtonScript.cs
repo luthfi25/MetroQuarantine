@@ -9,6 +9,8 @@ public class PlayButtonScript : MonoBehaviour
     AudioSource audio;
     public GameObject creditScene;
 
+    [SerializeField] GameObject levelSelectScene;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +55,13 @@ public class PlayButtonScript : MonoBehaviour
         if(password.text.Contains("luthfiganteng")){
             SceneManager.LoadScene(2);
         }
+    }
+
+    public void ActivateLevelSelect(){
+        levelSelectScene.SetActive(true);
+    }
+
+    public void CloseLevelSelect(){
+        levelSelectScene.SetActive(false);
     }
 }

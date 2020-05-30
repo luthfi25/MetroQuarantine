@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class WinScreenScript : MonoBehaviour
 {
-    [SerializeField] private RTHStopWatchScript rTHStopWatchScript;
     [SerializeField] private TextModifier scoreText;
     [SerializeField] private GameObject highScoreText;
     [SerializeField] private GameObject nextLevelButton;
@@ -13,22 +12,24 @@ public class WinScreenScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string scoreString = rTHStopWatchScript.GetTime();
-        scoreText.ChangeText(scoreString);
-
-        if(rTHStopWatchScript.IsHighScore()){
-            highScoreText.SetActive(true);
-        }
-
-        int curLevel = SceneManager.GetActiveScene().buildIndex;
-        if(curLevel + 1 < SceneManager.sceneCount){
-            nextLevelButton.SetActive(true);
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SetScore(string score, bool isHighScore, bool isNextLevel){
+        scoreText.ChangeText(score);
+
+        if(isHighScore){
+            highScoreText.SetActive(true);
+        }
+        
+        if(isNextLevel){
+            nextLevelButton.SetActive(true);
+        }
     }
 }

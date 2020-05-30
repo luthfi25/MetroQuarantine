@@ -8,28 +8,33 @@ public class NPCScript : MonoBehaviour
     public Sprite FaceUp;
     public Sprite FaceLeft;
     public Sprite FaceRight;
+    private Sprite currentSprite;
 
-    readonly string[] ORIENTATION = {"down", "up", "left", "right"};
-    string orientation;
+    readonly string[] ORIENTATION = {"down", "up", "left", "right", "halt"};
+    string curOrientation;
     float speedHorizon;
     float speedVertical;
     Vector3 moveDir;
-    const float SPEED = 0.75f;
+    [SerializeField] private float SPEED = 0.75f;
 
-    Vector3 bumpDir;
     float bumpTime;
 
     SpriteRenderer spriteRenderer;
     Animator animator;
     Rigidbody2D rigidbody2D;
 
+    [SerializeField] private float suddenTurnRate = 0f;
+    [SerializeField] private string name = "";
+
     private bool isFreeze = false;
     // Start is called before the first frame update
     void Start()
     {
-        int initOrientationIndex = Random.Range(0, ORIENTATION.Length);
-        string initOrientation = ORIENTATION[initOrientationIndex];
-        ChangeOrientation(initOrientation);
+        initOrientation();
+
+        if(suddenTurnRate > 0f){
+            InvokeRepeating("SuddenTurn", 5.0f, 5.0f);
+        }
     }
 
     void FixedUpdate()
@@ -51,6 +56,10 @@ public class NPCScript : MonoBehaviour
     }
 
     void ChangeOrientation(string orientationVal){
+        if(isFreeze){
+            return;
+        }
+
         GameObject avatar = GetAvatar();
 
         if(avatar.TryGetComponent<SpriteRenderer>(out spriteRenderer) && avatar.TryGetComponent<Animator>(out animator)){
@@ -61,36 +70,40 @@ public class NPCScript : MonoBehaviour
                 case "down":
                     speedHorizon = 0f;
                     speedVertical = -1f;
-                    spriteRenderer.sprite = FaceDown;
+                    currentSprite = FaceDown;
                     break;
                 case "up":
                     speedHorizon = 0f;
                     speedVertical = 1f;
-                    spriteRenderer.sprite = FaceUp;
+                    currentSprite = FaceUp;
                     break;
                 case "left":
                     speedHorizon = -1f;
                     speedVertical = 0f;
-                    spriteRenderer.sprite = FaceLeft;
+                    currentSprite = FaceLeft;
                     break;
                 case "right":
                     speedHorizon = 1f;
                     speedVertical = 0f;
-                    spriteRenderer.sprite = FaceRight;
+                    currentSprite = FaceRight;
                     break;
                 case "halt":
                     speedHorizon = 0f;
                     speedVertical = 0f;
+                    // spriteRenderer.sprite = currentSprite;
                     animator.enabled = false;
                     break;
                 default:
                     break;
             }
 
-            animator.SetFloat("Speed-Horizon", speedHorizon);
-            animator.SetFloat("Speed-Vertical", speedVertical);
+            if(animator.enabled){
+                animator.SetFloat("Speed-Horizon", speedHorizon);
+                animator.SetFloat("Speed-Vertical", speedVertical);
+            }
+
             moveDir = new Vector3(speedHorizon, speedVertical, 0f);
-            orientation = orientationVal;
+            curOrientation = orientationVal;
         } else {
             Debug.Log("Error accessing avatar.");
         }
@@ -101,11 +114,11 @@ public class NPCScript : MonoBehaviour
         if(coll.gameObject.CompareTag("Player")){
             ChangeOrientation("halt");
             isFreeze = true;
-        } else {
+        } else if(!coll.gameObject.CompareTag("Door")){
             string bumpOrientation;
             string newOrientation;
 
-            switch(orientation){
+            switch(curOrientation){
                 case "down":
                     bumpOrientation = "up";
                     newOrientation = "left";
@@ -158,5 +171,47 @@ public class NPCScript : MonoBehaviour
 
         Debug.Log("Can't find avatar.");
         return null;
+    }
+
+    void SuddenTurn(){
+        if(isFreeze){
+            return;
+        }
+
+        float randProb = Random.Range(0f, 1f);
+        if(randProb < suddenTurnRate){
+            return;
+        }
+
+        int newOrientationIndex = -1;
+        if(name == "Adek"){
+            newOrientationIndex = Random.Range(0, ORIENTATION.Length+1);
+        } else {
+            newOrientationIndex = Random.Range(0, ORIENTATION.Length);
+        }
+
+        string newOrientation = "";
+        if(newOrientationIndex >= ORIENTATION.Length){
+            newOrientation = "halt";
+        } else {
+            newOrientation = ORIENTATION[newOrientationIndex];
+        }
+
+        ChangeOrientation(newOrientation);
+    }
+
+    public void Reset(){
+        isFreeze = false;  
+        initOrientation();
+    }
+
+    void initOrientation(){
+        int initOrientationIndex = Random.Range(0, ORIENTATION.Length-1); //exclude halt
+        string initOrientation = ORIENTATION[initOrientationIndex];
+        ChangeOrientation(initOrientation);
+    }
+
+    public void SetFreeze(bool freezeVal){
+        isFreeze = freezeVal;
     }
 }
