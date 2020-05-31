@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gameplay - RTH.unity
     guid: ddd764c8fe90bb54dbc812241e85d2e0
+  - enabled: 1
+    path: Assets/Scenes/Gameplay - Market.unity
+    guid: 0424726ae151e87449cc247426ef8f48
   m_configObjects: {}

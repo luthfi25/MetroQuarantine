@@ -27,6 +27,7 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
     [SerializeField] private AudioClip masterClip;
     [SerializeField] private AudioClip buttonPressedClip;
     [SerializeField] private AudioClip playerDamageClip;
+    [SerializeField] private AudioClip playerDamageMaleClip;
     [SerializeField] private AudioClip goalTookClip;
     [SerializeField] private AudioClip gameOverClip;
     [SerializeField] private AudioClip winClip;
@@ -79,8 +80,8 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
 
         if(winScreen.TryGetComponent<WinScreenScript>(out winScreenScript)){
             string scoreString = stopWatchScript.GetTime();
-            bool isHighScore = stopWatchScript.IsHighScore();
             int curLevel = SceneManager.GetActiveScene().buildIndex;
+            bool isHighScore = stopWatchScript.IsHighScore(curLevel);
             bool isNextLevel = curLevel + 1 < SceneManager.sceneCountInBuildSettings;
             
             winScreenScript.SetScore(scoreString, isHighScore, isNextLevel);
@@ -120,7 +121,13 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
 
         Handheld.Vibrate();
         enemySpawnerScript.ForceFreeze();
-        PlayClip("damage");
+
+        
+        if(mainCharacterScript.GetName().Equals("Fritz")){
+            PlayClip("damage-male");
+        } else {
+            PlayClip("damage");
+        }
 
         if(enemyName.Contains("Babeh")){
             health--;
@@ -178,6 +185,9 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
                 break;
             case "door":
                 soundManagerScript.PlayOneShot(doorClip);
+                break;
+            case "damage-male":
+                soundManagerScript.PlayOneShot(playerDamageMaleClip);
                 break;
             default:
                 break;

@@ -362,6 +362,9 @@ MonoBehaviour:
     type: 3}
   FaceRight: {fileID: 8922089760690073384, guid: afcfebe4011064a42896367b5403c7e7,
     type: 3}
+  SPEED: 0.75
+  suddenTurnRate: 0
+  name: 
 --- !u!58 &6057675651545601102
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -377,7 +380,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.008526802, y: 0.0074181557}
   serializedVersion: 2
-  m_Radius: 0.86216843
+  m_Radius: 0.8
 --- !u!50 &6057675651545601101
 Rigidbody2D:
   serializedVersion: 4

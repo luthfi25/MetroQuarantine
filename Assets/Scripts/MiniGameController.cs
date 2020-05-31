@@ -7,7 +7,7 @@ public class MiniGameController : MonoBehaviour
 {
     public GameObject CameraMiniGame;
     public GameObject CameraMain;
-    [SerializeField] private HouseGameManagerScript houseGameManagerScript;
+    [SerializeField] private IGameManager gameManagerScript;
     public GameObject StopWatch;
     public GameObject ProgressTrack;
     private Image ProgressBar;
@@ -38,7 +38,7 @@ public class MiniGameController : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
 
         GameObject gameManager = GameObject.Find("_GAME MANAGER");
-        if(!gameManager.TryGetComponent<HouseGameManagerScript>(out houseGameManagerScript)){
+        if(!gameManager.TryGetComponent<IGameManager>(out gameManagerScript)){
             Debug.Log("Can't find IGameManager");
         }
     }
@@ -122,8 +122,8 @@ public class MiniGameController : MonoBehaviour
         Destroy(toClose);
         RestartProgressTrack();
         CameraMiniGame.SetActive(false);
-        CameraMain.SetActive(true);
-        houseGameManagerScript.GoalFinished();
+        // CameraMain.SetActive(true);
+        gameManagerScript.RunCustomFunction("GoalFinished");
     }
 
     public void AddProgressTrack(int step, int bound, bool showSuccessText){
@@ -195,6 +195,11 @@ public class MiniGameController : MonoBehaviour
                 go.transform.SetParent(MiniGameCanvas, false);
                 miniGameStopWatchScriptInstance.AddMiniGame(go);
                 break;
+            case "Cashier": // level 3 only
+                go = Instantiate(MiniGames[0]);
+                go.transform.SetParent(MiniGameCanvas, false);
+                miniGameStopWatchScriptInstance.AddMiniGame(go);
+                break;
             default:
                 break;
         }
@@ -219,6 +224,9 @@ public class MiniGameController : MonoBehaviour
                 break;
             case "Sapu":
                 Tutorials[4].SetActive(true);
+                break;
+            case "Cashier":
+                Tutorials[0].SetActive(true); // level 3 only
                 break;
             default:
                 break;

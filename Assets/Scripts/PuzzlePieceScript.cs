@@ -35,6 +35,10 @@ public class PuzzlePieceScript : EventTrigger
     }
 
     public override void OnPointerUp(PointerEventData eventData){
+        if(locked){
+            return;
+        }
+        
         dragging = false;
 
         int id = int.Parse(GetComponentInChildren<TextMeshProUGUI>().text);

@@ -25,6 +25,8 @@ public class MainCharacterScript : MonoBehaviour
     private Vector3 initPosition;
     private bool isFreeze = false;
 
+    [SerializeField] private string name;
+
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +89,14 @@ public class MainCharacterScript : MonoBehaviour
                     speedHorizon = 0f;
                     speedVertical = 0f;
                     spriteRenderer.sprite = currentSprite;
+                    animator.enabled = false;
+                    break;
+                case "dead":
+                    animator.ResetTrigger("dead");
+                    speedHorizon = 0f;
+                    speedVertical = 0f;
+                    spriteRenderer.sprite = currentSprite;
+                    animator.SetTrigger("dead");
                     break;
                 default:
                     break;
@@ -112,21 +122,26 @@ public class MainCharacterScript : MonoBehaviour
             ChangeOrientation("halt");
             gameManagerScript.GoalTook(collision.gameObject.name);
             Destroy(collision.gameObject);
+        } else if(collision.gameObject.CompareTag("Goal-Market")){
+            gameManagerScript.GoalTook(collision.gameObject.name);
+            gameManagerScript.RunCustomFunction("validateGoal/"+collision.gameObject.name);
         } else if(collision.gameObject.CompareTag("Door")){
             gameManagerScript.RunCustomFunction("PlayDoorSound");
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision){
+        if(collision.gameObject.CompareTag("Goal-Market")){
+            SpriteRenderer sr = collision.gameObject.GetComponentInChildren<SpriteRenderer>();
+            if(sr != null){
+                sr.color = Color.white;
+            }
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D coll){
         if(coll.gameObject.CompareTag("Enemy")){
-            ChangeOrientation("halt");
-
-            GameObject avatar = GetAvatar();
-            if(avatar.TryGetComponent<Animator>(out animator)){
-                animator.SetTrigger("dead");
-            } else {
-                Debug.Log("Error accessing avatar.");
-            }
+            ChangeOrientation("dead");
 
             StartCoroutine(gameManagerScript.PlayerDamage(coll.gameObject.name));
             isFreeze = true;
@@ -134,21 +149,13 @@ public class MainCharacterScript : MonoBehaviour
     }
 
     public void Reset(){
-        GameObject avatar = GetAvatar();
-        if(avatar.TryGetComponent<Animator>(out animator)){
-            animator.enabled = true;
-            animator.ResetTrigger("dead");
-        } else {
-            Debug.Log("Error accessing avatar.");
-        }
-
         transform.position = initPosition;
-        ChangeOrientation("down");
-        ChangeOrientation("halt");
+        currentSprite = FaceDown;
         isFreeze = false;
+        ChangeOrientation("halt");
     }
 
-    public void ChangeAsset(RuntimeAnimatorController animatorController, List<Sprite> faces){
+    public void ChangeAsset(RuntimeAnimatorController animatorController, List<Sprite> faces, string name){
         GameObject avatar = GetAvatar();
         if(avatar.TryGetComponent<Animator>(out animator)){
             animator.enabled = true;
@@ -162,8 +169,16 @@ public class MainCharacterScript : MonoBehaviour
         FaceLeft = faces[2];
         FaceRight = faces[3];
 
-        ChangeOrientation("down");
+        currentSprite = FaceDown;
         ChangeOrientation("halt");
+
+        this.name = name;
+
+        if(name == "Anna"){
+            transform.localScale = new Vector3(transform.localScale.x * 1.125f,transform.localScale.y * 1.125f, 1f);
+        } else if (name == "Fritz"){
+            transform.localScale = new Vector3(transform.localScale.x * 1.25f,transform.localScale.y * 1.25f, 1f);
+        }
     }
 
     GameObject GetAvatar(){
@@ -176,5 +191,9 @@ public class MainCharacterScript : MonoBehaviour
 
         Debug.Log("Can't find avatar.");
         return null;
+    }
+
+    public string GetName(){
+        return name;
     }
 }

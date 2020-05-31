@@ -2,31 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HighScoreScript : MonoBehaviour
 {
-    [SerializeField] Text highScoreText;
+    [SerializeField] private List<GameObject> highScorePanel;
+    [SerializeField] private List<TextMeshProUGUI> highScoreText;
 
     // Start is called before the first frame update
     void Start()
     {
-        highScoreText = GetComponent<Text>();
+        for (int level = 0; level <= 2; level++){
+            float highScore = PlayerPrefs.GetFloat("HighScore-"+(level+1).ToString(), 0.0f);
+
+            if(highScore <= 0){
+                Image image;
+                if(highScorePanel[level].TryGetComponent<Image>(out image)){
+                    image.color = Color.black;
+                }
+
+                highScoreText[level].text = "N/A";
+            } else {
+                float seconds = highScore % 60;
+                int minutes = (int)(highScore / 60) % 60;
+
+                highScoreText[level].text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            }
+        }         
     }
 
     // Update is called once per frame
     void Update()
     {
-        float highScore = PlayerPrefs.GetFloat("HighScore", 0.0f);
-        
-        if(highScore <= 0)
-        {
-            highScoreText.text = "N/A";
-        } else
-        {
-            float seconds = highScore % 60;
-            int minutes = (int)(highScore / 60) % 60;
 
-            highScoreText.text = minutes.ToString("00") + ":" + seconds.ToString("00.00");
-        }
     }
 }

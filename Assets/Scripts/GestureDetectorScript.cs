@@ -263,7 +263,7 @@ public class GestureDetectorScript : MonoBehaviour
 
 		if(gestureResult.ContainsKey(activeClass) && gestureResult[activeClass] <= 1f){
 			// Debug.Log(activeClass+" "+gestureResult[activeClass]);
-			if(gestureResult[activeClass] >= 0.85f) {
+			if(gestureResult[activeClass] >= 0.9f) {
 				miniGameControllerInstance.PlaySound(clips[1], false);
 
 				ScoreText.text = "Berhasil :)";
@@ -395,6 +395,7 @@ public class GestureDetectorScript : MonoBehaviour
 
 	public void AnimateHand(int i){
 		string[] triggers = new String[] {"1st Step","2nd Step","3rd Step","4th Step","5th Step","6th Step"};
+		GestureAnimation.gameObject.SetActive(false);
 		HandAnimation.SetTrigger(triggers[i]);
 		isAnimating = true;
 		DisableGUI();
@@ -407,10 +408,32 @@ public class GestureDetectorScript : MonoBehaviour
 		yield return new WaitForSeconds(2.0125f);
 		isAnimating = false;
 		EnableGUI();
-		GestureAnimation.gameObject.SetActive(false);
 		miniGameControllerInstance.StopSound();
 		if(requiredClasses.Count > 0){
 			gestureHolderScripInstance.MoveDown();
+		}
+	}
+
+	public void Undo(){
+		Debug.Log(strokeId);
+
+		if(strokeId < 0){
+			return;
+		}
+
+		Debug.Log("masup");
+		recognized = false;
+		strokeId--;
+
+		points.RemoveAt(points.Count-1);
+		
+		int lastIndexGesture = gestureLinesRenderer.Count - 1;
+		gestureLinesRenderer[lastIndexGesture].SetVertexCount(0);
+		Destroy(gestureLinesRenderer[lastIndexGesture].gameObject);
+		gestureLinesRenderer.RemoveAt(lastIndexGesture);
+
+		if(mode == "Book"){
+			drawTest(activeClass);
 		}
 	}
 }

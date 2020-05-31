@@ -9,7 +9,7 @@ public class PlayButtonScript : MonoBehaviour
     AudioSource audio;
     public GameObject creditScene;
 
-    [SerializeField] GameObject levelSelectScene;
+    [SerializeField] private GameObject levelSelectButton;
 
 
     // Start is called before the first frame update
@@ -18,6 +18,11 @@ public class PlayButtonScript : MonoBehaviour
         Time.timeScale = 1;
         audio = GetComponent<AudioSource>();
         creditScene.SetActive(false);
+
+        int rthFirstTime = PlayerPrefs.GetInt("RTH-FirstTime", -1);
+        if(rthFirstTime == -1){
+            levelSelectButton.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -57,11 +62,11 @@ public class PlayButtonScript : MonoBehaviour
         }
     }
 
-    public void ActivateLevelSelect(){
-        levelSelectScene.SetActive(true);
+    public void ActivateWindow(GameObject go){
+        go.SetActive(true);
     }
 
-    public void CloseLevelSelect(){
-        levelSelectScene.SetActive(false);
+    public void CloseWindow(GameObject go){
+        go.SetActive(false);
     }
 }

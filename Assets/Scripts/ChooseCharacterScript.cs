@@ -30,7 +30,22 @@ public class ChooseCharacterScript : MonoBehaviour
             chosenSprites.Add(sprites[(4*index) + i]);
         }
 
-        mainCharacterScript.ChangeAsset(characterControllers[index], chosenSprites);
+        string name = "";
+        switch(index){
+            case 0:
+                name = "Anna";
+                break;
+            case 1:
+                name = "Fritz";
+                break;
+            case 2:
+                name = "Miranda";
+                break;
+            default:
+                break;
+        }
+
+        mainCharacterScript.ChangeAsset(characterControllers[index], chosenSprites, name);
         gameManagerScript.StartGame();
         Destroy(this.gameObject);
     }

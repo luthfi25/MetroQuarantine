@@ -26,17 +26,17 @@ public class GestureHolderScript : MonoBehaviour
     void FixedUpdate()
     {
         if(MovingDown){
-            rectTransform.localPosition += new Vector3(0f, -0.25f, 0f) * 750f * Time.deltaTime;
-            if(rectTransform.localPosition.y <= targetY){
-                MovingDown = false;
-                Gesture.SetActive(true);
-                gestureDetectorScript.ActivateGesture();
-            }
+            // rectTransform.localPosition += new Vector3(0f, -0.25f, 0f) * 750f * Time.deltaTime;
+            // if(rectTransform.localPosition.y <= targetY){
+            MovingDown = false;
+            Gesture.SetActive(true);
+            gestureDetectorScript.ActivateGesture();
+            // }
         } else if (MovingUp){
-            rectTransform.localPosition += new Vector3(0f, 0.25f, 0f) * 750f * Time.deltaTime;
-            if(rectTransform.localPosition.y >= targetY){
-                MovingUp = false;
-            }
+            // rectTransform.localPosition += new Vector3(0f, 0.25f, 0f) * 750f * Time.deltaTime;
+            // if(rectTransform.localPosition.y >= targetY){
+            MovingUp = false;
+            // }
         }
     }
 

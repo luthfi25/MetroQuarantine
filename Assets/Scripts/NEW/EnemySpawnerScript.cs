@@ -26,7 +26,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
                 SpawnPositions.RemoveAt(randPosIndex);
             }
-        } else if (level == "RTH"){
+        } else if (level == "RTH" || level == "Market"){
             staticNPCAnimations = new List<RuntimeAnimatorController>(NPCAnimations);
             InitNPC();
         }
@@ -50,7 +50,7 @@ public class EnemySpawnerScript : MonoBehaviour
                     nPCScript.Reset();
                 }
             }
-        } else if (level == "RTH"){
+        } else if (level == "RTH" || level == "Market"){
             foreach(GameObject NPC in NPCs){
                 Destroy(NPC);
             }

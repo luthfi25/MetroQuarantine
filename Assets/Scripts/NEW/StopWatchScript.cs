@@ -42,12 +42,12 @@ public class StopWatchScript : MonoBehaviour
         return minutes.ToString("00") + ":" + seconds.ToString("00.00");
     }
 
-    public bool IsHighScore(){
-        float bestTime = PlayerPrefs.GetFloat("HighScore", float.MaxValue);
+    public bool IsHighScore(int level){
+        float bestTime = PlayerPrefs.GetFloat("HighScore-"+level.ToString(), float.MaxValue);
 
         if (currentTime < bestTime)
         {
-            PlayerPrefs.SetFloat("HighScore", currentTime);
+            PlayerPrefs.SetFloat("HighScore-"+level.ToString(), currentTime);
             return true;
         }
 

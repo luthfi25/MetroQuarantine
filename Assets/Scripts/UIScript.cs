@@ -83,23 +83,23 @@ public class UIScript : MonoBehaviour
     public void ReplayGame()
     {
         Time.timeScale = 1;
-        hmScript.DestroyHealth(-1);
-        goalScript.ResetGoal();
+        // hmScript.DestroyHealth(-1);
+        // goalScript.ResetGoal();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void MainMenu()
     {
         Time.timeScale = 1;
-        hmScript.DestroyHealth(-1);
-        goalScript.ResetGoal();
+        // hmScript.DestroyHealth(-1);
+        // goalScript.ResetGoal();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void ExitGame()
     {
-        hmScript.DestroyHealth(-1);
-        goalScript.ResetGoal();
+        // hmScript.DestroyHealth(-1);
+        // goalScript.ResetGoal();
         Application.Quit();
     }
 

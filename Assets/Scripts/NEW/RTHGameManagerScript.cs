@@ -25,6 +25,7 @@ public class RTHGameManagerScript : MonoBehaviour, IGameManager
     [SerializeField] private AudioClip master2ndClip;
     [SerializeField] private AudioClip buttonPressedClip;
     [SerializeField] private AudioClip playerDamageClip;
+    [SerializeField] private AudioClip playerDamageMaleClip;
     [SerializeField] private AudioClip goalTookClip;
     [SerializeField] private AudioClip gameOverClip;
     [SerializeField] private AudioClip winClip;
@@ -72,8 +73,8 @@ public class RTHGameManagerScript : MonoBehaviour, IGameManager
 
         if(winScreen.TryGetComponent<WinScreenScript>(out winScreenScript)){
             string scoreString = stopWatchScript.GetTime();
-            bool isHighScore = stopWatchScript.IsHighScore();
             int curLevel = SceneManager.GetActiveScene().buildIndex;
+            bool isHighScore = stopWatchScript.IsHighScore(curLevel);
             bool isNextLevel = curLevel + 1 < SceneManager.sceneCountInBuildSettings;
             
             winScreenScript.SetScore(scoreString, isHighScore, isNextLevel);
@@ -96,7 +97,12 @@ public class RTHGameManagerScript : MonoBehaviour, IGameManager
         stopWatchScript.AddTime(10);
         healthScript.DecreaseHealth(health);
         enemySpawnerScript.ForceFreeze();
-        PlayClip("damage");
+        
+        if(mainCharacterScript.GetName().Equals("Fritz")){
+            PlayClip("damage-male");
+        } else {
+            PlayClip("damage");
+        }
 
         yield return new WaitForSeconds(1.5f);
 
@@ -147,6 +153,9 @@ public class RTHGameManagerScript : MonoBehaviour, IGameManager
                 soundManagerScript.DisableMasters();
                 soundManagerScript.PlayOneShot(gameOverClip);
                 break;         
+            case "damage-male":
+                soundManagerScript.PlayOneShot(playerDamageMaleClip);
+                break;
             default:
                 break;
         }
