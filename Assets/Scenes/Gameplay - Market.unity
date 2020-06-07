@@ -4377,7 +4377,7 @@ MonoBehaviour:
   health: 3
   healthScript: {fileID: 862895490}
   soundManagerScript: {fileID: 184350917}
-  masterClip: {fileID: 8300000, guid: d3d2862403732804296a57f578a6ccc6, type: 3}
+  masterClip: {fileID: 8300000, guid: 73d5a1e68ed79afddb3bbc6ecd4d818a, type: 3}
   master2ndClip: {fileID: 0}
   buttonPressedClip: {fileID: 8300000, guid: 7a787ce5def01f3468764045ae19d12e, type: 3}
   playerDamageClip: {fileID: 8300000, guid: 5aa23d897d8d4434385720986ff32994, type: 3}

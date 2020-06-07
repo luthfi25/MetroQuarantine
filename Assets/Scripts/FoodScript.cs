@@ -251,7 +251,7 @@ public class FoodScript : MonoBehaviour
         switch(name){
 			case "sate ayam":
 				CurrentFood.sprite = CurrentFoodSprite[0];
-                HintText.text = "Biasanya dipotong <b>kecil-kecil</b>.\n\nHidangan internasional yang menyerupai adalah <b>yakitori</b> dari Jepang.\n\nPeringkat <b>ke-14</b> dalam World's 50 Most Delicious Foods (50 Hidangan Paling Lezat di Dunia).";
+                HintText.text = "Biasanya dipotong <b>kecil-kecil</b>.\n\nBiasanya disertai bumbu pelengkap seperti bumbu kacang dan sambal kecap.\n\nPeringkat <b>ke-14</b> dalam World's 50 Most Delicious Foods (50 Hidangan Paling Lezat di Dunia).";
 				break;
 			case "bakso kuah":
 				CurrentFood.sprite = CurrentFoodSprite[1];

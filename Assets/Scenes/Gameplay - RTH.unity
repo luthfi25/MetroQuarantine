@@ -11156,7 +11156,7 @@ MonoBehaviour:
   health: 3
   healthScript: {fileID: 1469352609}
   soundManagerScript: {fileID: 426296116}
-  masterClip: {fileID: 8300000, guid: af07ccf41d595734b83b7c836d54412e, type: 3}
+  masterClip: {fileID: 8300000, guid: d07d754125ea58084a5be6b31e83eb55, type: 3}
   master2ndClip: {fileID: 8300000, guid: 3331247adf0ce3f45917638f868850a4, type: 3}
   buttonPressedClip: {fileID: 8300000, guid: 7a787ce5def01f3468764045ae19d12e, type: 3}
   playerDamageClip: {fileID: 8300000, guid: 5aa23d897d8d4434385720986ff32994, type: 3}

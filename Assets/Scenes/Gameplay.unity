@@ -10899,7 +10899,7 @@ MonoBehaviour:
   CameraMiniGames: {fileID: 315570415}
   CameraMain: {fileID: 1207207675}
   soundManagerScript: {fileID: 2016713822}
-  masterClip: {fileID: 8300000, guid: 1287a8d6ecdc05b44b9afd704a2b8b9b, type: 3}
+  masterClip: {fileID: 8300000, guid: c70f8dfa337bbbc6eaefcae5e9619260, type: 3}
   buttonPressedClip: {fileID: 8300000, guid: a5b9141f00cbd0247a139cbea4a9c32b, type: 3}
   playerDamageClip: {fileID: 8300000, guid: 5aa23d897d8d4434385720986ff32994, type: 3}
   playerDamageMaleClip: {fileID: 8300000, guid: 3a393f2ab4bce534a8f1c0598680e6d1,
