@@ -1263,6 +1263,36 @@ MonoBehaviour:
             m_StringArgument: halt
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1288931030}
+          m_MethodName: ChangeOrientation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: right
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1288931030}
+          m_MethodName: ChangeOrientation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: halt
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &131434511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3265,8 +3295,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.25, y: 3}
-  m_SizeDelta: {x: 1091.3176, y: 482.46283}
+  m_AnchoredPosition: {x: -0.0025024414, y: -0.0005950928}
+  m_SizeDelta: {x: 1052.0873, y: 476.03925}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382109203
 MonoBehaviour:
@@ -3396,7 +3426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e7b7f31a93bf624c8bc59a125d93898, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3a8974870cb1924c86aafea20867e87, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5889,7 +5919,7 @@ PrefabInstance:
     - target: {fileID: 8787051531104039348, guid: 9bf6e477cdc44f94aac6963c15e08c09,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.076171875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8787051531104039348, guid: 9bf6e477cdc44f94aac6963c15e08c09,
         type: 3}
@@ -7636,7 +7666,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.3935547, y: -0.11254883}
+  m_AnchoredPosition: {x: 0.5, y: 0}
   m_SizeDelta: {x: 0.48242188, y: 0.22509766}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085116814
@@ -8192,6 +8222,36 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1288931030}
+          m_MethodName: ChangeOrientation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: halt
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1288931030}
+          m_MethodName: ChangeOrientation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: down
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -11153,6 +11213,36 @@ MonoBehaviour:
             m_StringArgument: halt
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1288931030}
+          m_MethodName: ChangeOrientation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: left
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1288931030}
+          m_MethodName: ChangeOrientation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: halt
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1433990361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11938,7 +12028,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587181160}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1939354, y: -1.6299642, z: -10}
+  m_LocalPosition: {x: -1.1912651, y: -1.6299642, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1744129516}
@@ -13131,12 +13221,12 @@ PrefabInstance:
     - target: {fileID: 1906940284061557245, guid: eee3ba0769f0f2c46b932051223dd9ee,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.5534668
+      value: -0.50006104
       objectReference: {fileID: 0}
     - target: {fileID: 1906940284061557245, guid: eee3ba0769f0f2c46b932051223dd9ee,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.8807983
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1906940284061557245, guid: eee3ba0769f0f2c46b932051223dd9ee,
         type: 3}
@@ -13791,7 +13881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 207}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782846703
@@ -13882,12 +13972,12 @@ MonoBehaviour:
   m_margin: {x: -387.7605, y: 0, z: -425.2855, w: 0}
   m_textInfo:
     textComponent: {fileID: 1782846703}
-    characterCount: 32
+    characterCount: 19
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -14763,7 +14853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.3173828, y: 0}
+  m_AnchoredPosition: {x: 0.25, y: 0}
   m_SizeDelta: {x: 0.63427734, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1914516393
@@ -16214,8 +16304,8 @@ GameObject:
   - component: {fileID: 2044471976}
   - component: {fileID: 2044471980}
   - component: {fileID: 2044471979}
-  - component: {fileID: 2044471978}
   - component: {fileID: 2044471977}
+  - component: {fileID: 2044471978}
   m_Layer: 5
   m_Name: Up Arrow
   m_TagString: Untagged
@@ -16314,6 +16404,36 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1288931030}
+          m_MethodName: ChangeOrientation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: halt
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1288931030}
+          m_MethodName: ChangeOrientation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: up
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:

@@ -6,18 +6,13 @@ public class UIScript : MonoBehaviour
 {
     public GameObject pauseScreen;
     public GameObject healthManager;
-    public GameObject winScreen;
     public GameObject HighScoreText;
-    [SerializeField]  Text TimeText;
 
     HealthManager hmScript;
     bool isWinTriggered;
 
-    public GoalScript goalScript;
     AudioSource audio;
-    public AudioClip winSound;
 
-    int firstTimePlay;
     public GameObject cutScene;
     public GameObject chooseCharacter;
 
@@ -38,15 +33,6 @@ public class UIScript : MonoBehaviour
         }
 
         audio = GetComponent<AudioSource>();
-
-        firstTimePlay = PlayerPrefs.GetInt("FirstTime", 1);
-        if (firstTimePlay == 1)
-        {
-            cutScene.GetComponent<CutsceneScript>().PlayCutscene();
-            return;
-        } else {
-            Destroy(cutScene);
-        }
 
         chooseCharacter.SetActive(true);
     }
@@ -93,7 +79,7 @@ public class UIScript : MonoBehaviour
         Time.timeScale = 1;
         // hmScript.DestroyHealth(-1);
         // goalScript.ResetGoal();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(0);
     }
 
     public void ExitGame()

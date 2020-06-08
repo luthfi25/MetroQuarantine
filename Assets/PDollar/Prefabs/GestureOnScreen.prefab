@@ -68,7 +68,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -495355529
-  m_SortingLayer: 8
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -81,7 +81,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.30324706
+        value: 0.22477111
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -89,8 +89,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.9790344
-        value: 0.2951294
+        time: 1
+        value: 0.22879943
         inSlope: 0
         outSlope: 0
         tangentMode: 0

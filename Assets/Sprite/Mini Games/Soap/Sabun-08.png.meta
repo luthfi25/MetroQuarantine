@@ -172,9 +172,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 672
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,9 +193,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1970
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,9 +214,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3268
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,9 +235,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4566
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,9 +256,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5864
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,9 +277,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 7161
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,9 +298,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 8539
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,9 +319,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 9837
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -340,9 +340,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 11150
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -361,9 +361,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 12454
-        y: 0
-        width: 772
-        height: 1376
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: Sabun-08_10
       rect:
         serializedVersion: 2
-        x: 13759
-        y: 0
-        width: 772
-        height: 1376
+        x: 13755
+        y: 351
+        width: 789
+        height: 708
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

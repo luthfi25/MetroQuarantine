@@ -132,6 +132,8 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
         if(enemyName.Contains("Babeh")){
             health--;
             timeExtension += 10;
+        } else if(enemyName.Contains("Adek")){
+            timeExtension -= 5;
         }
 
         stopWatchScript.AddTime(timeExtension);

@@ -148,6 +148,8 @@ public class MarketGameManagerScript : MonoBehaviour, IGameManager
     }
 
     void GoalFinished(){
+        CameraMiniGames.SetActive(false);
+        CameraMain.SetActive(true);
         WinGame();
     }
 

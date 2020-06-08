@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PuzzleScript : MonoBehaviour
 {
@@ -10,9 +11,16 @@ public class PuzzleScript : MonoBehaviour
     private int counter;
     private bool isClosing;
     public MiniGameController miniGameControllerInstance;
-    public List<AudioClip> clips; 
     private List<Vector2> puzzlePiecesPositions;
     private bool isEstablished;
+
+    [SerializeField] private Image potentialImage;
+    [SerializeField] private List<Sprite> potentialImages;
+    [SerializeField] private List<Sprite> potentialPuzzlePieces;
+    private List<Sprite> chosenPuzzlePieces;
+    
+    [SerializeField] private AudioClip hitClip;
+    [SerializeField] private AudioClip winClip;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +30,14 @@ public class PuzzleScript : MonoBehaviour
         counter = 0;
         miniGameControllerInstance = GameObject.Find("Camera Mini Games").GetComponent<MiniGameController>();
         isClosing = false;
+
+        generateRandomImage();
+    }
+
+    void generateRandomImage(){
+        int randImageIndex = Random.Range(0, potentialImages.Count);
+        potentialImage.sprite = potentialImages[randImageIndex];
+        chosenPuzzlePieces = potentialPuzzlePieces.GetRange(randImageIndex*9, 9);
     }
 
     // Update is called once per frame
@@ -34,7 +50,7 @@ public class PuzzleScript : MonoBehaviour
 
         if(counter >= PuzzlePlaces.Count && !isClosing){
             isClosing = true;
-            miniGameControllerInstance.PlaySound(clips[0], false);
+            miniGameControllerInstance.PlaySound(winClip, false);
             miniGameControllerInstance.CloseMiniGameDelay(this.gameObject, "Sapu", 2f);
         }
     }
@@ -46,6 +62,12 @@ public class PuzzleScript : MonoBehaviour
             int randIndex = Random.Range(0, pieces.Count);
             PuzzlePieces[i].GetComponentInChildren<TextMeshProUGUI>().text = pieces[randIndex].ToString();
             pieces.RemoveAt(randIndex);
+
+            Image image;
+            if(PuzzlePieces[i].TryGetComponent<Image>(out image)){
+                image.sprite = chosenPuzzlePieces[randIndex];
+                chosenPuzzlePieces.RemoveAt(randIndex);
+            }
             i++;
         }
 
@@ -54,13 +76,16 @@ public class PuzzleScript : MonoBehaviour
         }
     }
 
-    public bool ValidPosition(int id, Vector2 curPos){
+    public bool ValidPosition(int id, GameObject curGo){
         GameObject puzzlePlace = PuzzlePlaces[id];
+        Vector3 curPos = curGo.transform.position;
 
         if(Mathf.Abs(curPos.x - puzzlePlace.transform.position.x) <= 0.5f &&
             Mathf.Abs(curPos.y - puzzlePlace.transform.position.y) <= 0.5f){
             counter++;
             miniGameControllerInstance.AddProgressTrack(counter, PuzzlePieces.Count, true);
+            miniGameControllerInstance.PlaySound(hitClip, false);
+            curGo.transform.position = puzzlePlace.transform.position;
             return true;
         } else  {
             return false;
@@ -71,5 +96,7 @@ public class PuzzleScript : MonoBehaviour
         for(int i = 0; i < PuzzlePieces.Count; i++){
             PuzzlePieces[i].transform.position = puzzlePiecesPositions[i];
         }
+
+        generateRandomImage();
     }
 }

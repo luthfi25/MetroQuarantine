@@ -261,9 +261,22 @@ public class GestureDetectorScript : MonoBehaviour
 		Gesture candidate = new Gesture(points.ToArray());
 		Dictionary<string, float> gestureResult = PointCloudRecognizer.ClassifyArr(candidate, trainingSet.ToArray());
 
+		recognized = false;
+		strokeId = -1;
+
+		points.Clear();
+
+		foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
+
+			lineRenderer.SetVertexCount(0);
+			Destroy(lineRenderer.gameObject);
+		}
+
+		gestureLinesRenderer.Clear();
+
 		if(gestureResult.ContainsKey(activeClass) && gestureResult[activeClass] <= 1f){
 			// Debug.Log(activeClass+" "+gestureResult[activeClass]);
-			if(gestureResult[activeClass] >= 0.9f) {
+			if(gestureResult[activeClass] >= 0.87f) {
 				miniGameControllerInstance.PlaySound(clips[1], false);
 
 				ScoreText.text = "Berhasil :)";
@@ -271,18 +284,6 @@ public class GestureDetectorScript : MonoBehaviour
 
 				requiredClasses.Remove(activeClass);
 				miniGameControllerInstance.AddProgressTrack(6 - requiredClasses.Count, 6, false);
-				recognized = false;
-				strokeId = -1;
-
-				points.Clear();
-
-				foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
-
-					lineRenderer.SetVertexCount(0);
-					Destroy(lineRenderer.gameObject);
-				}
-
-				gestureLinesRenderer.Clear();
 
 				if(requiredClasses.Count != 0) {
 					activeClass = requiredClasses[UnityEngine.Random.Range(0, requiredClasses.Count - 1)];
