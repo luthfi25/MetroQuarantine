@@ -1,4 +1,4 @@
-# MetroQuarantine
+# Metro Quarantine
 Simple Android Game to raise COVID-19 Awareness in Indonesia
 
 Gameplay Demo: https://youtu.be/VKIszwuuXhk
