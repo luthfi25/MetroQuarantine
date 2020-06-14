@@ -39,6 +39,7 @@ public class MarketGameManagerScript : MonoBehaviour, IGameManager
 
     [SerializeField] private GameObject CameraMiniGames;
     [SerializeField] private GameObject CameraMain;
+    [SerializeField] private float goalTime;
 
     // Start is called before the first frame update
     void Start()
@@ -125,7 +126,8 @@ public class MarketGameManagerScript : MonoBehaviour, IGameManager
             PlayClip("goal");
             CameraMiniGames.SetActive(true);
             CameraMain.SetActive(false);
-            stopWatchScript.SetFreeze(true); 
+            // stopWatchScript.SetFreeze(true); 
+            goalTime = Time.fixedTime;
             enemySpawnerScript.ForceFreeze();
 
             MiniGameController miniGameController;
@@ -150,6 +152,11 @@ public class MarketGameManagerScript : MonoBehaviour, IGameManager
     void GoalFinished(){
         CameraMiniGames.SetActive(false);
         CameraMain.SetActive(true);
+
+        float timeSpent = Time.fixedTime - goalTime;
+        goalTime = 0f;
+        stopWatchScript.AddTimeFloat(timeSpent);
+        
         WinGame();
     }
 

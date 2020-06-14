@@ -12,7 +12,6 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
     [SerializeField] private GameObject cutSceneScreen;
 
     [SerializeField] private int health = 3;
-    const int MAX_HEALTH = 3;
     [SerializeField] private HealthScript healthScript;
 
     [SerializeField] MainCharacterScript mainCharacterScript;
@@ -32,6 +31,7 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
     [SerializeField] private AudioClip gameOverClip;
     [SerializeField] private AudioClip winClip;
     [SerializeField] private AudioClip doorClip;
+    [SerializeField] private float goalTime;
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +93,9 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
 
         CameraMiniGames.SetActive(true);
         CameraMain.SetActive(false);
-        stopWatchScript.SetFreeze(true); 
+        // stopWatchScript.SetFreeze(true); 
+        
+        goalTime = Time.fixedTime;
         enemySpawnerScript.ForceFreeze();
 
         MiniGameController miniGameController;
@@ -107,7 +109,12 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
 
         CameraMiniGames.SetActive(false);
         CameraMain.SetActive(true);
-        stopWatchScript.SetFreeze(false);
+        // stopWatchScript.SetFreeze(false);
+
+        float timeSpent = Time.fixedTime - goalTime;
+        goalTime = 0f;
+        stopWatchScript.AddTimeFloat(timeSpent);
+
         enemySpawnerScript.UnFreeze();
         
         if(goalsTook >= 5){

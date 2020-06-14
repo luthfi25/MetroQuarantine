@@ -63,6 +63,10 @@ public class StopWatchScript : MonoBehaviour
         isFreeze = true;
     }
 
+    public void AddTimeFloat(float time){
+        currentTime += time;
+    }
+
     public void DisableExtension(){
         isFreeze = false;
         stopWatchExtensionText.gameObject.SetActive(false);
