@@ -183,19 +183,21 @@ public class NPCScript : MonoBehaviour
             return;
         }
 
-        int newOrientationIndex = -1;
-        if(name == "Adek"){
-            newOrientationIndex = Random.Range(0, ORIENTATION.Length+1);
-        } else {
-            newOrientationIndex = Random.Range(0, ORIENTATION.Length);
-        }
+        // int newOrientationIndex = -1;
+        int newOrientationIndex = Random.Range(0, ORIENTATION.Length-1);
+        // if(name == "Adek"){
+        //     newOrientationIndex = Random.Range(0, ORIENTATION.Length+1);
+        // } else {
+        //     newOrientationIndex = Random.Range(0, ORIENTATION.Length);
+        // }
 
-        string newOrientation = "";
-        if(newOrientationIndex >= ORIENTATION.Length){
-            newOrientation = "halt";
-        } else {
-            newOrientation = ORIENTATION[newOrientationIndex];
-        }
+        string newOrientation = ORIENTATION[newOrientationIndex];
+        // string newOrientation = "";
+        // if(newOrientationIndex >= ORIENTATION.Length){
+        //     newOrientation = "halt";
+        // } else {
+        //     newOrientation = ORIENTATION[newOrientationIndex];
+        // }
 
         ChangeOrientation(newOrientation);
     }
