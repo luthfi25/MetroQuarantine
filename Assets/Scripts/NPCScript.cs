@@ -91,13 +91,21 @@ public class NPCScript : MonoBehaviour
                     speedHorizon = 0f;
                     speedVertical = 0f;
                     // spriteRenderer.sprite = currentSprite;
-                    animator.enabled = false;
+                    if(name == ""){
+                        animator.enabled = false;
+                    }
                     break;
                 default:
                     break;
             }
 
             if(animator.enabled){
+                if(orientationVal == "halt"){
+                    animator.SetBool("halt", true);
+                } else {
+                    animator.SetBool("halt", false);
+                }
+
                 animator.SetFloat("Speed-Horizon", speedHorizon);
                 animator.SetFloat("Speed-Vertical", speedVertical);
             }
@@ -141,9 +149,9 @@ public class NPCScript : MonoBehaviour
                     break;
             }
 
-            bumpTime = 0.3f;
+            bumpTime = 0.15f;
             ChangeOrientation(bumpOrientation);
-            StartCoroutine(ChangeOrientationDelay(0.3f, newOrientation));
+            StartCoroutine(ChangeOrientationDelay(0.15f, newOrientation));
         }
     }
 

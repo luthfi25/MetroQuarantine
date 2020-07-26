@@ -62,8 +62,6 @@ public class MainCharacterScript : MonoBehaviour
         GameObject avatar = GetAvatar();
 
         if(avatar.TryGetComponent<SpriteRenderer>(out spriteRenderer) && avatar.TryGetComponent<Animator>(out animator)){
-            animator.enabled = true;
-
             switch(orientationVal){
                 case "down":
                     speedHorizon = 0f;
@@ -89,7 +87,6 @@ public class MainCharacterScript : MonoBehaviour
                     speedHorizon = 0f;
                     speedVertical = 0f;
                     spriteRenderer.sprite = currentSprite;
-                    animator.enabled = false;
                     break;
                 case "dead":
                     animator.ResetTrigger("dead");
@@ -102,10 +99,14 @@ public class MainCharacterScript : MonoBehaviour
                     break;
             }
 
-            if(animator.enabled){
-                animator.SetFloat("speed-horizon", speedHorizon);
-                animator.SetFloat("speed-vert", speedVertical);
+            if(orientationVal == "halt"){
+                animator.SetBool("halt", true);
+            } else {
+                animator.SetBool("halt", false);
             }
+
+            animator.SetFloat("speed-horizon", speedHorizon);
+            animator.SetFloat("speed-vert", speedVertical);
             
             moveDir = new Vector3(speedHorizon, speedVertical, 0f);
             orientation = orientationVal;
