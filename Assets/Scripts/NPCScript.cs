@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class NPCScript : MonoBehaviour
 {
@@ -22,14 +23,24 @@ public class NPCScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     Rigidbody2D rigidbody2D;
+    GameObject avatar;
 
     [SerializeField] private float suddenTurnRate = 0f;
     [SerializeField] private string name = "";
 
     private bool isFreeze = false;
+
+    [SerializeField] private AIPath aIPath;
+
     // Start is called before the first frame update
     void Start()
     {
+        avatar = GetAvatar();
+
+        if(aIPath != null){
+            aIPath.enabled = false;
+        }
+
         initOrientation();
 
         if(suddenTurnRate > 0f){
@@ -39,6 +50,15 @@ public class NPCScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(aIPath != null && aIPath.enabled){            
+            if(avatar.TryGetComponent<Animator>(out animator)){
+                animator.SetBool("halt", false);
+                animator.SetFloat("Speed-Horizon", aIPath.desiredVelocity.x);
+                animator.SetFloat("Speed-Vertical", aIPath.desiredVelocity.y);
+            }
+            return;
+        }
+
         if(isFreeze) {
             if(TryGetComponent<Rigidbody2D>(out rigidbody2D)){
                 rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -60,11 +80,13 @@ public class NPCScript : MonoBehaviour
             return;
         }
 
-        GameObject avatar = GetAvatar();
-
         if(avatar.TryGetComponent<SpriteRenderer>(out spriteRenderer) && avatar.TryGetComponent<Animator>(out animator)){
             spriteRenderer.enabled = true;
             animator.enabled = true;
+            
+            if(aIPath != null){
+                aIPath.enabled = false;
+            }
 
             switch(orientationVal){
                 case "down":
@@ -95,6 +117,11 @@ public class NPCScript : MonoBehaviour
                         animator.enabled = false;
                     }
                     break;
+                case "A*":
+                    if(aIPath != null){
+                        aIPath.enabled = true;
+                    }
+                    break;
                 default:
                     break;
             }
@@ -123,6 +150,10 @@ public class NPCScript : MonoBehaviour
             ChangeOrientation("halt");
             isFreeze = true;
         } else if(!coll.gameObject.CompareTag("Door")){
+            if(aIPath != null && aIPath.enabled){
+                return;
+            }
+
             string bumpOrientation;
             string newOrientation;
 
@@ -161,7 +192,7 @@ public class NPCScript : MonoBehaviour
     }
 
     public void InitAnimator(RuntimeAnimatorController anim){
-        GameObject avatar = GetAvatar();
+        avatar = GetAvatar();
         if(avatar.TryGetComponent<Animator>(out animator)){
             animator.runtimeAnimatorController = anim;
         } else {
@@ -187,25 +218,25 @@ public class NPCScript : MonoBehaviour
         }
 
         float randProb = Random.Range(0f, 1f);
-        if(randProb < suddenTurnRate){
+        if(!(aIPath != null && aIPath.enabled) && randProb < suddenTurnRate){
             return;
         }
 
-        // int newOrientationIndex = -1;
-        int newOrientationIndex = Random.Range(0, ORIENTATION.Length-1);
-        // if(name == "Adek"){
-        //     newOrientationIndex = Random.Range(0, ORIENTATION.Length+1);
-        // } else {
-        //     newOrientationIndex = Random.Range(0, ORIENTATION.Length);
-        // }
+        int newOrientationIndex = -1;
+        // int newOrientationIndex = Random.Range(0, ORIENTATION.Length-1);
+        if(aIPath != null){
+            newOrientationIndex = Random.Range(0, ORIENTATION.Length+1);
+        } else {
+            newOrientationIndex = Random.Range(0, ORIENTATION.Length);
+        }
 
-        string newOrientation = ORIENTATION[newOrientationIndex];
-        // string newOrientation = "";
-        // if(newOrientationIndex >= ORIENTATION.Length){
-        //     newOrientation = "halt";
-        // } else {
-        //     newOrientation = ORIENTATION[newOrientationIndex];
-        // }
+        // string newOrientation = ORIENTATION[newOrientationIndex];
+        string newOrientation = "";
+        if(newOrientationIndex >= ORIENTATION.Length){
+            newOrientation = "A*";
+        } else {
+            newOrientation = ORIENTATION[newOrientationIndex];
+        }
 
         ChangeOrientation(newOrientation);
     }
@@ -216,8 +247,18 @@ public class NPCScript : MonoBehaviour
     }
 
     void initOrientation(){
-        int initOrientationIndex = Random.Range(0, ORIENTATION.Length-1); //exclude halt
-        string initOrientation = ORIENTATION[initOrientationIndex];
+        int initOrientationIndex = Random.Range(0, ORIENTATION.Length-1);
+        if(aIPath != null){
+            initOrientationIndex = Random.Range(0, ORIENTATION.Length+1);
+        }
+
+        string initOrientation = "";
+        if(initOrientationIndex >= ORIENTATION.Length){
+            initOrientation = "A*";
+        } else {
+            initOrientation = ORIENTATION[initOrientationIndex];
+        }
+
         ChangeOrientation(initOrientation);
     }
 
