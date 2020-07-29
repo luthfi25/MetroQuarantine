@@ -59,6 +59,8 @@ public class HouseGameManagerScript : MonoBehaviour, IGameManager
     }
 
     public void QuitGame(){
+        PlayerPrefs.DeleteKey("VolumeStatus");
+        PlayerPrefs.DeleteKey("VolumeLevel");
         Application.Quit();
     }
 

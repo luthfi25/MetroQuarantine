@@ -86,6 +86,8 @@ public class UIScript : MonoBehaviour
     {
         // hmScript.DestroyHealth(-1);
         // goalScript.ResetGoal();
+        PlayerPrefs.DeleteKey("VolumeStatus");
+        PlayerPrefs.DeleteKey("VolumeLevel");
         Application.Quit();
     }
 

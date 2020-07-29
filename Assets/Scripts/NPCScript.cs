@@ -12,7 +12,7 @@ public class NPCScript : MonoBehaviour
     private Sprite currentSprite;
 
     readonly string[] ORIENTATION = {"down", "up", "left", "right", "halt"};
-    string curOrientation;
+    [SerializeField] string curOrientation;
     float speedHorizon;
     float speedVertical;
     Vector3 moveDir;
@@ -50,20 +50,37 @@ public class NPCScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(aIPath != null && aIPath.enabled){            
-            if(avatar.TryGetComponent<Animator>(out animator)){
-                animator.SetBool("halt", false);
-                animator.SetFloat("Speed-Horizon", aIPath.desiredVelocity.x);
-                animator.SetFloat("Speed-Vertical", aIPath.desiredVelocity.y);
-            }
-            return;
-        }
-
         if(isFreeze) {
+            if(aIPath != null){
+                aIPath.enabled = false;
+            }
+
             if(TryGetComponent<Rigidbody2D>(out rigidbody2D)){
                 rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             }
 
+            return;
+        }
+
+        if(aIPath != null && aIPath.enabled){            
+            if(avatar.TryGetComponent<Animator>(out animator)){
+                animator.SetBool("halt", false);
+                if(Mathf.Abs(aIPath.desiredVelocity.x) >= Mathf.Abs(aIPath.desiredVelocity.y)){
+                    if(aIPath.desiredVelocity.x >= 0f){
+                        animator.SetFloat("Speed-Horizon", 1f);
+                    } else {
+                        animator.SetFloat("Speed-Horizon", -1f);
+                    }                 
+                    animator.SetFloat("Speed-Vertical", 0f);
+                } else {
+                    if(aIPath.desiredVelocity.y >= 0f){
+                        animator.SetFloat("Speed-Vertical", 1f);
+                    } else {
+                        animator.SetFloat("Speed-Vertical", -1f);
+                    }   
+                    animator.SetFloat("Speed-Horizon", 0f);
+                }
+            }
             return;
         }
 
@@ -118,6 +135,8 @@ public class NPCScript : MonoBehaviour
                     }
                     break;
                 case "A*":
+                    speedHorizon = 0f;
+                    speedVertical = 0f;
                     if(aIPath != null){
                         aIPath.enabled = true;
                     }
@@ -218,7 +237,7 @@ public class NPCScript : MonoBehaviour
         }
 
         float randProb = Random.Range(0f, 1f);
-        if(!(aIPath != null && aIPath.enabled) && randProb < suddenTurnRate){
+        if(!(aIPath != null && aIPath.enabled) && randProb < suddenTurnRate && curOrientation != "halt"){
             return;
         }
 
@@ -237,7 +256,10 @@ public class NPCScript : MonoBehaviour
         } else {
             newOrientation = ORIENTATION[newOrientationIndex];
         }
-
+        
+        if(TryGetComponent<Rigidbody2D>(out rigidbody2D)){
+            rigidbody2D.velocity = Vector3.zero;
+        }
         ChangeOrientation(newOrientation);
     }
 

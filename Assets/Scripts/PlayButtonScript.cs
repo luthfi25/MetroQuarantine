@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayButtonScript : MonoBehaviour
 {
     AudioSource audio;
+    float audioLevelOrig;
+    [SerializeField] AudioSource mainAudioSource;
+    float mainAudioSourceLevelOrig;
     public GameObject creditScene;
 
+
     [SerializeField] private GameObject levelSelectButton;
+    [SerializeField] private GameObject loadingScreen;
+
+    [SerializeField] private Image soundSpriteRenderer;
+    [SerializeField] private Sprite soundActive;
+    [SerializeField] private Sprite soundMute;
+    [SerializeField] private Slider volumeLevel;
 
 
     // Start is called before the first frame update
@@ -18,11 +29,6 @@ public class PlayButtonScript : MonoBehaviour
         Time.timeScale = 1;
         audio = GetComponent<AudioSource>();
         creditScene.SetActive(false);
-
-        int rthFirstTime = PlayerPrefs.GetInt("RTH-FirstTime", -1);
-        if(rthFirstTime == -1){
-            levelSelectButton.SetActive(false);
-        }
     }
 
     // Update is called once per frame
@@ -38,6 +44,8 @@ public class PlayButtonScript : MonoBehaviour
 
     public void ExitGame()
     {
+        PlayerPrefs.DeleteKey("VolumeStatus");
+        PlayerPrefs.DeleteKey("VolumeLevel");
         Application.Quit();
     }
 
@@ -68,5 +76,14 @@ public class PlayButtonScript : MonoBehaviour
 
     public void CloseWindow(GameObject go){
         go.SetActive(false);
+    }
+    public void PlayGame(GameObject go){
+        int rthFirstTime = PlayerPrefs.GetInt("RTH-FirstTime", -1);
+        if(rthFirstTime == -1){
+            ActivateWindow(loadingScreen);
+            LoadLevel(1);            
+        } else {
+            ActivateWindow(go);
+        }
     }
 }

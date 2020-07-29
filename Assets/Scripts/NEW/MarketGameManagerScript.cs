@@ -92,6 +92,8 @@ public class MarketGameManagerScript : MonoBehaviour, IGameManager
     }
 
     public void QuitGame(){
+        PlayerPrefs.DeleteKey("VolumeStatus");
+        PlayerPrefs.DeleteKey("VolumeLevel");
         Application.Quit();
     }
 

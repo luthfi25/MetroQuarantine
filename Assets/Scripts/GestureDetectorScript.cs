@@ -202,7 +202,7 @@ public class GestureDetectorScript : MonoBehaviour
 				Gesture candidate = new Gesture(points.ToArray());
 				Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
 
-				if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.75f){
+				if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.65f){
 				// if(gestureResult.GestureClass == activeClass && gestureResult.Score >= 0.25f){
 
 					requiredClasses.Remove(activeClass);
@@ -276,7 +276,7 @@ public class GestureDetectorScript : MonoBehaviour
 
 		if(gestureResult.ContainsKey(activeClass) && gestureResult[activeClass] <= 1f){
 			// Debug.Log(activeClass+" "+gestureResult[activeClass]);
-			if(gestureResult[activeClass] >= 0.87f) {
+			if(gestureResult[activeClass] >= 0.77f) {
 				miniGameControllerInstance.PlaySound(clips[1], false);
 
 				ScoreText.text = "Berhasil :)";
