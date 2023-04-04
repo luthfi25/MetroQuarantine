@@ -69,7 +69,7 @@ TextureImporter:
       213: -551116589752660338
     second: Taman-02_21
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -89,6 +89,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -97,12 +99,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -120,10 +122,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -151,6 +157,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -636,6 +654,29 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Taman-02_0: 5102416922703663673
+      Taman-02_1: -5395357839172074111
+      Taman-02_10: 4192139581663485770
+      Taman-02_11: -5409391569861321606
+      Taman-02_12: 1405751623552158489
+      Taman-02_13: -4378201272402986609
+      Taman-02_14: -7785815180797739835
+      Taman-02_15: 2227287152223123215
+      Taman-02_16: 2839475787437342256
+      Taman-02_17: 7315952014747091779
+      Taman-02_18: -2272452394485849619
+      Taman-02_19: 1345539685002006007
+      Taman-02_2: 3478756947895344610
+      Taman-02_20: 1071284031514522124
+      Taman-02_21: -551116589752660338
+      Taman-02_3: -6579063373516989810
+      Taman-02_4: -4695448839892810663
+      Taman-02_5: 5339464126618135870
+      Taman-02_6: -6180330167530674633
+      Taman-02_7: 2672462024494617368
+      Taman-02_8: -5323195529817602797
+      Taman-02_9: 42936195077967513
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

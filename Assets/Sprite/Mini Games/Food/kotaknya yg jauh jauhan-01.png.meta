@@ -72,7 +72,7 @@ TextureImporter:
       213: -2537595228275395924
     second: kotaknya yg jauh jauhan-01_22
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -92,6 +92,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -101,11 +103,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -123,10 +125,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -154,6 +160,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -660,6 +678,30 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      kotaknya yg jauh jauhan-01_0: -3011354832070943658
+      kotaknya yg jauh jauhan-01_1: 1001196972468539134
+      kotaknya yg jauh jauhan-01_10: 1112818307719263663
+      kotaknya yg jauh jauhan-01_11: 5194115441431121225
+      kotaknya yg jauh jauhan-01_12: 3274747681694019478
+      kotaknya yg jauh jauhan-01_13: 1000848727271110812
+      kotaknya yg jauh jauhan-01_14: 2559678256644736752
+      kotaknya yg jauh jauhan-01_15: -4303187604411808087
+      kotaknya yg jauh jauhan-01_16: -9036950478542664907
+      kotaknya yg jauh jauhan-01_17: -3249655012836206928
+      kotaknya yg jauh jauhan-01_18: -4440382496929702692
+      kotaknya yg jauh jauhan-01_19: -2891994073756501958
+      kotaknya yg jauh jauhan-01_2: -2280614113534334451
+      kotaknya yg jauh jauhan-01_20: -5775054477030967518
+      kotaknya yg jauh jauhan-01_21: 6528622845347340135
+      kotaknya yg jauh jauhan-01_22: -2537595228275395924
+      kotaknya yg jauh jauhan-01_3: -3277372442503980803
+      kotaknya yg jauh jauhan-01_4: -3797209602433064175
+      kotaknya yg jauh jauhan-01_5: -2834913858235970451
+      kotaknya yg jauh jauhan-01_6: -740580656971153874
+      kotaknya yg jauh jauhan-01_7: -376233909610016985
+      kotaknya yg jauh jauhan-01_8: -6058299163868591628
+      kotaknya yg jauh jauhan-01_9: 8265931971190113510
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
